@@ -15,10 +15,10 @@ const config: IConfig =  {
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
-      antd: false,
+      antd: true,
       dva: false,
       dynamicImport: false,
-      title: 'myapp',
+      title: '租享宝',
       dll: false,
       
       routes: {
