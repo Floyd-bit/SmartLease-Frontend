@@ -1,25 +1,38 @@
 import React from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input ,Avatar, Button} from 'antd';
+import { Layout, Menu, Breadcrumb, Input ,Avatar, Button, Row, Col} from 'antd';
 import { SearchOutlined , UserOutlined} from '@ant-design/icons';
 
 const { Header, Content, Footer } = Layout;
+
+const handleUserClick = () => {
+  window.location.href = "/personal/my";
+}
+
+const handleShoppingClick = () => {
+  window.location.href = "/personal/shoppinglist";
+}
+
 const BasicLayout: React.FC = props => {
   return (
     <Layout>
     <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
       <Menu theme="dark" mode="horizontal" >
-        <div>
-          <Avatar src="logo.png"/>
-        </div>
-        <div style={{marginLeft: 600}}>首页</div>
-        <div style={{marginLeft: 200}}>
-          <Input placeholder="清输入搜索内容" prefix={<SearchOutlined/>}/>
-        </div>
-        <div><Button>搜索</Button></div>
-        <div style={{marginLeft: 30}}>
-          <Button ghost icon={<SearchOutlined/>} href="">购物车</Button>
-          <Button ghost icon={<UserOutlined/>} href="personal/my">个人中心</Button>
+        <div style={{width:1400}}>
+        <Row >
+          <Col span={10}>
+            <Avatar src="logo.png"/>
+          </Col>
+          <Col span={2} ><a href="/">首页</a></Col>
+          <Col span={4}>
+            <Input placeholder="清输入搜索内容" prefix={<SearchOutlined/>}/>
+          </Col>
+          <Col span={1}><Button>搜索</Button></Col>
+          <Col span={5} offset={1}>
+            <Button size="small" ghost icon={<SearchOutlined/>} onClick={handleShoppingClick}>购物车</Button>
+            <Button size="small" ghost icon={<UserOutlined/>} onClick={handleUserClick}>个人中心</Button>
+          </Col>
+        </Row>
         </div>
       </Menu>
     </Header>
