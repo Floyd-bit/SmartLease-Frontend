@@ -1,48 +1,110 @@
 import React from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input ,Avatar, Button, Row, Col} from 'antd';
-import { SearchOutlined , UserOutlined} from '@ant-design/icons';
+import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col } from 'antd';
+import {
+  LeftCircleTwoTone,
+  RightCircleTwoTone,
+  SearchOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import logo from '@/assets/logo.png';
 
 const { Header, Content, Footer } = Layout;
 
 const handleUserClick = () => {
-  window.location.href = "/personal/my";
-}
+  window.location.href = '/personal/my';
+};
 
 const handleShoppingClick = () => {
-  window.location.href = "/personal/shoppinglist";
-}
+  window.location.href = '/personal/shoppinglist';
+};
 
 const BasicLayout: React.FC = props => {
+  const { Search } = Input;
   return (
     <Layout>
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-      <Menu theme="dark" mode="horizontal" >
-        <div style={{width:1400}}>
-        <Row >
-          <Col span={10}>
-            <Avatar src="logo.png"/>
-          </Col>
-          <Col span={2} ><a href="/">首页</a></Col>
-          <Col span={4}>
-            <Input placeholder="清输入搜索内容" prefix={<SearchOutlined/>}/>
-          </Col>
-          <Col span={1}><Button>搜索</Button></Col>
-          <Col span={5} offset={1}>
-            <Button size="small" ghost icon={<SearchOutlined/>} onClick={handleShoppingClick}>购物车</Button>
-            <Button size="small" ghost icon={<UserOutlined/>} onClick={handleUserClick}>个人中心</Button>
-          </Col>
-        </Row>
+      <Header style={{ width: '100%', padding: '0px' }}>
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+          <div
+            style={{
+              height: '30px',
+              backgroundColor: 'white',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                marginLeft: '50px',
+                alignItems: 'center',
+                paddingTop: '5px',
+              }}
+            >
+              <div style={{ marginRight: '10px' }}>
+                <LeftCircleTwoTone style={{ fontSize: '20px' }} />
+              </div>
+              <div>
+                <RightCircleTwoTone style={{ fontSize: '20px' }} />
+              </div>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                marginRight: '50px',
+                justifyContent: 'space-around',
+                width: '200px',
+              }}
+            >
+              <div>
+                <ShoppingCartOutlined />
+                购物车
+              </div>
+              <div style={{ marginLeft: '20px' }}>
+                <UserOutlined />
+                个人中心
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              height: '60px',
+              backgroundColor: '#4C7DD2',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar src={logo} style={{ marginLeft: '30px', height: '55px' }} />
+            <div
+              style={{
+                marginLeft: '200px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                padding: '50px',
+              }}
+            >
+              <div style={{ cursor: 'pointer' }}>首页</div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Input placeholder="input search text" size="large" />
+                <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>
+                  Search
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
-      </Menu>
-    </Header>
-    <Content className="site-layout" style={{ padding: '0 0', marginTop: 20 }}>
-      <div className="site-layout-background" style={{ padding: 0, minHeight: 380 }}>
-        {props.children}
-      </div>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-  </Layout>
+      </Header>
+      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26, height: '100vh' }}>
+        <div className="site-layout-background" style={{ padding: 0, minHeight: 380 }}>
+          {props.children}
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    </Layout>
   );
 };
 
