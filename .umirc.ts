@@ -6,11 +6,24 @@ const config: IConfig =  {
   routes: [
     {
       path: '/',
-      component: '../layouts/index',
+      component: '../layouts/BasicLayout/index',
       routes: [
-        { path: '/', component: '../pages/index' }
-      ]
-    }
+        { path: '/', component: '../pages/index' },
+        {
+          path: '/personal',
+          routes: [
+            {
+              path: '/personal/shoppinglist',
+              component: '../pages/ShoppingList'
+            },
+            {
+              path: '/personal/my',
+              component: '../pages/My'
+            },
+          ],
+      }
+      ],
+    },
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html

@@ -8,9 +8,11 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "reqwest": "^2.0.5"
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",
