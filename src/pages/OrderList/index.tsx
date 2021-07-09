@@ -28,7 +28,7 @@ function OrderList(props){
   if(isInit){
     const getData = callback => {
       reqwest({
-        url: `http://rap2api.taobao.org/app/mock/286636/getOrderList?pageNum=1&pageSize=10`,
+        url: `http://rap2api.taobao.org/app/mock/286636/getOrderList?pageNum=1&pageSize=5`,
         type: 'json',
         method: 'get',
         contentType: 'application/json',
@@ -104,7 +104,7 @@ function OrderList(props){
       <ul style={{ listStyleType: 'none', paddingLeft:0 }}>{orders}</ul>
     </div>
     <div style={{textAlign: 'center'}}>
-      <Pagination size="small" total={total} pageSize={10} showSizeChanger={false} onChange={changePage}/>
+      <Pagination size="small" total={total} pageSize={5} showSizeChanger={false} onChange={changePage}/>
     </div>
     </>
   )

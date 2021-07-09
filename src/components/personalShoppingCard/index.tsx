@@ -19,7 +19,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        width: '1000px',
+        width: '100%',
         height: '200px',
         justifyContent: 'center',
       }}
@@ -41,7 +41,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
           <div>收货人手机: {props.phone}</div>
         </div>
       </div>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', width: '100%' }}>
         <div>
           <div
             style={{
@@ -61,6 +61,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             flexDirection: 'column',
             marginTop: '30px',
             marginLeft: '30px',
+            width: '20%',
           }}
         >
           <div style={{ width: '200px' }}>{props.productName}</div>
@@ -75,6 +76,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             marginTop: '35px',
             marginLeft: '20px',
             alignItems: 'center',
+            width: '20%',
           }}
         >
           <div>{props.price}</div>
@@ -87,6 +89,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             marginTop: '25px',
             marginLeft: '50px',
             alignItems: 'center',
+            width: '20%',
           }}
         >
           <div style={{ fontSize: '25px', color: 'red' }}>{props.price}</div>
@@ -100,6 +103,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             marginTop: '35px',
             marginLeft: '50px',
             alignItems: 'center',
+            width: '20%',
           }}
         >
           {props.payment ? <div style={{ color: 'red' }}>待付款</div> : <div>待收货</div>}
@@ -112,6 +116,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             marginTop: '25px',
             marginLeft: '50px',
             alignItems: 'center',
+            width: '20%',
           }}
         >
           <div style={{ color: 'red',marginBottom:'10px' }}>29分59秒</div>
