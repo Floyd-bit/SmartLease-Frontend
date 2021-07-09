@@ -9,6 +9,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import logo from '@/assets/logo.png';
+import { Link } from 'umi';
 
 const { Header, Content, Footer } = Layout;
 
@@ -65,7 +66,7 @@ const BasicLayout: React.FC = props => {
               </div>
               <div style={{ marginLeft: '20px' }}>
                 <UserOutlined />
-                个人中心
+                <Link to='/personal/my' style={{color:'black'}}>个人中心</Link>
               </div>
             </div>
           </div>
@@ -84,10 +85,11 @@ const BasicLayout: React.FC = props => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 width: '100%',
-                padding: '50px',
+                paddingLeft: '50px',
+                paddingRight: '50px',
               }}
             >
-              <div style={{ cursor: 'pointer' }}>首页</div>
+              <div style={{color:'white'}}><Link to='/' style={{color:'white'}}>首页</Link></div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Input placeholder="input search text" size="large" />
                 <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>

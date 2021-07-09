@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './index.css';
 import { Row, Col, Divider, Card, Carousel } from 'antd';
 import Product from '../components/Product';
+import ItemCard from '@/components/ItemCard';
 
 const contentStyle1 = {
   height: '400px',
@@ -21,7 +22,7 @@ const contentStyle2 = {
 
 export default function() {
   return (
-    <div className={styles.normal}>
+    <div>
       <Row  justify="space-around" align="middle">
         <Col span={4}>
           <Card title="商品列表" bordered={false} style={{ width: 300 , height: 400}}>
@@ -128,10 +129,46 @@ export default function() {
       </Row>
       <Divider/>
       <Row>
-        <Col span={6}>1</Col>
-        <Col span={6}>2</Col>
-        <Col span={6}>3</Col>
-        <Col span={6}>4</Col>
+        <Col span={3}>
+          <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='2'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='3'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='4'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='5'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='6'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='7'/>
+        </Col>
+        <Col span={3}>
+        <ItemCard
+          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          title='商品名称' price='9999.99' oldprice='9999.99' id='8'/>
+        </Col>
       </Row>
       <Divider/>
       <Row>
