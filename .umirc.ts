@@ -20,6 +20,10 @@ const config: IConfig =  {
               path: '/personal/my',
               component: '../pages/My'
             },
+            {
+              path: '/personal/orderlist',
+              component: '../pages/OrderList'
+            },
           ],
       }
       ],
@@ -33,7 +37,7 @@ const config: IConfig =  {
       dynamicImport: false,
       title: '租享宝',
       dll: false,
-      
+
       routes: {
         exclude: [
           /components\//,

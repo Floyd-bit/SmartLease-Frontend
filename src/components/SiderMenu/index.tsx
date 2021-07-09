@@ -22,7 +22,7 @@ function SiderMenu() {
     <Menu.Item icon={<UserOutlined/>}><Link to='my'>我的主页</Link></Menu.Item>
     <SubMenu key="sub2"  title="我的交易">
       <Menu.Item key="5">购物车</Menu.Item>
-      <Menu.Item key="6">我的订单</Menu.Item>
+      <Menu.Item key="6"><Link to='orderlist'>我的订单</Link></Menu.Item>
       <Menu.Item key="7">优惠劵</Menu.Item>
     </SubMenu>
     <SubMenu key="sub3"  title="我的账户">

@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button,Image } from 'antd';
 import React, { useState } from 'react';
 interface ShoppingCardProps {
   gmtCreate: string;
@@ -51,7 +51,9 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
               marginTop: '25px',
               marginLeft: '40px',
             }}
-          ></div>
+          >
+            <Image src={props.src}/>
+          </div>
         </div>
         <div
           style={{
@@ -114,7 +116,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
         >
           <div style={{ color: 'red',marginBottom:'10px' }}>29分59秒</div>
           <div style={{marginBottom:'10px'}}>
-           
+
             <Button type="primary" danger>
               立即付款
             </Button>
