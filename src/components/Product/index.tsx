@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-08 00:27:07
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-09 20:55:03
+ */
 import React from 'react';
 import { Card , Avatar} from 'antd';
 import { EditOutline, EllipsisOutline, SettingOutline } from '@ant-design/icons';
