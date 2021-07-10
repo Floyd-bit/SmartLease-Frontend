@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 08:54:42
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 11:23:34
+ * @LastEditTime: 2021-07-10 11:27:07
  */
 import React from 'react';
 import { Menu } from 'antd';
@@ -31,7 +31,9 @@ function SiderMenu(props: any) {
         <Link to="my">我的主页</Link>
       </Menu.Item>
       <SubMenu key="sub2" title="我的交易">
-        <Menu.Item key="5">购物车</Menu.Item>
+        <Menu.Item key="5">
+        <Link to="shoppingcar">购物车</Link>
+        </Menu.Item>
         <Menu.Item key="6">
           <Link to="orderlist">我的订单</Link>
         </Menu.Item>
