@@ -81,7 +81,7 @@ function OrderList(props) {
   });
   return (
     <>
-      <div
+      {/* <div
         style={{
           height: '50px',
           display: 'flex',
@@ -98,7 +98,7 @@ function OrderList(props) {
         <div style={{ width: '10%' }}>实付款</div>
         <div style={{ width: '20%' }}>交易状态</div>
         <div style={{ width: '20%' }}>交易状态</div>
-      </div>
+      </div> */}
 
       <div>
         <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>{orders}</ul>

@@ -10,6 +10,8 @@ import React from 'react';
 import styles from './index.css';
 import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col } from 'antd';
 import {
+  HomeFilled,
+  HomeOutlined,
   LeftCircleTwoTone,
   RightCircleTwoTone,
   SearchOutlined,
@@ -65,16 +67,24 @@ const BasicLayout: React.FC = props => {
                 display: 'flex',
                 marginRight: '50px',
                 justifyContent: 'space-around',
-                width: '200px',
+                width: '300px',
               }}
             >
               <div>
-                <ShoppingCartOutlined />
-                购物车
+                <HomeOutlined />
+                <Link to="/" style={{ color: 'black',marginLeft:'5px' }}>
+                  首页
+                </Link>
               </div>
-              <div style={{ marginLeft: '20px' }}>
+              <div>
+              <ShoppingCartOutlined />
+              <Link to="/personal/shoppingcar" style={{color:'black',marginLeft:'5px'}}>
+                购物车
+              </Link>
+              </div>
+              <div>
                 <UserOutlined />
-                <Link to="/personal/my" style={{ color: 'black' }}>
+                <Link to="/personal/my" style={{ color: 'black',marginLeft:'5px' }}>
                   个人中心
                 </Link>
               </div>
@@ -83,27 +93,24 @@ const BasicLayout: React.FC = props => {
           <div
             style={{
               height: '60px',
+              width: '100%',
               backgroundColor: '#4C7DD2',
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'space-between'
             }}
           >
-            <Avatar src={logo} style={{ marginLeft: '30px', height: '55px' }} />
+            <div><Avatar src={logo} style={{ marginLeft: '30px', height: '55px' }} /></div>
             <div
               style={{
                 marginLeft: '200px',
                 display: 'flex',
                 justifyContent: 'space-between',
-                width: '100%',
+                width: '400px',
                 paddingLeft: '50px',
                 paddingRight: '50px',
               }}
             >
-              <div style={{ color: 'white' }}>
-                <Link to="/" style={{ color: 'white' ,marginLeft: 400}}>
-                  首页
-                </Link>
-              </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Input placeholder="input search text" size="large" />
                 <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>
