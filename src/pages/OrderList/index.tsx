@@ -21,11 +21,11 @@ interface ShoppingCardProps {
   payment: boolean; //是否支付
 }
 
-function OrderList(props){
-  const [isInit,setIsInit]=useState(true);
-  const [total,setTotal]=useState(1);
-  const [orderinfo,setOrderinfo]=useState([]);
-  if(isInit){
+function OrderList(props) {
+  const [isInit, setIsInit] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [orderinfo, setOrderinfo] = useState([]);
+  if (isInit) {
     const getData = callback => {
       reqwest({
         url: `http://rap2api.taobao.org/app/mock/286636/getOrderList?pageNum=1&pageSize=10`,
@@ -37,13 +37,12 @@ function OrderList(props){
         },
       });
     };
-    getData(res=>{
-      setIsInit(false);
+    getData(res => {
       setTotal(res.total);
       setOrderinfo(res.data);
     });
   }
-  const changePage=(page,pageSize)=>{
+  const changePage = (page, pageSize) => {
     const fakeDataUrl = `http://rap2api.taobao.org/app/mock/286636/getOrderList?pageNum=${page}&pageSize=${pageSize}`;
     const getData = callback => {
       reqwest({
@@ -57,64 +56,70 @@ function OrderList(props){
       });
     };
     console.log('翻页点击');
-    getData(res=>{
+    getData(res => {
       setTotal(res.total);
       setOrderinfo(res.data);
     });
-  }
-  const orders=orderinfo.map((order:ShoppingCardProps)=>{
-    return(
+  };
+  const orders = orderinfo.map((order: ShoppingCardProps) => {
+    return (
       <li key={order.id}>
         <ShoppingCard
-        gmtCreate={order.gmtCreate}
-        id={order.id}
-        receiver={order.receiver}
-        phone={order.phone}
-        src={order.src}
-        productName={order.productName}
-        price={order.price}
-        number={order.number}
-        payment={order.payment}
+          gmtCreate={order.gmtCreate}
+          id={order.id}
+          receiver={order.receiver}
+          phone={order.phone}
+          src={order.src}
+          productName={order.productName}
+          price={order.price}
+          number={order.number}
+          payment={order.payment}
         />
       </li>
-    )
+    );
   });
-  return(
+  return (
     <>
-    <div
-      style={{
-        height: '50px',
-        display: 'flex',
-        alignItems: 'center',
-        backgroundColor: '#C6DCF9',
-        width: '100%',
-        justifyContent: 'flex-start',
-        textAlign:'center'
-      }}
-    >
-      <div style={{width: '20%'}}>订单创建时间</div>
-      <div style={{width: '10%'}}>商品信息</div>
-      <div style={{width: '20%'}}></div>
-      <div style={{width: '10%'}}>实付款</div>
-      <div style={{width: '20%'}}>交易状态</div>
-      <div style={{width: '20%'}}>交易状态</div>
-    </div>
+      <div
+        style={{
+          height: '50px',
+          display: 'flex',
+          alignItems: 'center',
+          backgroundColor: '#C6DCF9',
+          width: '100%',
+          justifyContent: 'flex-start',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ width: '20%' }}>订单创建时间</div>
+        <div style={{ width: '10%' }}>商品信息</div>
+        <div style={{ width: '20%' }}></div>
+        <div style={{ width: '10%' }}>实付款</div>
+        <div style={{ width: '20%' }}>交易状态</div>
+        <div style={{ width: '20%' }}>交易状态</div>
+      </div>
 
-    <div>
-      <ul style={{ listStyleType: 'none', paddingLeft:0 }}>{orders}</ul>
-    </div>
-    <div style={{textAlign: 'center'}}>
-      <Pagination size="small" total={total} pageSize={10} showSizeChanger={false} onChange={changePage}/>
-    </div>
+      <div>
+        <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>{orders}</ul>
+      </div>
+      <div style={{ textAlign: 'center' }}>
+        <Pagination
+          size="small"
+          total={total}
+          pageSize={5}
+          showSizeChanger={false}
+          onChange={changePage}
+        />
+      </div>
     </>
-  )
+  );
 }
 function OrderListPage() {
   return (
     <>
-      <Row justify="space-around" align="top" >
-        <Col span={1}>
-          <SiderMenu />
+      <Row justify="space-around" align="top">
+        <Col span={2}>
+          <SiderMenu selectedKey="6" />
         </Col>
         <Col span={20} offset={2}>
           <div
@@ -136,14 +141,41 @@ function OrderListPage() {
               <div>使用中</div>
               <div>已退还</div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around', width: '30%',alignItems: 'center' }}>
-              <Search placeholder="商品名称/订单号/收货人" allowClear onSearch={()=>{console.log('search pressed')}} style={{ width: '80%'}} size='large' />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                width: '30%',
+                alignItems: 'center',
+              }}
+            >
+              <Search
+                placeholder="商品名称/订单号/收货人"
+                allowClear
+                onSearch={() => {
+                  console.log('search pressed');
+                }}
+                style={{ width: '80%' }}
+                size="large"
+              />
             </div>
           </div>
-          <div style={{height:'80px', display: 'flex', justifyContent: 'space-around', flexDirection:'column', width: '100%',textAlign: 'center',alignItems: 'center', }}>
-            <p style={{width:'80%',margin:'0 auto'}}>温馨提示：近期有骗子通过技术手段冒充租享宝客服QQ或客服电话，以“资金冻结，免费赠品”等名义，诱骗用户上当。现提示您：如果遇到陌生人以租享宝名义向您索要手机验证码，或账号密码之类信息，请不要随意配合，谨防受骗致资金损失！如果您接到可疑电话或QQ信息，可联系在线客服。</p>
+          <div
+            style={{
+              height: '80px',
+              display: 'flex',
+              justifyContent: 'space-around',
+              flexDirection: 'column',
+              width: '100%',
+              textAlign: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <p style={{ width: '80%', margin: '0 auto' }}>
+              温馨提示：近期有骗子通过技术手段冒充租享宝客服QQ或客服电话，以“资金冻结，免费赠品”等名义，诱骗用户上当。现提示您：如果遇到陌生人以租享宝名义向您索要手机验证码，或账号密码之类信息，请不要随意配合，谨防受骗致资金损失！如果您接到可疑电话或QQ信息，可联系在线客服。
+            </p>
           </div>
-          <OrderList/>
+          <OrderList />
         </Col>
       </Row>
     </>

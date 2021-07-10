@@ -10,6 +10,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.6",
+    "core-js": "^3.15.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "reqwest": "^2.0.5"

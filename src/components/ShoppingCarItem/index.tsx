@@ -1,45 +1,43 @@
-import { Button, Image } from 'antd';
-import React, { useState } from 'react';
-interface ShoppingCardProps {
+/*
+ * @Description: 
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-10 10:05:27
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-10 10:56:54
+ */
+import React,{useState}from 'react';
+import { Button,Image } from 'antd';
+import { MinusOutlined,  PlusOutlined } from '@ant-design/icons';
+
+
+interface ShoppingCarItemProps {
   gmtCreate: string;
   id: string; //订单号
   receiver: string; //收货人，名字起得不好可以改
   phone: string;
   src: string; //图片地址
+  name: string; // 商品名称
   productName: string;
   color?: string;
   size?: string;
-  price: string;
+  count: number; // 小计
+  price: string; //价格
   number: number; //商品数量
   payment: boolean; //是否支付
 }
-const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
+
+const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
   return (
     <div
       style={{
+        display: 'flex',
+        flexDirection: 'column',
         width: '100%',
         height: '200px',
         justifyContent: 'center',
-        marginTop: '0px',
       }}
     >
-      <div
-        style={{
-          height: '50px',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          backgroundColor: '#C6DCF9',
-          width: '100%',
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-around', width: '60%' }}>
-          <div>{props.gmtCreate}</div>
-          <div>订单号： {props.id}</div>
-          <div>收货人: {props.receiver}</div>
-          <div>收货人手机: {props.phone}</div>
-        </div>
-      </div>
       <div style={{ display: 'flex', width: '100%' }}>
         <div>
           <div
@@ -51,7 +49,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
               marginLeft: '40px',
             }}
           >
-            <Image src={props.src} />
+            <Image src={props.src}/>
           </div>
         </div>
         <div
@@ -65,7 +63,7 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
         >
           <div style={{ width: '200px' }}>{props.productName}</div>
           <div>
-            颜色: {props.color}&nbsp;&nbsp;&nbsp;规格: {props.size}
+            {props.name}
           </div>
         </div>
         <div
@@ -78,8 +76,34 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             width: '20%',
           }}
         >
-          <div>{props.price}</div>
-          <div>x{props.number}</div>
+          <div>￥{props.price}</div>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            marginLeft: '50px',
+            marginTop: '34px',
+            alignItems: 'top',
+            justifyContent: 'space-between',
+            width: '10%',
+          }}
+        >
+          <Button shape="circle" icon={<MinusOutlined />} size="small"></Button>
+          <div>{props.number}</div>
+          <Button shape="circle" icon={<PlusOutlined />} size="small"></Button>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '32px',
+            marginLeft: '50px',
+            alignItems: 'center',
+            width: '20%',
+          }}
+        >
+          ￥{props.count}
         </div>
         <div
           style={{
@@ -91,44 +115,15 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
             width: '20%',
           }}
         >
-          <div style={{ fontSize: '25px', color: 'red' }}>{props.price}</div>
-          <div>已优惠100000.00</div>
-          <div>(含运费99.99)</div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: '35px',
-            marginLeft: '50px',
-            alignItems: 'center',
-            width: '20%',
-          }}
-        >
-          {props.payment ? <div style={{ color: 'red' }}>待付款</div> : <div>待收货</div>}
-          <div>订单详情</div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: '25px',
-            marginLeft: '50px',
-            alignItems: 'center',
-            width: '20%',
-          }}
-        >
-          <div style={{ color: 'red', marginBottom: '10px' }}>29分59秒</div>
-          <div style={{ marginBottom: '10px' }}>
+          <div style={{marginBottom:'10px'}}>
             <Button type="primary" danger>
-              立即付款
+              删除
             </Button>
           </div>
-          <div>取消订单</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default personalShoppingCard;
+export default ShoppingCarItem;
