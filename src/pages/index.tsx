@@ -107,7 +107,7 @@ export default function() {
             <p>Card content</p>
           </Card>
           </div>
-          <Card style={{ width: 300 , height: 200 , marginTop: 10}}></Card>
+          <Card style={{ width: '100%' , height: 200 , marginTop: 10}}></Card>
           <div>
 
           </div>

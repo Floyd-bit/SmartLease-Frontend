@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 11:09:39
+ * @LastEditTime: 2021-07-10 12:01:48
  */
 import React from 'react';
 import styles from './index.css';
@@ -119,7 +119,7 @@ const BasicLayout: React.FC = props => {
           {props.children}
         </div>
       </Content>
-      <Footer style={{ background:'white',textAlign: 'center' }}>Footer</Footer>
+      <Footer style={{ background:'white',textAlign: 'center' }}>@CopyRight 你说的都对</Footer>
     </Layout>
   );
 };
