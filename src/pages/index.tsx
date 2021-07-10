@@ -3,6 +3,8 @@ import styles from './index.css';
 import { Row, Col, Divider, Card, Carousel } from 'antd';
 import Product from '../components/Product';
 import ItemCard from '@/components/ItemCard';
+import Avatar from 'antd/lib/avatar/avatar';
+import { UserOutlined } from '@ant-design/icons';
 
 const contentStyle1 = {
   height: '400px',
@@ -23,93 +25,88 @@ const contentStyle2 = {
 export default function() {
   return (
     <div>
-      <Row gutter={{xs: 8, sm: 16, md: 24}} align="bottom">
+      <Row gutter={{xs: 8, sm: 16, md: 24}} align="bottom" style={{width:'100%'}}>
         <Col span={4}>
-          <Card title="商品列表" bordered={false} style={{ width: '100%' , height: 400}}>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
+          <Card title="主题市场" bordered={false} style={{ width: '100%' , height: 400}}>
+            <p>家用电器<br/>手机　运营商　数码</p>
+            <p>家用电器<br/>手机　运营商　数码</p>
+            <p>家用电器<br/>手机　运营商　数码</p>
+            <p>家用电器<br/>手机　运营商　数码</p>
+            <p>家用电器<br/>手机　运营商　数码</p>
           </Card>
         </Col>
         <Col span={10}>
           <Carousel autoplay>
             <div>
               <a href=''>
-                <img style={{height:'100%',width:'100%'}} src="https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png"/>
+                <img style={{height:400,width:'100%'}} src="https://img.alicdn.com/imgextra/i3/6000000000038/O1CN01A0E2931C9Rk0yD9R8_!!6000000000038-0-octopus.jpg"/>
               </a>
             </div>
             <div>
-              <h3 style={contentStyle1}>2</h3>
+              <a href=''>
+                <img style={{height:400,width:'100%'}} src="https://a1.alicdn.com/assets/p4p-fallback/mm_12852562_1778064_13670999.jpg"/>
+              </a>
             </div>
             <div>
-              <h3 style={contentStyle1}>3</h3>
+              <a href=''>
+                <img style={{height:400,width:'100%'}} src="https://a1.alicdn.com/assets/p4p-fallback/mm_12852562_1778064_13674396.jpg"/>
+              </a>
             </div>
             <div>
-              <h3 style={contentStyle1}>4</h3>
+              <a href=''>
+                <img style={{height:400,width:'100%'}} src="https://a1.alicdn.com/assets/p4p-fallback/mm_12852562_1778064_13672849.jpg"/>
+              </a>
             </div>
           </Carousel>
         </Col>
         <Col span={6}>
-          <div>
+          <div style={{height:130,marginBottom:5}}>
           <Carousel autoplay>
             <div>
-              <h3 style={contentStyle2}>1</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340"/>
             </div>
             <div>
-              <h3 style={contentStyle2}>2</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b30177d629bfbe2fb42251c1b8538f7b.jpg?w=632&h=340"/>
             </div>
             <div>
-              <h3 style={contentStyle2}>3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle2}>4</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9f18ac756fa2cedb16ea429b9c0001af.png?w=632&h=340"/>
             </div>
           </Carousel>
           </div>
-          <div>
+          <div style={{height:130,marginBottom:5}}>
           <Carousel autoplay>
             <div>
-              <h3 style={contentStyle2}>1</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b30177d629bfbe2fb42251c1b8538f7b.jpg?w=632&h=340"/>
             </div>
             <div>
-              <h3 style={contentStyle2}>2</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9f18ac756fa2cedb16ea429b9c0001af.png?w=632&h=340"/>
             </div>
             <div>
-              <h3 style={contentStyle2}>3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle2}>4</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340"/>
             </div>
           </Carousel>
           </div>
-          <div>
+          <div style={{height:130}}>
           <Carousel autoplay>
             <div>
-              <h3 style={contentStyle2}>1</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9f18ac756fa2cedb16ea429b9c0001af.png?w=632&h=340"/>
             </div>
             <div>
-              <h3 style={contentStyle2}>2</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340"/>
             </div>
             <div>
-              <h3 style={contentStyle2}>3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle2}>4</h3>
+              <img style={{height:130,width:'100%'}} src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b30177d629bfbe2fb42251c1b8538f7b.jpg?w=632&h=340"/>
             </div>
           </Carousel>
           </div>
         </Col>
         <Col span={4}>
-          <div>
-          <Card title="个人信息" bordered={false} style={{ width: '100%' , height: '180'}}>
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
+          <div style={{ width: '100%' , height: '190'}}>
+          {/* 暂时用图片代替，等孙少实现 */}
+            <img style={{height:190,width:'100%'}} src="https://z3.ax1x.com/2021/07/10/WSPrFS.png"/>
           </div>
-          <Card style={{ width: '100%' , height: 200 , marginTop: 10}}></Card>
-          <div>
-
+          <div style={{ width: '100%' , height: 200 , marginTop: 10}}>
+            <img style={{height:200,width:'100%'}} src="https://img.alicdn.com/tfs/TB1x7TyENYaK1RjSZFnXXa80pXa-502-380.jpg_240x240q90.jpg"/>
           </div>
         </Col>
       </Row>
@@ -117,16 +114,24 @@ export default function() {
 
       <Row>
         <Col span={6}>
-          <Card style={{ width: '90%' , height: 200 ,margin:'0 auto'}}/>
+          <div style={{ width: '90%' , height: 200 ,margin:'0 auto'}}>
+            <img style={{height:200,width:'100%'}} src="https://img.alicdn.com/tfs/TB1x7TyENYaK1RjSZFnXXa80pXa-502-380.jpg_240x240q90.jpg"/>
+          </div>
         </Col>
         <Col span={6}>
-          <Card style={{ width: '90%' , height: 200 ,margin:'0 auto'}}/>
+          <div style={{ width: '90%' , height: 200 ,margin:'0 auto'}}>
+            <img style={{height:200,width:'100%'}} src="https://img.alicdn.com/tfs/TB1jq1HekvoK1RjSZPfXXXPKFXa-502-380.jpg_240x240q90.jpg"/>
+          </div>
         </Col>
         <Col span={6}>
-          <Card style={{ width: '90%' , height: 200 ,margin:'0 auto'}}/>
+        <div style={{ width: '90%' , height: 200 ,margin:'0 auto'}}>
+            <img style={{height:200,width:'100%'}} src="https://img.alicdn.com/tfs/TB1NASFejDpK1RjSZFrXXa78VXa-502-380.jpg_240x240q90.jpg"/>
+          </div>
         </Col>
         <Col span={6}>
-          <Card style={{ width: '90%' , height: 200 ,margin:'0 auto'}}/>
+        <div style={{ width: '90%' , height: 200 ,margin:'0 auto'}}>
+            <img style={{height:200,width:'100%'}} src="https://img.alicdn.com/tfs/TB1gujqEFzqK1RjSZSgXXcpAVXa-502-380.jpg_240x240q90.jpg"/>
+          </div>
         </Col>
       </Row>
       <Divider/>
@@ -141,7 +146,7 @@ export default function() {
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/bao/uploaded/i2/1133257609/TB2MVsCw4SYBuNjSsphXXbGvVXa_!!1133257609.jpg_200x200q90.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='2'/>
         </Col>
         <Col span={3}>
