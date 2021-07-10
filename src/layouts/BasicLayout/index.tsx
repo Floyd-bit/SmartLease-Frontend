@@ -1,10 +1,10 @@
 /*
- * @Description: 
+ * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-09 20:55:24
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-10 09:23:59
  */
 import React from 'react';
 import styles from './index.css';
@@ -32,7 +32,7 @@ const handleShoppingClick = () => {
 const BasicLayout: React.FC = props => {
   const { Search } = Input;
   return (
-    <Layout>
+    <Layout style={{background:'white'}}>
       <Header style={{ width: '100%', padding: '0px' }}>
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <div
@@ -108,12 +108,12 @@ const BasicLayout: React.FC = props => {
           </div>
         </div>
       </Header>
-      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26, height: '100vh' }}>
+      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26, }}>
         <div className="site-layout-background" style={{ padding: 0, minHeight: 380 }}>
           {props.children}
         </div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer style={{ background:'white',textAlign: 'center' }}>Footer</Footer>
     </Layout>
   );
 };
