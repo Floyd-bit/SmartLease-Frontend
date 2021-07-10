@@ -1,5 +1,5 @@
 /*
- * @Description: 
+ * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
@@ -74,7 +74,9 @@ const BasicLayout: React.FC = props => {
               </div>
               <div style={{ marginLeft: '20px' }}>
                 <UserOutlined />
-                <Link to='/personal/my' style={{color:'black'}}>个人中心</Link>
+                <Link to="/personal/my" style={{ color: 'black' }}>
+                  个人中心
+                </Link>
               </div>
             </div>
           </div>
@@ -97,7 +99,11 @@ const BasicLayout: React.FC = props => {
                 paddingRight: '50px',
               }}
             >
-              <div style={{color:'white'}}><Link to='/' style={{color:'white'}}>首页</Link></div>
+              <div style={{ color: 'white' }}>
+                <Link to="/" style={{ color: 'white' }}>
+                  首页
+                </Link>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Input placeholder="input search text" size="large" />
                 <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>
@@ -108,7 +114,10 @@ const BasicLayout: React.FC = props => {
           </div>
         </div>
       </Header>
-      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26, height: '100vh' }}>
+      <Content
+        className="site-layout"
+        style={{ padding: '0 0', marginTop: 26, minHeight: '100vh' }}
+      >
         <div className="site-layout-background" style={{ padding: 0, minHeight: 380 }}>
           {props.children}
         </div>

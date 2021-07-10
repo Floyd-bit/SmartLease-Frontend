@@ -4,12 +4,12 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-08 20:52:14
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 10:35:35
+ * @LastEditTime: 2021-07-10 11:23:45
  */
 import React from 'react';
 import SiderMenu from '../../components/SiderMenu';
 import HistoryList from './HistoryList';
-import { Row, Col } from 'antd';
+import { Row, Col, AutoComplete } from 'antd';
 import ShoppingCard from '@/components/personalShoppingCard';
 interface ShoppingCardProps {
   gmtCreate: string;
@@ -27,57 +27,73 @@ interface ShoppingCardProps {
 function ShoppingList() {
   return (
     <>
-      <Row justify="space-around" align="top">
-        <Col span={1}>
-          <SiderMenu />
-        </Col>  
-        <Col>
-        <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        height: '200px',
-        justifyContent: 'center',
-      }}
-    >
+      <div style={{ float: 'left' }}>
+        <SiderMenu selectedKey="10" />
+      </div>
       <div
         style={{
-          height: '50px',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          backgroundColor: '#C6DCF9',
-          width: '100%',
+          float: 'left',
+          marginLeft: '100px',
+          marginRight: 'auto',
+          width: '1200px',
         }}
       >
+        <ShoppingCard
+          gmtCreate="2020/7/8"
+          id="1123123123"
+          receiver="syx"
+          phone="12345678"
+          number={1}
+          productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
+          color="红色"
+          size="32G"
+          price="99999.99"
+        />
+        <ShoppingCard
+          gmtCreate="2020/7/8"
+          id="1123123123"
+          receiver="syx"
+          phone="12345678"
+          number={1}
+          productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
+          color="红色"
+          size="32G"
+          price="99999.99"
+        />
+        <ShoppingCard
+          gmtCreate="2020/7/8"
+          id="1123123123"
+          receiver="syx"
+          phone="12345678"
+          number={1}
+          productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
+          color="红色"
+          size="32G"
+          price="99999.99"
+        />
+        <ShoppingCard
+          gmtCreate="2020/7/8"
+          id="1123123123"
+          receiver="syx"
+          phone="12345678"
+          number={1}
+          productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
+          color="红色"
+          size="32G"
+          price="99999.99"
+        />
+        <ShoppingCard
+          gmtCreate="2020/7/8"
+          id="1123123123"
+          receiver="syx"
+          phone="12345678"
+          number={1}
+          productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
+          color="红色"
+          size="32G"
+          price="99999.99"
+        />
       </div>
-      </div>
-        <ShoppingCard 
-      gmtCreate="2020/7/8"
-      id="1123123123"
-      receiver="syx"
-      phone="12345678"
-      number={1}
-      productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
-      color="红色"
-      size="32G"
-      price="99999.99"
-      /> <ShoppingCard 
-      gmtCreate="2020/7/8"
-      id="1123123123"
-      receiver="syx"
-      phone="12345678"
-      number={1}
-      productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
-      color="红色"
-      size="32G"
-      price="99999.99"
-      />
-        </Col> 
-        
-      </Row>
-      
     </>
   );
 }
