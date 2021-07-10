@@ -23,7 +23,7 @@ interface ShoppingCardProps {
 
 function OrderList(props) {
   const [isInit, setIsInit] = useState(true);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(1);
   const [orderinfo, setOrderinfo] = useState([]);
   if (isInit) {
     const getData = callback => {
@@ -38,6 +38,7 @@ function OrderList(props) {
       });
     };
     getData(res => {
+      setIsInit(false);
       setTotal(res.total);
       setOrderinfo(res.data);
     });
