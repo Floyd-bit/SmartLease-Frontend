@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-09 20:55:24
+ * @LastEditTime: 2021-07-10 11:09:39
  */
 import React from 'react';
 import styles from './index.css';
@@ -113,7 +113,7 @@ const BasicLayout: React.FC = props => {
           {props.children}
         </div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}></Footer>
     </Layout>
   );
 };

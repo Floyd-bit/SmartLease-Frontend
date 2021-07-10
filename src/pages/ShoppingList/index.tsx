@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-08 20:52:14
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-10 10:35:35
+ */
 import React from 'react';
 import SiderMenu from '../../components/SiderMenu';
 import HistoryList from './HistoryList';
@@ -24,6 +32,27 @@ function ShoppingList() {
           <SiderMenu />
         </Col>  
         <Col>
+        <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '200px',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        style={{
+          height: '50px',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          backgroundColor: '#C6DCF9',
+          width: '100%',
+        }}
+      >
+      </div>
+      </div>
         <ShoppingCard 
       gmtCreate="2020/7/8"
       id="1123123123"

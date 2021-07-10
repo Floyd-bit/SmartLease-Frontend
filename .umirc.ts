@@ -24,6 +24,10 @@ const config: IConfig =  {
               path: '/personal/orderlist',
               component: '../pages/OrderList'
             },
+            {
+              path: '/personal/shoppingcar',
+              component: '../pages/ShoppingCar'
+            }
           ],
       }
       ],
