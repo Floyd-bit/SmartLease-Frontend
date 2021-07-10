@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-08 20:52:14
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 11:23:45
+ * @LastEditTime: 2021-07-10 14:30:17
  */
 import React from 'react';
 import SiderMenu from '../../components/SiderMenu';
@@ -48,6 +48,7 @@ function ShoppingList() {
           color="红色"
           size="32G"
           price="99999.99"
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
         />
         <ShoppingCard
           gmtCreate="2020/7/8"
@@ -59,6 +60,7 @@ function ShoppingList() {
           color="红色"
           size="32G"
           price="99999.99"
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
         />
         <ShoppingCard
           gmtCreate="2020/7/8"
@@ -70,6 +72,7 @@ function ShoppingList() {
           color="红色"
           size="32G"
           price="99999.99"
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
         />
         <ShoppingCard
           gmtCreate="2020/7/8"
@@ -81,6 +84,7 @@ function ShoppingList() {
           color="红色"
           size="32G"
           price="99999.99"
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
         />
         <ShoppingCard
           gmtCreate="2020/7/8"
@@ -92,6 +96,7 @@ function ShoppingList() {
           color="红色"
           size="32G"
           price="99999.99"
+          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
         />
       </div>
     </>

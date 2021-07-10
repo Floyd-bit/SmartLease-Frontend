@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 12:01:48
+ * @LastEditTime: 2021-07-10 14:33:57
  */
 import React from 'react';
 import styles from './index.css';
@@ -48,7 +48,7 @@ const BasicLayout: React.FC = props => {
             <div
               style={{
                 display: 'flex',
-                marginLeft: '50px',
+                marginLeft: '10px',
                 alignItems: 'center',
                 paddingTop: '5px',
               }}
@@ -100,7 +100,7 @@ const BasicLayout: React.FC = props => {
               }}
             >
               <div style={{ color: 'white' }}>
-                <Link to="/" style={{ color: 'white' }}>
+                <Link to="/" style={{ color: 'white' ,marginLeft: 400}}>
                   首页
                 </Link>
               </div>
