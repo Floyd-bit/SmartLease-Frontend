@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Row, Col, Divider, Card, Carousel } from 'antd';
+import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
 import Product from '../components/Product';
 import ItemCard from '@/components/ItemCard';
 import Avatar from 'antd/lib/avatar/avatar';
@@ -103,7 +103,16 @@ export default function() {
         <Col span={4}>
           <div style={{ width: '100%' , height: '190'}}>
           {/* 暂时用图片代替，等孙少实现 */}
-            <img style={{height:190,width:'100%'}} src="https://z3.ax1x.com/2021/07/10/WSPrFS.png"/>
+            <Card>
+              <div style={{marginLeft:"50px"}}>
+              <Avatar size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} src='https://img0.baidu.com/it/u=493108106,1771945000&fm=26&fmt=auto&gp=0.jpg'/>
+              <h2>Hi! 下午好</h2>
+              </div>
+              <div style={{marginLeft:"25px"}}>
+              <Button>登录</Button>
+              <Button>注册</Button>
+              </div>
+            </Card>
           </div>
           <div style={{ width: '100%' , height: 200 , marginTop: 10}}>
             <img style={{height:200,width:'100%'}} src="https://img.alicdn.com/tfs/TB1x7TyENYaK1RjSZFnXXa80pXa-502-380.jpg_240x240q90.jpg"/>
@@ -151,32 +160,32 @@ export default function() {
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='3'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='4'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='5'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='6'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='7'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='8'/>
         </Col>
       </Row>
@@ -187,42 +196,42 @@ export default function() {
       <Row>
         <Col span={3}>
           <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='2'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='3'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='4'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='5'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='6'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='7'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='8'/>
         </Col>
       </Row>
@@ -233,42 +242,42 @@ export default function() {
       <Row>
         <Col span={3}>
           <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='2'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='3'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='4'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='5'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='6'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='7'/>
         </Col>
         <Col span={3}>
         <ItemCard
-          image='https://img.alicdn.com/bao/uploaded/i2/673079074/TB2VWYbtZyYBuNkSnfoXXcWgVXa_!!673079074.jpg_200x200q90.jpg'
+          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
           title='商品名称' price='9999.99' oldprice='9999.99' id='8'/>
         </Col>
       </Row>
