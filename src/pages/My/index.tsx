@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 11:23:22
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 14:02:08
+ * @LastEditTime: 2021-07-10 14:28:23
  */
 import React from 'react';
 import SiderMenu from '@/components/SiderMenu';
@@ -90,7 +90,7 @@ function My() {
             color="红色"
             size="32G"
             price="99999.99"
-            src=""
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
             payment={true} />
@@ -104,7 +104,7 @@ function My() {
             color="红色"
             size="32G"
             price="99999.99"
-            src=""
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
             payment={true} />
@@ -117,17 +117,17 @@ function My() {
           <Row gutter={[24, 16]}>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i4/15380848/O1CN01cKtKXt1I8QYSSnARW_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i2/110854353/O1CN017A07qO1i1ilSiwSuG_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i3/16185481/O1CN01CTDpok1qMLWfeCyIB_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
 
@@ -138,28 +138,28 @@ function My() {
             </Col>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i2/110854353/O1CN017A07qO1i1ilSiwSuG_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i2/130148900/O1CN01ndeQop2FcFaMNvTKP_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
             
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i3/133451333/O1CN01f15o3t1LiYalhaT35_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i2/124643983/O1CN01j4JOoe1fIGDNAVs1a_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
             <Col span={8}>       
               <ItemCard
-              image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
+              image='https://img.alicdn.com/imgextra/i1/31799034/O1CN01iUvvAF2GbcjnYsmCE_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
               title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
             </Col>
           </Row>

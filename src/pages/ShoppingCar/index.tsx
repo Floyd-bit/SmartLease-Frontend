@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 11:29:14
+ * @LastEditTime: 2021-07-10 14:29:10
  */
 import React from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -54,7 +54,7 @@ function ShoppingCar() {
             color="红色"
             size="32G"
             price="99999.99"
-            src=""
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
             payment={true} />
@@ -68,7 +68,7 @@ function ShoppingCar() {
             color="红色"
             size="32G"
             price="99999.99"
-            src=""
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
             payment={true} />
@@ -82,7 +82,7 @@ function ShoppingCar() {
             color="红色"
             size="32G"
             price="99999.99"
-            src=""
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
             payment={true} />    
