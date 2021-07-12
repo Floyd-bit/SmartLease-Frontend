@@ -6,6 +6,7 @@ import ItemCard from '@/components/ItemCard';
 import Avatar from 'antd/lib/avatar/avatar';
 import { UserOutlined } from '@ant-design/icons';
 import HomeFooter from '@/components/HomeFooter';
+import ProductSelect from '@/components/productSelect/productSelect';
 
 const product = [
   {
