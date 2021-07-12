@@ -14,6 +14,10 @@ const config: IConfig =  {
           component: '../pages/ItemList'
         },
         {
+          path: '/search',
+          component: '../pages/SearchResult'
+        },
+        {
           path: '/personal',
           routes: [
             {
@@ -31,10 +35,6 @@ const config: IConfig =  {
             {
               path: '/personal/shoppingcar',
               component: '../pages/ShoppingCar'
-            },
-            {
-              path: '/itemlist',
-              component: '../pages/ItemList'
             }
           ],
         }

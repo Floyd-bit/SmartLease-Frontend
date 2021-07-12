@@ -3,9 +3,9 @@ import ItemCard from "@/components/ItemCard";
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import { Button, Col, Divider, InputNumber, Pagination, Row } from "antd";
 import React, { useEffect, useState } from "react";
-import { getItemList } from "./service";
+import { getSearchResult } from "./service";
 
-function ItemList(props: any){
+function SearchResult(props: any){
   const [page, setPage]=useState('1');
   const [rank, setRank] = useState('0');
   const [minPrice, setMinPrice] = useState(null);
@@ -27,18 +27,18 @@ function ItemList(props: any){
   const SalesRank=()=>{
     if(rank!='5') {setRank('5')} else if(rank==='5') {setRank('6')};
   }
-  useEffect(() => {getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.type, rank]);
+  useEffect(() => {getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.keyword, rank]);
   const PriceSearch=()=>{
     setMaxPrice(max);
     setMinPrice(min);
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:min,maxprice:max}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);});
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:min,maxprice:max}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);});
   }
   const NextPage=()=>{
     let newpage=Number(page)+1;
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:newpage,pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage.toString());setTotal(res.total);setItemList(res.data);});
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:newpage,pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage.toString());setTotal(res.total);setItemList(res.data);});
   }
   const changePage=(pagenum,pagesize)=>{
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum.toString());setTotal(res.total);setItemList(res.data);});
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum.toString());setTotal(res.total);setItemList(res.data);});
   }
 
   if(isInit){
@@ -59,13 +59,7 @@ function ItemList(props: any){
     <>
     <div style={{height:100,display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
       <div style={{marginLeft:'5%',alignContent:'flex-start'}}>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
+        <span style={{marginRight:'80px'}}>搜索 “{props.location.query.keyword}” 结果列表</span>
       </div>
     </div>
     <div style={{height: '50px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',backgroundColor: '#C6DCF9',width: '100%',}}>
@@ -111,4 +105,4 @@ function ItemList(props: any){
   )
 }
 
-export default ItemList;
+export default SearchResult;
