@@ -8,6 +8,30 @@ import { UserOutlined } from '@ant-design/icons';
 import HomeFooter from '@/components/HomeFooter';
 import ProductSelect from '@/components/productSelect/productSelect';
 
+const contentStyle1 = {
+  height: '400px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+};
+
+const contentStyle2 = {
+  height: '130px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+};
+
+function goLogin() {
+  window.location.href = 'login'
+}
+
+function goRegister() {
+  window.location.href = 'register'
+}
+
 const product = [
   {
     subtitle: { title: '家用电器' },
@@ -153,8 +177,8 @@ export default function() {
                 <h2>Hi! 下午好</h2>
               </div>
               <div style={{ marginLeft: '25px' }}>
-                <Button>登录</Button>
-                <Button>注册</Button>
+                <Button onClick={goLogin}>登录</Button>
+                <Button onClick={goRegister}>注册</Button>
               </div>
             </Card>
           </div>

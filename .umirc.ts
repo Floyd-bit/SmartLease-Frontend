@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-10 15:18:12
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-12 15:35:43
+ */
 import { IConfig } from 'umi-types';
 
 // ref: https://umijs.org/config/
@@ -16,6 +24,12 @@ const config: IConfig =  {
         {
           path: '/search',
           component: '../pages/SearchResult'
+        },
+        {
+          path: '/login', component: '../pages/Login'
+        },
+        {
+          path: '/register', component: '../pages/Register'
         },
         {
           path: '/personal',
