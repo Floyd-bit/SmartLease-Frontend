@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-12 15:35:43
+ * @LastEditTime: 2021-07-12 20:07:55
  */
 import { IConfig } from 'umi-types';
 
@@ -76,6 +76,11 @@ const config: IConfig =  {
       "target": "http://jsonplaceholder.typicode.com/",
       "changeOrigin": true,
       "pathRewrite": { "^/api" : "" }
+    },
+    "/api2": {
+      "target": "http://jp-tyo-ilj-1.natfrp.cloud:38298/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api2" : "" }
     }
   }
 }

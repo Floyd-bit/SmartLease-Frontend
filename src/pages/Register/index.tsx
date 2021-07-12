@@ -4,6 +4,9 @@ import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
 import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import styles from './index.less';
 import logo from '@/assets/logo.png';
+import axios from 'axios';
+import Password from 'antd/lib/input/Password';
+
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -11,6 +14,34 @@ const waitTime = (time: number = 100) => {
       resolve(true);
     }, time);
   });
+};
+
+type LoginParamsType = {
+  password: string;
+  phone: string;
+  captcha: string;
+};
+
+const handleSubmit = (values: LoginParamsType) => {
+  if(values.password == values.password2){
+  axios.post('api2/customer/user/singUp', values)
+  .then(function (response) {
+    console.log(response.data.message);
+      if(response.data.message === "创建成功"){
+        alert("注册成功");
+        window.location.href = '/login';
+        console.log("success");
+      }
+      else{
+        alert("注册失败");
+      }
+      console.log("response: ", response);
+  })
+  .catch(err => console.log(err))
+}
+else{
+  alert("两次密码输入不一致");
+}
 };
 
 const Register = () => {
@@ -23,10 +54,10 @@ const Register = () => {
       }}
     >
       <ProForm
-        onFinish={async () => {
-          await waitTime(2000);
-          message.success('提交成功');
-        }}
+        onFinish={(values) => {
+          handleSubmit(values as LoginParamsType);
+          return Promise.resolve();
+          }}
         submitter={{
           searchConfig: {
             submitText: '注册',
@@ -132,7 +163,7 @@ const Register = () => {
             message.success(`手机号 ${phone} 验证码发送成功!`);
           }}
         />     
-         <a href='login'>已有账号，点击登录</a>
+         <a href='login' style={{marginLeft:80}}>已有账号，点击登录</a>
       </ProForm>
 
     </div>
