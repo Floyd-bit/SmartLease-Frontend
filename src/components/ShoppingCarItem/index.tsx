@@ -1,15 +1,14 @@
 /*
- * @Description: 
+ * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:05:27
  * @LastEditors: 赵卓轩
  * @LastEditTime: 2021-07-10 10:56:54
  */
-import React,{useState}from 'react';
-import { Button,Image } from 'antd';
-import { MinusOutlined,  PlusOutlined } from '@ant-design/icons';
-
+import React, { useState } from 'react';
+import { Button, Image } from 'antd';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 
 interface ShoppingCarItemProps {
   gmtCreate: string;
@@ -38,42 +37,39 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
         justifyContent: 'center',
       }}
     >
-      <div style={{ display: 'flex', width: '100%' }}>
-        <div>
-          <div
-            style={{
-              backgroundColor: 'gray',
-              width: '100px',
-              height: '100px',
-              marginTop: '25px',
-              marginLeft: '40px',
-            }}
-          >
-            <Image src={props.src}/>
-          </div>
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+        }}
+      >
+        <div
+          style={{
+            width: '16%',
+          }}
+        >
+          <Image src={props.src} style={{ width: '100px', height: '100px' }} />
         </div>
         <div
           style={{
             display: 'flex',
+            width: '16%',
             flexDirection: 'column',
-            marginTop: '30px',
-            marginLeft: '30px',
-            width: '20%',
+            justifyContent: 'center',
           }}
         >
           <div style={{ width: '200px' }}>{props.productName}</div>
-          <div>
-            {props.name}
-          </div>
+          <div>{props.name}</div>
         </div>
         <div
           style={{
             display: 'flex',
+            width: '16%',
             flexDirection: 'column',
-            marginTop: '35px',
-            marginLeft: '20px',
             alignItems: 'center',
-            width: '20%',
+            justifyContent: 'center',
           }}
         >
           <div>￥{props.price}</div>
@@ -82,11 +78,9 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
           style={{
             display: 'flex',
             flexDirection: 'row',
-            marginLeft: '50px',
-            marginTop: '34px',
             alignItems: 'top',
             justifyContent: 'space-between',
-            width: '10%',
+            width: '16%',
           }}
         >
           <Button shape="circle" icon={<MinusOutlined />} size="small"></Button>
@@ -97,10 +91,8 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            marginTop: '32px',
-            marginLeft: '50px',
             alignItems: 'center',
-            width: '20%',
+            width: '16%',
           }}
         >
           ￥{props.count}
@@ -109,13 +101,11 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            marginTop: '25px',
-            marginLeft: '50px',
             alignItems: 'center',
-            width: '20%',
+            width: '16%',
           }}
         >
-          <div style={{marginBottom:'10px'}}>
+          <div style={{ marginBottom: '10px', width: '16%' }}>
             <Button type="primary" danger>
               删除
             </Button>
