@@ -1,5 +1,5 @@
 /*
- * @Description: 
+ * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
@@ -20,6 +20,10 @@ const config: IConfig =  {
         {
           path: '/itemlist',
           component: '../pages/ItemList'
+        },
+        {
+          path: '/search',
+          component: '../pages/SearchResult'
         },
         {
           path: '/login', component: '../pages/Login'
@@ -45,10 +49,6 @@ const config: IConfig =  {
             {
               path: '/personal/shoppingcar',
               component: '../pages/ShoppingCar'
-            },
-            {
-              path: '/itemlist',
-              component: '../pages/ItemList'
             }
           ],
         }

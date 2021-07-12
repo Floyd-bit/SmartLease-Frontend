@@ -6,7 +6,7 @@
  * @LastEditors: 赵卓轩
  * @LastEditTime: 2021-07-10 14:33:57
  */
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './index.css';
 import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col } from 'antd';
 import {
@@ -23,16 +23,8 @@ import { Link } from 'umi';
 
 const { Header, Content, Footer } = Layout;
 
-const handleUserClick = () => {
-  window.location.href = '/personal/my';
-};
-
-const handleShoppingClick = () => {
-  window.location.href = '/personal/shoppinglist';
-};
-
 const BasicLayout: React.FC = props => {
-  const { Search } = Input;
+  const [keyword,setKeyword]=useState('');
   return (
     <Layout style={{background:'white'}}>
       <Header style={{ width: '100%', padding: '0px' }}>
@@ -112,10 +104,12 @@ const BasicLayout: React.FC = props => {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Input placeholder="input search text" size="large" />
-                <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>
-                  Search
-                </Button>
+                <Input placeholder="输入租品名称" size="large" onChange={(e)=>setKeyword(e.target.value)}/>
+                <Link to={"/search?keyword="+keyword} style={{ color: 'black'}} onClick={(e)=>{if(keyword==='') e.preventDefault()}}>
+                  <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>
+                    搜索
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
