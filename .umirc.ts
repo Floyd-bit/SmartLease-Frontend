@@ -10,6 +10,10 @@ const config: IConfig =  {
       routes: [
         { path: '/', component: '../pages/index' },
         {
+          path: '/itemlist',
+          component: '../pages/ItemList'
+        },
+        {
           path: '/personal',
           routes: [
             {
@@ -27,9 +31,13 @@ const config: IConfig =  {
             {
               path: '/personal/shoppingcar',
               component: '../pages/ShoppingCar'
+            },
+            {
+              path: '/itemlist',
+              component: '../pages/ItemList'
             }
           ],
-      }
+        }
       ],
     },
   ],
