@@ -1,10 +1,15 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: 赵卓轩
+ * @Date: 2021-07-07 08:47:04
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-13 21:14:14
+ */
 import React, { useEffect, useState } from 'react';
-import styles from './index.css';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
-import Product from '../components/Product';
 import ItemCard from '@/components/ItemCard';
 import Avatar from 'antd/lib/avatar/avatar';
-import { UserOutlined } from '@ant-design/icons';
 import HomeFooter from '@/components/HomeFooter';
 import ProductSelect from '@/components/productSelect/productSelect';
 import { getHotList, getLatestList } from './service';
@@ -41,8 +46,8 @@ const product = [
 ];
 
 export default function() {
-  const[hotList,setHotList]=useState([{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},]);
-  const[latestList,setLatestList]=useState([{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},]);
+  const[hotList,setHotList]=useState([{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},]);
+  const[latestList,setLatestList]=useState([{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},{image:'https://z3.ax1x.com/2021/07/13/WEKzLj.png',title:'商品名称',price:'9999.99',oldprice:'9999.99',id:1},]);
   const [isInit, setIsInit] = useState(true);
 
   if (isInit) setIsInit(false);

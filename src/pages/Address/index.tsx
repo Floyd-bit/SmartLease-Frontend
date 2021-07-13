@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: 王宇阳
+ * @Date: 2021-07-13 10:22:07
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-13 20:50:59
+ */
 import AddressRow from "@/components/AddressRow";
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button } from "antd";
@@ -5,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import { getAddressList } from "./servise";
 
 function Address(props:any){
-  const [addressList,setAddressList]=useState([])
+  const [addressList,setAddressList]=useState<Array<{name:string,address:string,isDefault:boolean,id:number}>>([])
 
   useEffect(() => {
     getAddressList().then((res)=>{
@@ -21,7 +29,8 @@ function Address(props:any){
   }
 
   const addAddress=()=>{
-    let newaddressList=addressList.concat({name:'',address:'',isDefault:false});
+    let newaddressList=addressList.concat({name:'',address:'',isDefault:false,id:-1});
+    //id为-1代表新增的收货地址
     setAddressList(newaddressList);
   }
 

@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: 王宇阳
+ * @Date: 2021-07-12 19:21:03
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-13 21:02:37
+ */
 import HomeFooter from "@/components/HomeFooter";
 import ItemCard from "@/components/ItemCard";
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
@@ -6,39 +14,47 @@ import React, { useEffect, useState } from "react";
 import { getSearchResult } from "./service";
 
 function SearchResult(props: any){
-  const [page, setPage]=useState('1');
+  const [page, setPage]=useState(1);
   const [rank, setRank] = useState('0');
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
-  const [min, setMin] = useState(null);
-  const [max, setMax] = useState(null);
-  const [itemList, setItemList] = useState([]);
+  const [min, setMin] = useState(null);//输入框的值
+  const [max, setMax] = useState(null);//输入框的值
+  const [itemList, setItemList] = useState<Array<{image:string,title:string,price:string,oldprice:string,id:number}>>([]);
   const [isInit, setIsInit] = useState(true);
   const [total, setTotal] = useState(1);
+   //点击综合排序
   const SimpleRank=()=>{
     setRank('0')
   }
+  //点击价格旁的按钮
   const PriceRank=()=>{
     if(rank!='1') {setRank('1')} else if(rank==='1') {setRank('2')};
   }
+  //点击评价旁的按钮
   const EvaluRank=()=>{
     if(rank!='3') {setRank('3')} else if(rank==='3') {setRank('4')};
   }
+  //点击销成交旁的按钮
   const SalesRank=()=>{
     if(rank!='5') {setRank('5')} else if(rank==='5') {setRank('6')};
   }
-  useEffect(() => {getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.keyword, rank]);
+  //初次加载页面和改变排序后执行的操作
+  useEffect(() => {getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:1,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.keyword, rank]);
+  //设定价格范围
   const PriceSearch=()=>{
     setMaxPrice(max);
     setMinPrice(min);
-    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:min,maxprice:max}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);});
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:1,pagesize:24,minprice:min,maxprice:max}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);});
   }
+  //点击下一页
   const NextPage=()=>{
-    let newpage=Number(page)+1;
-    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:newpage,pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage.toString());setTotal(res.total);setItemList(res.data);});
+    let newpage=page+1;
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:newpage,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage);setTotal(res.total);setItemList(res.data);});
   }
-  const changePage=(pagenum,pagesize)=>{
-    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum.toString());setTotal(res.total);setItemList(res.data);});
+  //点击底部分页
+  const changePage=(pagenum: any,pagesize: any)=>{
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum);setTotal(res.total);setItemList(res.data);});
   }
 
   if(isInit){
