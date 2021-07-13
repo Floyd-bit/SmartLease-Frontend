@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-12 20:07:55
+ * @LastEditTime: 2021-07-13 14:16:49
  */
 import { IConfig } from 'umi-types';
 
@@ -63,7 +63,7 @@ const config: IConfig =  {
       dynamicImport: false,
       title: '租享宝',
       dll: false,
-
+      // mfsu:{},
       routes: {
         exclude: [
           /components\//,
