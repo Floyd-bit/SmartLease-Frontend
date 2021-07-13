@@ -15,28 +15,36 @@ function ItemList(props: any){
   const [itemList, setItemList] = useState([]);
   const [isInit, setIsInit] = useState(true);
   const [total, setTotal] = useState(1);
+  //点击综合排序
   const SimpleRank=()=>{
     setRank('0')
   }
+  //点击价格旁的按钮
   const PriceRank=()=>{
     if(rank!='1') {setRank('1')} else if(rank==='1') {setRank('2')};
   }
+  //点击评价旁的按钮
   const EvaluRank=()=>{
     if(rank!='3') {setRank('3')} else if(rank==='3') {setRank('4')};
   }
+  //点击销成交旁的按钮
   const SalesRank=()=>{
     if(rank!='5') {setRank('5')} else if(rank==='5') {setRank('6')};
   }
+  //初次加载页面和改变排序后执行的操作
   useEffect(() => {getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.type, rank]);
+  //设定价格范围
   const PriceSearch=()=>{
     setMaxPrice(max);
     setMinPrice(min);
     getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:min,maxprice:max}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);});
   }
+  //点击下一页
   const NextPage=()=>{
     let newpage=Number(page)+1;
     getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:newpage,pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage.toString());setTotal(res.total);setItemList(res.data);});
   }
+  //点击底部分页
   const changePage=(pagenum,pagesize)=>{
     getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum.toString());setTotal(res.total);setItemList(res.data);});
   }

@@ -1,6 +1,6 @@
 import request from 'umi-request';
 /*
-*type:0
+*keyword 搜索关键词
 *rank:0 综合排序
 *rank:1 价格降序
 *rank:2 价格升序
