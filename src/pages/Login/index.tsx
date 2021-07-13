@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-12 14:12:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-12 15:27:12
+ * @LastEditTime: 2021-07-12 20:51:07
  */
 import React from 'react';
 import { message } from 'antd';
@@ -12,6 +12,8 @@ import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
 import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import styles from './index.less';
 import logo from '@/assets/logo.png';
+import { fakeAccountLogin, LoginParamsType } from './service';
+import axios from 'axios';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -21,6 +23,29 @@ const waitTime = (time: number = 100) => {
   });
 };
 
+type LoginParamsType = {
+  userName: string;
+  password: string;
+  phone: string;
+  captcha: string;
+};
+
+const handleSubmit = (values: LoginParamsType) => {
+  axios.post('api2/customer/user/login', values)
+  .then(function (response) {
+    console.log(response.data.message);
+      if(response.data.message === "登陆成功"){
+        alert("登陆成功");
+        window.location.href = '/';
+        console.log("success");
+      }
+      else{
+        alert("登陆失败");
+      }
+      console.log("response: ", response);
+  })
+  .catch(err => console.log(err))
+};
 
 const Login = () => {
   return (
@@ -32,9 +57,10 @@ const Login = () => {
       }}
     >
       <ProForm
-        onFinish={async () => {
-          await waitTime(2000);
-          message.success('提交成功');
+        onFinish={(values) => {
+        console.log(values);
+        handleSubmit(values as LoginParamsType);
+        return Promise.resolve();
         }}
         submitter={{
           searchConfig: {
@@ -127,7 +153,7 @@ const Login = () => {
             message.success(`手机号 ${phone} 验证码发送成功!`);
           }}
         />
-       <a href='register'>还没有账号，点击注册</a>
+       <a href='register' style={{marginLeft:80}}>还没有账号，点击注册</a>
       </ProForm>    
     </div>
   );

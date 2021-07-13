@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.css';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
 import Product from '../components/Product';
@@ -7,22 +7,7 @@ import Avatar from 'antd/lib/avatar/avatar';
 import { UserOutlined } from '@ant-design/icons';
 import HomeFooter from '@/components/HomeFooter';
 import ProductSelect from '@/components/productSelect/productSelect';
-
-const contentStyle1 = {
-  height: '400px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-
-const contentStyle2 = {
-  height: '130px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
+import { getHotList, getLatestList } from './service';
 
 function goLogin() {
   window.location.href = 'login'
@@ -56,6 +41,16 @@ const product = [
 ];
 
 export default function() {
+  const[hotList,setHotList]=useState([{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},]);
+  const[latestList,setLatestList]=useState([{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},{image:null,title:'商品名称',price:'9999.99',oldprice:'9999.99',id:'1'},]);
+  const [isInit, setIsInit] = useState(true);
+
+  if (isInit) setIsInit(false);
+  useEffect(() => {
+    getHotList().then((res) => setHotList(res.data));
+    getLatestList().then((res) => setLatestList(res.data));
+  }, [isInit]);
+
   return (
     <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
       <Row gutter={{ xs: 8, sm: 16, md: 24 }} align="bottom" style={{ width: '100%' }}>
@@ -233,43 +228,43 @@ export default function() {
       <Row>
         <Col span={3}>
           <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
+          image={hotList[0].image}
+          title={hotList[0].title} price={hotList[0].price} oldprice={hotList[0].oldprice} id={hotList[0].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i2/1133257609/TB2MVsCw4SYBuNjSsphXXbGvVXa_!!1133257609.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='2'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[1].image}
+          title={hotList[1].title} price={hotList[1].price} oldprice={hotList[1].oldprice} id={hotList[1].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/imgextra/i4/1648030169/O1CN01qu4IGv1D7Rbh6cvc5_!!0-saturn_solar.jpg_468x468q75.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='3'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[2].image}
+          title={hotList[2].title} price={hotList[2].price} oldprice={hotList[2].oldprice} id={hotList[2].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i1/1054513392/O1CN01m0riU41ava377Ux9Z_!!1054513392.png_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='4'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[3].image}
+          title={hotList[3].title} price={hotList[3].price} oldprice={hotList[3].oldprice} id={hotList[3].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i4/4890222452/O1CN01n4uiW81Tz3pCkFenq_!!4890222452.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='5'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[4].image}
+          title={hotList[4].title} price={hotList[4].price} oldprice={hotList[4].oldprice} id={hotList[4].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i4/2399845384/O1CN01iiRkcM1pdv6os9HAM_!!0-item_pic.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='6'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[5].image}
+          title={hotList[5].title} price={hotList[5].price} oldprice={hotList[5].oldprice} id={hotList[5].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i3/59270458/O1CN01yUxttR1FFo3chpEZl_!!59270458.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='7'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[6].image}
+          title={hotList[6].title} price={hotList[6].price} oldprice={hotList[6].oldprice} id={hotList[6].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i3/72292063/O1CN01XcXCk31R6tiXT5ENa_!!0-item_pic.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='8'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={hotList[7].image}
+          title={hotList[7].title} price={hotList[7].price} oldprice={hotList[7].oldprice} id={hotList[7].id}/>
         </Col>
       </Row>
       <Divider />
@@ -279,43 +274,43 @@ export default function() {
       <Row style={{}}>
         <Col span={3}>
           <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i1/134213414/O1CN013s500G1b5eee9oZ7x_!!134213414.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='1'/>
+          image={latestList[0].image}
+          title={latestList[0].title} price={latestList[0].price} oldprice={latestList[0].oldprice} id={latestList[0].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i4/843970460/O1CN01aqicsp1FGip6MdWt2_!!0-item_pic.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='2'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[1].image}
+          title={latestList[1].title} price={latestList[1].price} oldprice={latestList[1].oldprice} id={latestList[1].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i4/864127531/O1CN01yD873D25VFR23cFGV_!!864127531.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='3'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[2].image}
+          title={latestList[2].title} price={latestList[2].price} oldprice={latestList[2].oldprice} id={latestList[2].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i1/814169495/TB2nlaeeqmWBuNjy1XaXXXCbXXa_!!814169495.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='4'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[3].image}
+          title={latestList[3].title} price={latestList[3].price} oldprice={latestList[3].oldprice} id={latestList[3].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i4/2920691536/TB2EfugaHJmpuFjSZFwXXaE4VXa_!!2920691536.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='5'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[4].image}
+          title={latestList[4].title} price={latestList[4].price} oldprice={latestList[4].oldprice} id={latestList[4].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i1/1898766194/O1CN014vA9fa1vctokE5jeY_!!0-item_pic.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='6'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[5].image}
+          title={latestList[5].title} price={latestList[5].price} oldprice={latestList[5].oldprice} id={latestList[5].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i1/2051431638/O1CN01cNLIYV1NyFLaI6KtV_!!2051431638.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='7'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[6].image}
+          title={latestList[6].title} price={latestList[6].price} oldprice={latestList[6].oldprice} id={latestList[6].id}/>
         </Col>
         <Col span={3}>
-        <ItemCard length={document.body.scrollWidth*0.1125}
-          image='https://img.alicdn.com/bao/uploaded/i2/675960670/O1CN01uCu9SQ1Gou0UngRrK_!!0-item_pic.jpg_200x200q90.jpg_.webp'
-          title='商品名称' price='9999.99' oldprice='9999.99' id='8'/>
+          <ItemCard length={document.body.scrollWidth*0.1125}
+          image={latestList[7].image}
+          title={latestList[7].title} price={latestList[7].price} oldprice={latestList[7].oldprice} id={latestList[7].id}/>
         </Col>
       </Row>
       <Divider />
