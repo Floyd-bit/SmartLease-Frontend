@@ -4,12 +4,12 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-13 14:16:49
+ * @LastEditTime: 2021-07-13 16:34:17
  */
 import { IConfig } from 'umi-types';
 
 // ref: https://umijs.org/config/
-const config: IConfig =  {
+const config: IConfig = {
   treeShaking: true,
   routes: [
     {
@@ -19,7 +19,7 @@ const config: IConfig =  {
         { path: '/', component: '../pages/index' },
         {
           path: '/itemlist',
-          component: '../pages/ItemList'
+          component: '../pages/ItemList',
         },
         {
           path: '/search',
@@ -29,47 +29,53 @@ const config: IConfig =  {
           path: '/login', component: '../pages/Login'
         },
         {
-          path: '/register', component: '../pages/Register'
+          path: '/register',
+          component: '../pages/Register',
+        },
+        {
+          path: '/productdetail',
+          component: '../pages/ProductDetail',
         },
         {
           path: '/personal',
           routes: [
             {
               path: '/personal/shoppinglist',
-              component: '../pages/ShoppingList'
+              component: '../pages/ShoppingList',
             },
             {
               path: '/personal/my',
-              component: '../pages/My'
+              component: '../pages/My',
             },
             {
               path: '/personal/orderlist',
-              component: '../pages/OrderList'
+              component: '../pages/OrderList',
             },
             {
               path: '/personal/shoppingcar',
               component: '../pages/ShoppingCar'
             }
           ],
-        }
+        },
       ],
     },
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
-      antd: true,
-      dva: false,
-      dynamicImport: false,
-      title: '租享宝',
-      dll: false,
-      // mfsu:{},
-      routes: {
-        exclude: [
-          /components\//,
-        ],
+    [
+      'umi-plugin-react',
+      {
+        antd: true,
+        dva: false,
+        dynamicImport: false,
+        title: '租享宝',
+        dll: false,
+
+        routes: {
+          exclude: [/components\//],
+        },
       },
-    }],
+    ],
   ],
   proxy: {
     "/api": {
