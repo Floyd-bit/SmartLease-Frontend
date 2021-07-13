@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-12 15:10:07
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-12 21:05:06
+ */
 import React from 'react';
 import { message } from 'antd';
 import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
