@@ -49,7 +49,11 @@ const config: IConfig =  {
             {
               path: '/personal/shoppingcar',
               component: '../pages/ShoppingCar'
-            }
+            },
+            {
+              path: '/personal/address',
+              component: '../pages/Address'
+            },
           ],
         }
       ],

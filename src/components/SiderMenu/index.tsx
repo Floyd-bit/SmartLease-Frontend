@@ -44,7 +44,9 @@ function SiderMenu(props: any) {
         <Menu.Item key="10">
           <Link to="shoppinglist">浏览历史</Link>
         </Menu.Item>
-        <Menu.Item key="11">收获地址</Menu.Item>
+        <Menu.Item key="11">
+          <Link to="address">收货地址</Link>
+        </Menu.Item>
         <Menu.Item key="12">退货管理</Menu.Item>
       </SubMenu>
     </Menu>
