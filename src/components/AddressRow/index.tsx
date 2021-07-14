@@ -4,9 +4,9 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 11:00:07
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:26:36
+ * @LastEditTime: 2021-07-14 13:16:52
  */
-import { Button, Input, Switch } from "antd";
+import { Button, Input, message, Switch } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { addAddress, deleteAddress, editAddress } from "./service";
@@ -33,45 +33,52 @@ function AddressRow(props: AddressRowProps){
   },[props.name,props.address,props.isDefault])
   const handleDelete=()=>{
     if(id!=-1){
+      message.loading({ content: 'Loading...', key:id, duration:0});
       deleteAddress().then((res)=>{
         if(res.message==='success'){
           props.refresh();
+          message.success({ content: '删除成功', key:id ,duration:1});
         }
         else{
-          alert('删除失败')
+          message.info({ content: '删除失败', key:id ,duration:1});
         }
       })
     }else{
       props.refresh();
+      message.success({ content: '删除成功', key:id ,duration:1});
     }
   }
   const handleSave=()=>{
     if(name!=''&&address!=''){
       if(id!=-1){
+        message.loading({ content: 'Loading...', key:id, duration:0});
         editAddress().then((res)=>{
           if(res.message==='success'){
             setIsEdit(0);
             props.refresh();
+            message.success({ content: '保存成功', key:id ,duration:1});
           }
           else{
-            alert('保存失败')
+            message.info({ content: '保存失败', key:id ,duration:1});
           }
         })
       }
       else{
+        message.loading({ content: 'Loading...', key:id, duration:0});
         addAddress().then((res)=>{
           if(res.message==='success'){
             setIsEdit(0);
             props.refresh();
+            message.success({ content: '保存成功', key:id ,duration:1});
           }
           else{
-            alert('保存失败')
+            message.info({ content: '保存失败', key:id ,duration:1});
           }
         })
       }
     }
     else{
-      alert('姓名或地址不能为空！')
+      message.info({ content: '姓名或地址不能为空', key:1 ,duration:1});
     }
   }
   if(isEdit===0){

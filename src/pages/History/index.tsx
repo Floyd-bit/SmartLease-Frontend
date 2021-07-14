@@ -4,10 +4,10 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:44:09
+ * @LastEditTime: 2021-07-14 13:19:22
  */
 import SiderMenu from "@/components/SiderMenu";
-import { Row, Col, Button, Divider } from "antd";
+import { Row, Col, Button, Divider, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { deleteHistory, getHistoryList } from "./service";
 
@@ -38,10 +38,15 @@ function History(props:any){
     getHistoryList().then((res)=>setHistoryList(res.data));
   }, [])
   const deleteHandle=(id:number)=>{
+    message.loading({ content: 'Loading...', key:id, duration:0});
     deleteHistory().then((res)=>{
       if(res.message==='success'){
         console.log('删除历史'+id);
         getHistoryList().then((res)=>setHistoryList(res.data));
+        message.success({ content: '删除成功', key:id ,duration:1});
+      }
+      else{
+        message.info({ content: '删除失败', key:id ,duration:1});
       }
     })
   }
