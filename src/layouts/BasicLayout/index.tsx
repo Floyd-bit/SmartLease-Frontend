@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 14:33:57
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-14 11:48:42
  */
 import React, { useState } from 'react';
 import styles from './index.css';
@@ -70,13 +70,13 @@ const BasicLayout: React.FC = props => {
               </div>
               <div>
               <ShoppingCartOutlined />
-              <Link to="/personal/shoppingcar" style={{color:'black',marginLeft:'5px'}}>
+              <Link to="/user/shoppingcar" style={{color:'black',marginLeft:'5px'}}>
                 购物车
               </Link>
               </div>
               <div>
                 <UserOutlined />
-                <Link to="/personal/my" style={{ color: 'black',marginLeft:'5px' }}>
+                <Link to="/user" style={{ color: 'black',marginLeft:'5px' }}>
                   个人中心
                 </Link>
               </div>

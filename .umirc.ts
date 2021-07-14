@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-13 16:46:43
+ * @LastEditTime: 2021-07-14 13:36:23
  */
 import { IConfig } from 'umi-types';
 
@@ -33,28 +33,40 @@ const config: IConfig = {
           component: '../pages/Register',
         },
         {
-          path: '/productdetail',
+          path: '/detail',
           component: '../pages/ProductDetail',
         },
         {
-          path: '/personal',
+          path: '/user',
           routes: [
             {
-              path: '/personal/shoppinglist',
-              component: '../pages/ShoppingList',
+              path: '/user/history',
+              component: '../pages/History',
             },
             {
-              path: '/personal/my',
-              component: '../pages/My',
+              path: '/user',
+              component: '../pages/User',
             },
             {
-              path: '/personal/orderlist',
+              path: '/user/orderlist',
               component: '../pages/OrderList',
             },
             {
-              path: '/personal/shoppingcar',
+              path: '/user/shoppingcar',
               component: '../pages/ShoppingCar'
-            }
+            },
+            {
+              path: '/user/address',
+              component: '../pages/Address'
+            },
+            {
+              path: '/user/favorite',
+              component: '../pages/Favorite'
+            },
+            {
+              path: '/user/refund',
+              component: '../pages/Refund'
+            },
           ],
         },
       ],

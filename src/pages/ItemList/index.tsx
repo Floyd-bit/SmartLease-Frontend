@@ -1,18 +1,27 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: 王宇阳
+ * @Date: 2021-07-12 08:48:25
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-13 21:12:34
+ */
 import HomeFooter from "@/components/HomeFooter";
 import ItemCard from "@/components/ItemCard";
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import { Button, Col, Divider, InputNumber, Pagination, Row } from "antd";
 import React, { useEffect, useState } from "react";
+import { Link } from "umi";
 import { getItemList } from "./service";
 
 function ItemList(props: any){
-  const [page, setPage]=useState('1');
+  const [page, setPage]=useState(1);
   const [rank, setRank] = useState('0');
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
-  const [min, setMin] = useState(null);
-  const [max, setMax] = useState(null);
-  const [itemList, setItemList] = useState([]);
+  const [min, setMin] = useState(null);//输入框的值
+  const [max, setMax] = useState(null);//输入框的值
+  const [itemList, setItemList] = useState<Array<{image:string,title:string,price:string,oldprice:string,id:number}>>([]);
   const [isInit, setIsInit] = useState(true);
   const [total, setTotal] = useState(1);
   //点击综合排序
@@ -32,21 +41,21 @@ function ItemList(props: any){
     if(rank!='5') {setRank('5')} else if(rank==='5') {setRank('6')};
   }
   //初次加载页面和改变排序后执行的操作
-  useEffect(() => {getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.type, rank]);
+  useEffect(() => {getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:1,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.type, rank]);
   //设定价格范围
   const PriceSearch=()=>{
     setMaxPrice(max);
     setMinPrice(min);
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:'1',pagesize:'24',minprice:min,maxprice:max}).then(res=>{setPage('1');setTotal(res.total);setItemList(res.data);});
+    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:1,pagesize:24,minprice:min,maxprice:max}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);});
   }
   //点击下一页
   const NextPage=()=>{
-    let newpage=Number(page)+1;
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:newpage,pagesize:'24',minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage.toString());setTotal(res.total);setItemList(res.data);});
+    let newpage=page+1;
+    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:newpage,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage);setTotal(res.total);setItemList(res.data);});
   }
   //点击底部分页
-  const changePage=(pagenum,pagesize)=>{
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum.toString());setTotal(res.total);setItemList(res.data);});
+  const changePage=(pagenum:any,pagesize:any)=>{
+    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum);setTotal(res.total);setItemList(res.data);});
   }
 
   if(isInit){
@@ -67,13 +76,13 @@ function ItemList(props: any){
     <>
     <div style={{height:100,display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
       <div style={{marginLeft:'5%',alignContent:'flex-start'}}>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
-        <span style={{marginRight:'80px'}}>商品分类</span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=0" style={{color:props.location.query.type!=0?'black':''}}>商品分类0</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=1" style={{color:props.location.query.type!=1?'black':''}}>商品分类1</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=2" style={{color:props.location.query.type!=2?'black':''}}>商品分类2</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=3" style={{color:props.location.query.type!=3?'black':''}}>商品分类3</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=4" style={{color:props.location.query.type!=4?'black':''}}>商品分类4</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=5" style={{color:props.location.query.type!=5?'black':''}}>商品分类5</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=6" style={{color:props.location.query.type!=6?'black':''}}>商品分类6</Link></span>
       </div>
     </div>
     <div style={{height: '50px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',backgroundColor: '#C6DCF9',width: '100%',}}>

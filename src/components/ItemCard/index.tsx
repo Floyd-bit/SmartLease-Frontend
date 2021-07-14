@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: 王宇阳
+ * @Date: 2021-07-09 09:47:25
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-13 20:18:39
+ */
 import React from 'react';
 
 interface ItemCardProps {
@@ -5,7 +13,7 @@ interface ItemCardProps {
   title: string; //商品名称
   price: string;
   oldprice: string;
-  id: string; //商品id
+  id: number; //商品id
   length: number//边长
 }
 
