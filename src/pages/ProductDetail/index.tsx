@@ -1,4 +1,5 @@
-import { Button, Card, Col, Divider, Row } from 'antd';
+import HomeFooter from '@/components/HomeFooter';
+import { Button, Card, Col, Divider, Radio, Row } from 'antd';
 import M from 'minimatch';
 import Select from 'rc-select';
 import React from 'react';
@@ -28,7 +29,7 @@ const rowItem1 = {
     },
   ],
 };
-const SelectCard = (props: { content: string }) => {
+/* const SelectCard = (props: { content: string }) => {
   return (
     <div
       style={{
@@ -44,7 +45,7 @@ const SelectCard = (props: { content: string }) => {
       {props.content}
     </div>
   );
-};
+}; */
 const ProductCard: React.FC = (props: any) => {
   return (
     <Card
@@ -131,23 +132,23 @@ const ProductDetail: React.FC = props => {
           }}
         >
           <div
-            style={{ backgroundColor: 'gray', width: '500px', height: '500px', marginTop: '30px' }}
+            style={{ backgroundColor: 'gray', width: '520px', height: '520px', marginTop: '30px' }}
           ></div>
           <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'space-between' }}>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '20px' }}
+              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
             ></div>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '20px' }}
+              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
             ></div>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '20px' }}
+              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
             ></div>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '20px' }}
+              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
             ></div>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '20px' }}
+              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
             ></div>
           </div>
         </Col>
@@ -182,18 +183,22 @@ const ProductDetail: React.FC = props => {
           <Divider style={{ backgroundColor: 'gray' }} />
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
             颜色分类：
-            <SelectCard content="银色" />
-            <SelectCard content="银色" />
-            <SelectCard content="银色" />
-            <SelectCard content="银色" />
-            <SelectCard content="银色" />
-            <SelectCard content="银色" />
+            <Radio.Group defaultValue={1} buttonStyle="solid">
+              <Radio.Button value={1} style={{margin: '10px',}}>银色</Radio.Button>
+              <Radio.Button value={2} style={{margin: '10px',}}>银色</Radio.Button>
+              <Radio.Button value={3} style={{margin: '10px',}}>银色</Radio.Button>
+              <Radio.Button value={4} style={{margin: '10px',}}>银色</Radio.Button>
+              <Radio.Button value={5} style={{margin: '10px',}}>银色</Radio.Button>
+              <Radio.Button value={6} style={{margin: '10px',}}>银色</Radio.Button>
+            </Radio.Group>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
             内存容量：
-            <SelectCard content="64GB" />
-            <SelectCard content="128GB" />
-            <SelectCard content="256GB" />
+            <Radio.Group defaultValue={1} buttonStyle="solid">
+              <Radio.Button value={1} style={{margin: '10px',}}>64G</Radio.Button>
+              <Radio.Button value={2} style={{margin: '10px',}}>128G</Radio.Button>
+              <Radio.Button value={3} style={{margin: '10px',}}>256G</Radio.Button>
+            </Radio.Group>
           </div>
           <div
             style={{
@@ -207,49 +212,68 @@ const ProductDetail: React.FC = props => {
             <div>数量（个）： - 1 +</div>
             <div>租期（天）： - 1 +</div>
           </div>
-          <div style={{ width: '400px', display: 'flex', justifyContent: 'space-between' }}>
-            <Button style={{ width: '140px', height: '70px' }}>立即租赁</Button>
-            <Button style={{ width: '140px', height: '70px' }}>加入购物车</Button>
+          <div style={{ width: '350px', display: 'flex', justifyContent: 'space-between' }}>
+            <Button style={{ width: '140px', height: '50px' }}>立即租赁</Button>
+            <Button style={{ width: '140px', height: '50px' }}>加入购物车</Button>
           </div>
         </Col>
       </Row>
       <Row>
-        <Col style={{ width: '1000px', marginLeft: '30px' }} span={4}>
-          <ProductCard
-            title="苹果 iPhone 5s铝金属外壳"
-            price="19999.99"
-            preprice="69999.99"
-          ></ProductCard>
-          <ProductCard
-            title="苹果 iPhone 5s铝金属外壳"
-            price="19999.99"
-            preprice="69999.99"
-          ></ProductCard>
-          <ProductCard
-            title="苹果 iPhone 5s铝金属外壳"
-            price="19999.99"
-            preprice="69999.99"
-          ></ProductCard>
-          <ProductCard
-            title="苹果 iPhone 5s铝金属外壳"
-            price="19999.99"
-            preprice="69999.99"
-          ></ProductCard>
-          <ProductCard
-            title="苹果 iPhone 5s铝金属外壳"
-            price="19999.99"
-            preprice="69999.99"
-          ></ProductCard>
+        <Col span={5}>
+          <div style={{ marginLeft: 'auto', marginRight: 'auto', display: 'flex', alignItems:'flex-end',flexDirection:'column' }}>
+            <div style={{ width:200 ,border:'1px solid #f0f0f0'}}>
+              <div style={{ height:30,background:'#E3E9F2',textAlign:'center',display:'flex',alignItems:'center',justifyContent:'center'}}>
+                iPhone官方租赁体验店
+              </div>
+              <div style={{ height:50,display:'flex',alignItems:'center',justifyContent:'space-around' }}>
+                <div style={{width:80,height:30,border:'1px solid #f0f0f0',display:'flex',alignItems:'center',justifyContent:'center',marginLeft:10,background:'#E3E9F2'}}>进店逛逛</div>
+                <div style={{width:80,height:30,border:'1px solid #f0f0f0',display:'flex',alignItems:'center',justifyContent:'center',marginRight:10,background:'#E3E9F2'}}>关注店铺</div>
+              </div>
+            </div>
+            <div style={{ width:200,height:30,background:'#E3E9F2',textAlign:'center',display:'flex',alignItems:'center',justifyContent:'center',marginTop:10}}>
+              店内热销
+            </div>
+            <ProductCard
+              title="苹果 iPhone 5s铝金属外壳"
+              price="19999.99"
+              preprice="69999.99"
+            ></ProductCard>
+            <ProductCard
+              title="苹果 iPhone 5s铝金属外壳"
+              price="19999.99"
+              preprice="69999.99"
+            ></ProductCard>
+            <ProductCard
+              title="苹果 iPhone 5s铝金属外壳"
+              price="19999.99"
+              preprice="69999.99"
+            ></ProductCard>
+            <ProductCard
+              title="苹果 iPhone 5s铝金属外壳"
+              price="19999.99"
+              preprice="69999.99"
+            ></ProductCard>
+            <ProductCard
+              title="苹果 iPhone 5s铝金属外壳"
+              price="19999.99"
+              preprice="69999.99"
+            ></ProductCard>
+          </div>
         </Col>
-        <Col span={16} style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-          <div style={{ width: '100%', height: '30px', border: '1px solid gray' }}></div>
-          <div style={{ width: '100%', height: '1000px', backgroundColor: 'gray' }}></div>
-          <ParameterList {...rowItem1} />
-          <ParameterList {...rowItem1} />
-          <ParameterList {...rowItem1} />
-          
+        <Col span={19} style={{}}>
+          <div style={{ display: 'flex', alignItems:'center',flexDirection:'column' }}>
+            <div style={{ width: '95%', height: '30px', border: '1px solid gray' }}></div>
+            <div style={{ width: '95%', height: '1000px', backgroundColor: 'gray' }}></div>
+          </div>
+          <div style={{ width:'95%',margin:'auto',marginTop:10 }}>
+            <ParameterList {...rowItem1} />
+            <ParameterList {...rowItem1} />
+            <ParameterList {...rowItem1} />
+          </div>
         </Col>
       </Row>
+      <Divider/>
+      <HomeFooter/>
     </div>
   );
 };

@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-13 16:34:17
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-14 08:43:35
  */
 import { IConfig } from 'umi-types';
 
@@ -33,7 +33,7 @@ const config: IConfig = {
           component: '../pages/Register',
         },
         {
-          path: '/productdetail',
+          path: '/detail',
           component: '../pages/ProductDetail',
         },
         {
