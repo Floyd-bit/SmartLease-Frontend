@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 08:54:42
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:32:22
+ * @LastEditTime: 2021-07-14 11:53:59
  */
 import React from 'react';
 import { Menu } from 'antd';
@@ -28,28 +28,30 @@ function SiderMenu(props: any) {
       style={{ height: '100%', borderRight: 0, width: 200 }}
     >
       <Menu.Item key="sub1" icon={<UserOutlined />}>
-        <Link to="my">我的主页</Link>
+        <Link to="/user">我的主页</Link>
       </Menu.Item>
       <SubMenu key="sub2" title="我的交易">
         <Menu.Item key="5">
-        <Link to="shoppingcar">购物车</Link>
+        <Link to="/user/shoppingcar">购物车</Link>
         </Menu.Item>
         <Menu.Item key="6">
-          <Link to="orderlist">我的订单</Link>
+          <Link to="/user/orderlist">我的订单</Link>
         </Menu.Item>
         <Menu.Item key="7">优惠劵</Menu.Item>
       </SubMenu>
       <SubMenu key="sub3" title="我的账户">
         <Menu.Item key="9">
-        <Link to="favorite">我的收藏</Link>
+        <Link to="/user/favorite">我的收藏</Link>
         </Menu.Item>
         <Menu.Item key="10">
-          <Link to="history">浏览历史</Link>
+          <Link to="/user/history">浏览历史</Link>
         </Menu.Item>
         <Menu.Item key="11">
-          <Link to="address">收货地址</Link>
+          <Link to="/user/address">收货地址</Link>
         </Menu.Item>
-        <Menu.Item key="12">退货管理</Menu.Item>
+        <Menu.Item key="12">
+          <Link to="/user/refund">退货管理</Link>
+        </Menu.Item>
       </SubMenu>
     </Menu>
   );
