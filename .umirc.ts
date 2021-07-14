@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 10:21:46
+ * @LastEditTime: 2021-07-14 11:32:03
  */
 import { IConfig } from 'umi-types';
 
@@ -40,8 +40,8 @@ const config: IConfig = {
           path: '/personal',
           routes: [
             {
-              path: '/personal/shoppinglist',
-              component: '../pages/ShoppingList',
+              path: '/personal/history',
+              component: '../pages/History',
             },
             {
               path: '/personal/my',

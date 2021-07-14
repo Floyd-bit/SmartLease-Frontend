@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 08:54:42
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:19:10
+ * @LastEditTime: 2021-07-14 11:32:22
  */
 import React from 'react';
 import { Menu } from 'antd';
@@ -44,7 +44,7 @@ function SiderMenu(props: any) {
         <Link to="favorite">我的收藏</Link>
         </Menu.Item>
         <Menu.Item key="10">
-          <Link to="shoppinglist">浏览历史</Link>
+          <Link to="history">浏览历史</Link>
         </Menu.Item>
         <Menu.Item key="11">
           <Link to="address">收货地址</Link>
