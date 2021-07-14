@@ -4,13 +4,13 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 10:22:07
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 20:50:59
+ * @LastEditTime: 2021-07-14 10:45:30
  */
 import AddressRow from "@/components/AddressRow";
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button } from "antd";
 import React, { useEffect, useState } from "react";
-import { getAddressList } from "./servise";
+import { getAddressList } from "./service";
 
 function Address(props:any){
   const [addressList,setAddressList]=useState<Array<{name:string,address:string,isDefault:boolean,id:number}>>([])

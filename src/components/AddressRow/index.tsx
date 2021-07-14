@@ -4,11 +4,12 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 11:00:07
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 20:50:27
+ * @LastEditTime: 2021-07-14 11:26:36
  */
 import { Button, Input, Switch } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { addAddress, deleteAddress, editAddress } from "./service";
 
 interface AddressRowProps {
   name: string;//收货人
@@ -32,20 +33,42 @@ function AddressRow(props: AddressRowProps){
   },[props.name,props.address,props.isDefault])
   const handleDelete=()=>{
     if(id!=-1){
-      //发送删除请求
+      deleteAddress().then((res)=>{
+        if(res.message==='success'){
+          props.refresh();
+        }
+        else{
+          alert('删除失败')
+        }
+      })
+    }else{
+      props.refresh();
     }
-    props.refresh();
   }
   const handleSave=()=>{
     if(name!=''&&address!=''){
       if(id!=-1){
-        //发送修改请求
+        editAddress().then((res)=>{
+          if(res.message==='success'){
+            setIsEdit(0);
+            props.refresh();
+          }
+          else{
+            alert('保存失败')
+          }
+        })
       }
       else{
-        //发送新增请求
+        addAddress().then((res)=>{
+          if(res.message==='success'){
+            setIsEdit(0);
+            props.refresh();
+          }
+          else{
+            alert('保存失败')
+          }
+        })
       }
-      setIsEdit(0);
-      props.refresh();
     }
     else{
       alert('姓名或地址不能为空！')

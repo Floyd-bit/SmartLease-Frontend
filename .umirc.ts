@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 08:43:35
+ * @LastEditTime: 2021-07-14 10:21:46
  */
 import { IConfig } from 'umi-types';
 
@@ -58,6 +58,10 @@ const config: IConfig = {
             {
               path: '/personal/address',
               component: '../pages/Address'
+            },
+            {
+              path: '/personal/favorite',
+              component: '../pages/Favorite'
             },
           ],
         },

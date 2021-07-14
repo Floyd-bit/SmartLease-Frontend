@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 08:54:42
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 11:27:07
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-14 11:19:10
  */
 import React from 'react';
 import { Menu } from 'antd';
@@ -40,7 +40,9 @@ function SiderMenu(props: any) {
         <Menu.Item key="7">优惠劵</Menu.Item>
       </SubMenu>
       <SubMenu key="sub3" title="我的账户">
-        <Menu.Item key="9">我的收藏</Menu.Item>
+        <Menu.Item key="9">
+        <Link to="favorite">我的收藏</Link>
+        </Menu.Item>
         <Menu.Item key="10">
           <Link to="shoppinglist">浏览历史</Link>
         </Menu.Item>
