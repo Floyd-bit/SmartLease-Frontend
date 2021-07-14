@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-09 09:47:25
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 20:18:39
+ * @LastEditTime: 2021-07-14 15:15:45
  */
 import React from 'react';
 
@@ -18,7 +18,7 @@ interface ItemCardProps {
 }
 
 function ItemCard(props:ItemCardProps) {
-  let itemLink='https://www.baidu.com/s?wd='+props.id;
+  let itemLink='/detail?id='+props.id;
   return (
     <div style={{width:props.length,height:props.length*1.2}}>
     <div style={{ width: '90%',margin:'0 auto',height:'75%'}}>

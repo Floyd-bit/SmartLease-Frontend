@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 11:00:07
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 13:16:52
+ * @LastEditTime: 2021-07-14 16:04:01
  */
 import { Button, Input, message, Switch } from "antd";
 import React, { useEffect } from "react";
@@ -32,7 +32,7 @@ function AddressRow(props: AddressRowProps){
     setIsDefault(props.isDefault);
   },[props.name,props.address,props.isDefault])
   const handleDelete=()=>{
-    if(id!=-1){
+    if(id>=0){
       message.loading({ content: 'Loading...', key:id, duration:0});
       deleteAddress().then((res)=>{
         if(res.message==='success'){
@@ -50,7 +50,7 @@ function AddressRow(props: AddressRowProps){
   }
   const handleSave=()=>{
     if(name!=''&&address!=''){
-      if(id!=-1){
+      if(id>=0){
         message.loading({ content: 'Loading...', key:id, duration:0});
         editAddress().then((res)=>{
           if(res.message==='success'){

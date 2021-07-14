@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 13:19:22
+ * @LastEditTime: 2021-07-14 15:24:52
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message } from "antd";
@@ -21,7 +21,7 @@ function HistoryItem(props: { title: string, price: string, onClick: any, id:num
         </a>
       </div>
       <div style={{width:'60%',textAlign:'center'}}>
-        <span>{props.price}</span>
+        <span>￥{props.price}</span>
       </div>
       <div style={{width:'20%',textAlign:'center'}}>
         <span onClick={props.onClick}>删除</span>
