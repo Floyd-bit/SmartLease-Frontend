@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 10:22:07
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 10:45:30
+ * @LastEditTime: 2021-07-14 16:03:31
  */
 import AddressRow from "@/components/AddressRow";
 import SiderMenu from "@/components/SiderMenu";
@@ -28,9 +28,11 @@ function Address(props:any){
     })
   }
 
+  const[fakeid,setFakeid]=useState(-1);
   const addAddress=()=>{
-    let newaddressList=addressList.concat({name:'',address:'',isDefault:false,id:-1});
-    //id为-1代表新增的收货地址
+    let newaddressList=addressList.concat({name:'',address:'',isDefault:false,id:fakeid});
+    setFakeid(fakeid-1);
+    //id为小于0代表新增的收货地址
     setAddressList(newaddressList);
   }
 

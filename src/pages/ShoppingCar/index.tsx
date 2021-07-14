@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 14:29:10
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-14 15:37:12
  */
 import React from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -21,9 +21,9 @@ function ShoppingCar() {
         <div
           style={{
             float: 'left',
-            marginLeft: '100px',
+            marginLeft: '50px',
             marginRight: 'auto',
-            width: '1300px',
+            width: '1267px',
           }}
         >
           <div
