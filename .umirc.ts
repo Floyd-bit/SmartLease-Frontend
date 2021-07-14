@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-13 16:34:17
+ * @LastEditTime: 2021-07-13 16:46:43
  */
 import { IConfig } from 'umi-types';
 
@@ -84,7 +84,7 @@ const config: IConfig = {
       "pathRewrite": { "^/api" : "" }
     },
     "/api2": {
-      "target": "http://jp-tyo-ilj-1.natfrp.cloud:38298/",
+      "target": "http://47.110.156.20:8085/",
       "changeOrigin": true,
       "pathRewrite": { "^/api2" : "" }
     }
