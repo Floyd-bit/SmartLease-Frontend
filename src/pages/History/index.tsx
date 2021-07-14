@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:37:11
+ * @LastEditTime: 2021-07-14 11:41:04
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider } from "antd";
@@ -33,15 +33,15 @@ function FavoriteItem(props: { title: string, price: string, onClick: any, id:nu
 }
 
 function Favorite(props:any){
-  const[historyList,setHistoryList]=useState<Array<{title:string,price:string,id:number}>>([{title:'1',price:'1',id:1},{title:'2',price:'2',id:2},{title:'3',price:'3',id:3}]);
+  const[historyList,setHistoryList]=useState<Array<{title:string,price:string,id:number}>>([]);
   useEffect(() => {
-    getHistoryList().then((res)=>setHistoryList);
+    getHistoryList().then((res)=>setHistoryList(res.data));
   }, [])
   const deleteHandle=(id:number)=>{
     deleteHistory().then((res)=>{
       if(res.message==='success'){
         console.log('删除历史'+id);
-        getHistoryList().then((res)=>setHistoryList);
+        getHistoryList().then((res)=>setHistoryList(res.data));
       }
     })
   }
