@@ -23,10 +23,11 @@ const config: IConfig = {
         },
         {
           path: '/search',
-          component: '../pages/SearchResult'
+          component: '../pages/SearchResult',
         },
         {
-          path: '/login', component: '../pages/Login'
+          path: '/login',
+          component: '../pages/Login',
         },
         {
           path: '/register',
@@ -57,19 +58,23 @@ const config: IConfig = {
             },
             {
               path: '/user/shoppingcar',
-              component: '../pages/ShoppingCar'
+              component: '../pages/ShoppingCar',
             },
             {
               path: '/user/address',
-              component: '../pages/Address'
+              component: '../pages/Address',
             },
             {
               path: '/user/favorite',
-              component: '../pages/Favorite'
+              component: '../pages/Favorite',
             },
             {
               path: '/user/refund',
-              component: '../pages/Refund'
+              component: '../pages/Refund',
+            },
+            {
+              path: '/user/customerservice',
+              component: '../pages/CustomerService',
             },
           ],
         },
@@ -94,17 +99,17 @@ const config: IConfig = {
     ],
   ],
   proxy: {
-    "/api": {
-      "target": "http://jsonplaceholder.typicode.com/",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api" : "" }
+    '/api': {
+      target: 'http://jsonplaceholder.typicode.com/',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
     },
-    "/api2": {
-      "target": "http://47.110.156.20:8085/",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api2" : "" }
-    }
-  }
-}
+    '/api2': {
+      target: 'http://47.110.156.20:8085/',
+      changeOrigin: true,
+      pathRewrite: { '^/api2': '' },
+    },
+  },
+};
 
 export default config;
