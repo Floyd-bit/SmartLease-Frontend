@@ -23,7 +23,7 @@ function ShoppingCar() {
             float: 'left',
             marginLeft: '50px',
             marginRight: 'auto',
-            width: '1267px',
+            width: '1400px',
           }}
         >
           <div
@@ -38,17 +38,15 @@ function ShoppingCar() {
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                width: '1180px',
-                marginLeft: '40px',
+                width: '1400px',
               }}
             >
-              <div>图片</div>
-              <div>商品</div>
-              <div>价格</div>
-              <div>数量</div>
-              <div>小计</div>
-              <div>操作</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>图片</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>商品</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>价格</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>数量</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>小计</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>操作</div>
             </div>
           </div>
           <ShoppingCarItem
