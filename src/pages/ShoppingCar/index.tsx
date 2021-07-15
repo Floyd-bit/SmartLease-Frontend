@@ -38,13 +38,12 @@ function ShoppingCar() {
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'space-between',
                 width: '1180px',
                 marginLeft: '40px',
               }}
             >
-              <div>图片</div>
-              <div>商品</div>
+              <div style={{width:'21%'}}>图片</div>
+              <div style={{width:'18%'}}>商品</div>
               <div>价格</div>
               <div>数量</div>
               <div>小计</div>
