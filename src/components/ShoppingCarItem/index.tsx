@@ -7,7 +7,7 @@
  * @LastEditTime: 2021-07-10 10:56:54
  */
 import React, { useState } from 'react';
-import { Button, Image } from 'antd';
+import { Button, Image, message } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 
 interface ShoppingCarItemProps {
@@ -26,6 +26,16 @@ interface ShoppingCarItemProps {
   payment: boolean; //是否支付
 }
 const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
+  const [num, setNum] = useState(props.number);
+  const NumberMinus = () => {
+    if (num === 1) message.error('最小数量为1');
+    else {
+      setNum(num - 1);
+    }
+  };
+  const NumberPlus = () => {
+    setNum(num + 1);
+  };
   return (
     <div
       style={{
@@ -86,9 +96,14 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
             justifyContent: 'center',
           }}
         >
-          <Button shape="circle" icon={<MinusOutlined />} size="small"></Button>
-          <div style={{ marginLeft: '20px', marginRight: '20px' }}>{props.number}</div>
-          <Button shape="circle" icon={<PlusOutlined />} size="small"></Button>
+          <Button
+            shape="circle"
+            icon={<MinusOutlined />}
+            size="small"
+            onClick={NumberMinus}
+          ></Button>
+          <div style={{ marginLeft: '20px', marginRight: '20px' }}>{num}</div>
+          <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={NumberPlus}></Button>
         </div>
         <div
           style={{
@@ -99,7 +114,7 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
             justifyContent: 'center',
           }}
         >
-          ￥{props.count}
+          ￥{(Number(props.price) * num).toFixed(2)}
         </div>
         <div
           style={{
