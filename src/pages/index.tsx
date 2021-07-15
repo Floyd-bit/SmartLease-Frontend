@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-07 08:47:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 21:14:14
+ * @LastEditTime: 2021-07-15 09:12:18
  */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
@@ -13,6 +13,11 @@ import Avatar from 'antd/lib/avatar/avatar';
 import HomeFooter from '@/components/HomeFooter';
 import ProductSelect from '@/components/productSelect/productSelect';
 import { getHotList, getLatestList } from './service';
+import banner from '../assets/banner.png';
+import banner2 from '../assets/banner2.png';
+import banner3 from '../assets/banner3.png';
+import banner4 from '../assets/banner4.png';
+import banner5 from '../assets/banner5.png';
 
 function goLogin() {
   window.location.href = 'login'
@@ -65,34 +70,18 @@ export default function() {
         <Col span={10}>
           <Carousel autoplay>
             <div>
-              <a href="">
+              <a href="/itemlist">
                 <img
                   style={{ height: 400, width: '100%' }}
-                  src="https://img.alicdn.com/imgextra/i3/6000000000038/O1CN01A0E2931C9Rk0yD9R8_!!6000000000038-0-octopus.jpg"
+                  src={banner}
                 />
               </a>
             </div>
             <div>
-              <a href="">
+              <a href="/itemlist">
                 <img
                   style={{ height: 400, width: '100%' }}
-                  src="https://a1.alicdn.com/assets/p4p-fallback/mm_12852562_1778064_13670999.jpg"
-                />
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img
-                  style={{ height: 400, width: '100%' }}
-                  src="https://a1.alicdn.com/assets/p4p-fallback/mm_12852562_1778064_13674396.jpg"
-                />
-              </a>
-            </div>
-            <div>
-              <a href="">
-                <img
-                  style={{ height: 400, width: '100%' }}
-                  src="https://a1.alicdn.com/assets/p4p-fallback/mm_12852562_1778064_13672849.jpg"
+                  src={banner2}
                 />
               </a>
             </div>
@@ -104,19 +93,13 @@ export default function() {
               <div>
                 <img
                   style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340"
+                  src={banner3}
                 />
               </div>
               <div>
                 <img
                   style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b30177d629bfbe2fb42251c1b8538f7b.jpg?w=632&h=340"
-                />
-              </div>
-              <div>
-                <img
-                  style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9f18ac756fa2cedb16ea429b9c0001af.png?w=632&h=340"
+                  src={banner3}
                 />
               </div>
             </Carousel>
@@ -126,19 +109,13 @@ export default function() {
               <div>
                 <img
                   style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b30177d629bfbe2fb42251c1b8538f7b.jpg?w=632&h=340"
+                  src={banner4}
                 />
               </div>
               <div>
                 <img
                   style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9f18ac756fa2cedb16ea429b9c0001af.png?w=632&h=340"
-                />
-              </div>
-              <div>
-                <img
-                  style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340"
+                  src={banner4}
                 />
               </div>
             </Carousel>
@@ -148,19 +125,13 @@ export default function() {
               <div>
                 <img
                   style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9f18ac756fa2cedb16ea429b9c0001af.png?w=632&h=340"
+                  src={banner5}
                 />
               </div>
               <div>
                 <img
                   style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/5d4298059889417157e8492750328492.jpg?w=632&h=340"
-                />
-              </div>
-              <div>
-                <img
-                  style={{ height: 130, width: '100%' }}
-                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b30177d629bfbe2fb42251c1b8538f7b.jpg?w=632&h=340"
+                  src={banner5}
                 />
               </div>
             </Carousel>
