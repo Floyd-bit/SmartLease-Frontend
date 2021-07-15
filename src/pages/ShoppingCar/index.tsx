@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 15:37:12
+ * @LastEditTime: 2021-07-15 16:07:54
  */
 import React from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -13,19 +13,12 @@ import { Button, Col, Row } from 'antd';
 
 function ShoppingCar() {
   return (
-    <>
-      <div>
-        <div style={{ float: 'left' }}>
-          <SiderMenu selectedKey="5" />
-        </div>
-        <div
-          style={{
-            float: 'left',
-            marginLeft: '50px',
-            marginRight: 'auto',
-            width: '1400px',
-          }}
-        >
+    <Row justify="space-around" align="top">
+      <Col span={2}>
+        <SiderMenu selectedKey="5" />
+      </Col>
+      <Col span={20} offset={2}>
+        <div style={{ width: '100%',}}>
           <div
             style={{
               height: '50px',
@@ -38,7 +31,7 @@ function ShoppingCar() {
             <div
               style={{
                 display: 'flex',
-                width: '1400px',
+                width: '100%',
               }}
             >
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>图片</div>
@@ -111,8 +104,8 @@ function ShoppingCar() {
             </Row>
           </div>
         </div>
-      </div>
-    </>
+      </Col>
+    </Row>
   );
 }
 
