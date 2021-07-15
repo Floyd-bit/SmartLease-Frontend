@@ -25,7 +25,6 @@ interface ShoppingCarItemProps {
   number: number; //商品数量
   payment: boolean; //是否支付
 }
-
 const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
   return (
     <div
@@ -41,23 +40,27 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
         style={{
           display: 'flex',
           width: '100%',
-          justifyContent: 'space-around',
           alignItems: 'center',
         }}
       >
         <div
           style={{
-            width: '16%',
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
-          <Image src={props.src} style={{ width: '100px', height: '100px' }} />
+          <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+            <Image src={props.src} style={{ width: '100px', height: '100px' }} />
+          </div>
         </div>
         <div
           style={{
             display: 'flex',
-            width: '16%',
-            flexDirection: 'column',
+            flex: 1,
             justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <div style={{ width: '200px' }}>{props.productName}</div>
@@ -66,10 +69,10 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
         <div
           style={{
             display: 'flex',
-            width: '16%',
+            flex: 1,
+            justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
           }}
         >
           <div>￥{props.price}</div>
@@ -79,12 +82,12 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'top',
-            justifyContent: 'space-between',
-            width: '16%',
+            flex: 1,
+            justifyContent: 'center',
           }}
         >
           <Button shape="circle" icon={<MinusOutlined />} size="small"></Button>
-          <div>{props.number}</div>
+          <div style={{ marginLeft: '20px', marginRight: '20px' }}>{props.number}</div>
           <Button shape="circle" icon={<PlusOutlined />} size="small"></Button>
         </div>
         <div
@@ -92,7 +95,8 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            width: '16%',
+            flex: 1,
+            justifyContent: 'center',
           }}
         >
           ￥{props.count}
@@ -102,10 +106,11 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            width: '16%',
+            flex: 1,
+            justifyContent: 'center',
           }}
         >
-          <div style={{ marginBottom: '10px', width: '16%' }}>
+          <div style={{ marginBottom: '10px', flex: 1, justifyContent: 'center' }}>
             <Button type="primary" danger>
               删除
             </Button>
