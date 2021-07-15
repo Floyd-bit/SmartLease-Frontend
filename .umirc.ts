@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-14 13:36:23
+ * @LastEditTime: 2021-07-15 16:48:36
  */
 import { IConfig } from 'umi-types';
 
@@ -35,6 +35,10 @@ const config: IConfig = {
         {
           path: '/detail',
           component: '../pages/ProductDetail',
+        },
+        {
+          path: '/payment',
+          component: '../pages/Payment',
         },
         {
           path: '/user',

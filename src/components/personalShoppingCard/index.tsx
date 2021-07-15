@@ -1,5 +1,6 @@
 import { Button, Image } from 'antd';
 import React, { useState } from 'react';
+import { Link } from 'umi';
 interface ShoppingCardProps {
   gmtCreate: string;
   id: string; //订单号
@@ -120,9 +121,11 @@ const personalShoppingCard: React.FC<ShoppingCardProps> = props => {
         >
           <div style={{ color: 'red', marginBottom: '10px' }}>29分59秒</div>
           <div style={{ marginBottom: '10px' }}>
-            <Button type="primary" danger>
-              立即付款
-            </Button>
+            <Link to={'/payment?id='+props.id}>
+              <Button type="primary" danger>
+                立即付款
+              </Button>
+            </Link>
           </div>
           <div>取消订单</div>
         </div>
