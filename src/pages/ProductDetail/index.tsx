@@ -1,6 +1,5 @@
 import HomeFooter from '@/components/HomeFooter';
 import { Button, Card, Col, Divider, Radio, Row } from 'antd';
-import M from 'minimatch';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
 import { getDetail } from './service';
