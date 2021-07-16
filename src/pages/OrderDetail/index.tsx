@@ -2,9 +2,9 @@
  * @Descripttion:
  * @version:
  * @Author: 王宇阳
- * @Date: 2021-07-15 16:30:11
+ * @Date: 2021-07-16 10:20:27
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-16 10:21:46
+ * @LastEditTime: 2021-07-16 10:21:04
  */
 import { Button, message } from 'antd';
 import React from 'react';
@@ -27,13 +27,12 @@ function OrderItemCard(props:any){
 
 
 
-function CreateOrder(){
+function OrderDetail(){
 
   return(
     <>
     <div style={{height: '50px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',backgroundColor: '#C6DCF9',width: '100%',}}>
-      <div style={{marginLeft:'25%'}}><span style={{color:'black',fontSize:20}}>填写并核对订单信息</span></div>
-      <div style={{marginLeft:'auto',marginRight:'25%'}}><Button>提交订单</Button></div>
+      <div style={{marginLeft:'25%'}}><span style={{color:'black',fontSize:20}}>订单详情</span></div>
     </div>
     <div style={{width:'50%',margin:'auto'}}>
       <OrderItemCard/>
@@ -48,7 +47,6 @@ function CreateOrder(){
           </div>
         </div>
         <div style={{marginLeft:'auto',marginRight:0}}>
-          <Button>修改地址</Button>
         </div>
       </div>
       <div style={{display:'flex',height:130,marginTop:30,borderStyle:'none none solid',borderWidth:'1px',borderColor:'#DDDDDD'}}>
@@ -71,4 +69,4 @@ function CreateOrder(){
   )
 }
 
-export default CreateOrder;
+export default OrderDetail;
