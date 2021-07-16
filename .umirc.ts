@@ -4,13 +4,14 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-16 10:21:36
+ * @LastEditTime: 2021-07-16 16:54:19
  */
 import { IConfig } from 'umi-types';
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
-  treeShaking: true,
+  dva: {},
+  antd: {},
   routes: [
     {
       path: '/',
@@ -97,29 +98,10 @@ const config: IConfig = {
       ],
     },
   ],
-  plugins: [
-    // ref: https://umijs.org/plugin/umi-plugin-react.html
-    [
-      'umi-plugin-react',
-      {
-        antd: true,
-        dva: false,
-        dynamicImport: false,
-        title: '租享宝',
-        dll: false,
 
-        routes: {
-          exclude: [/components\//],
-        },
-      },
-    ],
-  ],
+  // ref: https://umijs.org/plugin/umi-plugin-react.htm
+
   proxy: {
-    '/api': {
-      target: 'http://jsonplaceholder.typicode.com/',
-      changeOrigin: true,
-      pathRewrite: { '^/api': '' },
-    },
     '/api2': {
       target: 'http://47.110.156.20:8085/',
       changeOrigin: true,

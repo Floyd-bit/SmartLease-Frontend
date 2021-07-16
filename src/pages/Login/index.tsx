@@ -1,10 +1,10 @@
 /*
- * @Description: 
+ * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-12 14:12:12
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-12 20:51:07
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-16 16:58:51
  */
 import React from 'react';
 import { message } from 'antd';
@@ -12,7 +12,6 @@ import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
 import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import styles from './index.less';
 import logo from '@/assets/logo.png';
-import { fakeAccountLogin, LoginParamsType } from './service';
 import axios from 'axios';
 
 const waitTime = (time: number = 100) => {
@@ -154,7 +153,7 @@ const Login = () => {
           }}
         />
        <a href='register' style={{marginLeft:80}}>还没有账号，点击注册</a>
-      </ProForm>    
+      </ProForm>
     </div>
   );
 };
