@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-16 11:16:38
+ * @LastEditTime: 2021-07-16 23:01:21
  */
 import { IConfig } from 'umi-types';
 
@@ -12,6 +12,7 @@ import { IConfig } from 'umi-types';
 const config: IConfig = {
   dva: {},
   antd: {},
+  mfsu: {},
   routes: [
     {
       path: '/',
@@ -102,10 +103,10 @@ const config: IConfig = {
   // ref: https://umijs.org/plugin/umi-plugin-react.htm
 
   proxy: {
-    '/api': {
+    '/api1': {
       target: 'http://jsonplaceholder.typicode.com/',
       changeOrigin: true,
-      pathRewrite: { '^/api': '' },
+      pathRewrite: { '^/api1': '' },
     },
     '/api2': {
       target: 'http://47.110.156.20:8085/',

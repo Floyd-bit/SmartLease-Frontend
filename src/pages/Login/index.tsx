@@ -4,12 +4,12 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-12 14:12:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-12 20:51:07
+ * @LastEditTime: 2021-07-16 22:59:48
  */
 import React from 'react';
 import { message } from 'antd';
 import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
-import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
+import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons'; 
 import logo from '@/assets/logo.png';
 import axios from 'axios';
 
@@ -119,7 +119,7 @@ const Login = () => {
               name="password"
               fieldProps={{
                 size: 'large',
-                prefix: <LockOutlined className={styles.prefixIcon} />,
+                prefix: <LockOutlined />,
               }}
               placeholder='请输入密码'
               rules={[
