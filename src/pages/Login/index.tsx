@@ -10,9 +10,7 @@ import React from 'react';
 import { message } from 'antd';
 import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
 import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
-import styles from './index.less';
 import logo from '@/assets/logo.png';
-import { fakeAccountLogin, LoginParamsType } from './service';
 import axios from 'axios';
 
 const waitTime = (time: number = 100) => {

@@ -1,8 +1,7 @@
 import HomeFooter from '@/components/HomeFooter';
 import { Button, Card, Col, Divider, Radio, Row } from 'antd';
-import M from 'minimatch';
-import Select from 'rc-select';
 import React from 'react';
+import { useParams } from 'umi';
 
 interface ParameterListProps {
   title: string;
@@ -184,20 +183,38 @@ const ProductDetail: React.FC = props => {
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
             颜色分类：
             <Radio.Group defaultValue={1} buttonStyle="solid">
-              <Radio.Button value={1} style={{margin: '10px',}}>银色</Radio.Button>
-              <Radio.Button value={2} style={{margin: '10px',}}>银色</Radio.Button>
-              <Radio.Button value={3} style={{margin: '10px',}}>银色</Radio.Button>
-              <Radio.Button value={4} style={{margin: '10px',}}>银色</Radio.Button>
-              <Radio.Button value={5} style={{margin: '10px',}}>银色</Radio.Button>
-              <Radio.Button value={6} style={{margin: '10px',}}>银色</Radio.Button>
+              <Radio.Button value={1} style={{ margin: '10px' }}>
+                银色
+              </Radio.Button>
+              <Radio.Button value={2} style={{ margin: '10px' }}>
+                银色
+              </Radio.Button>
+              <Radio.Button value={3} style={{ margin: '10px' }}>
+                银色
+              </Radio.Button>
+              <Radio.Button value={4} style={{ margin: '10px' }}>
+                银色
+              </Radio.Button>
+              <Radio.Button value={5} style={{ margin: '10px' }}>
+                银色
+              </Radio.Button>
+              <Radio.Button value={6} style={{ margin: '10px' }}>
+                银色
+              </Radio.Button>
             </Radio.Group>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
             内存容量：
             <Radio.Group defaultValue={1} buttonStyle="solid">
-              <Radio.Button value={1} style={{margin: '10px',}}>64G</Radio.Button>
-              <Radio.Button value={2} style={{margin: '10px',}}>128G</Radio.Button>
-              <Radio.Button value={3} style={{margin: '10px',}}>256G</Radio.Button>
+              <Radio.Button value={1} style={{ margin: '10px' }}>
+                64G
+              </Radio.Button>
+              <Radio.Button value={2} style={{ margin: '10px' }}>
+                128G
+              </Radio.Button>
+              <Radio.Button value={3} style={{ margin: '10px' }}>
+                256G
+              </Radio.Button>
             </Radio.Group>
           </div>
           <div
@@ -220,17 +237,78 @@ const ProductDetail: React.FC = props => {
       </Row>
       <Row>
         <Col span={5}>
-          <div style={{ marginLeft: 'auto', marginRight: 'auto', display: 'flex', alignItems:'flex-end',flexDirection:'column' }}>
-            <div style={{ width:200 ,border:'1px solid #f0f0f0'}}>
-              <div style={{ height:30,background:'#E3E9F2',textAlign:'center',display:'flex',alignItems:'center',justifyContent:'center'}}>
+          <div
+            style={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              display: 'flex',
+              alignItems: 'flex-end',
+              flexDirection: 'column',
+            }}
+          >
+            <div style={{ width: 200, border: '1px solid #f0f0f0' }}>
+              <div
+                style={{
+                  height: 30,
+                  background: '#E3E9F2',
+                  textAlign: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 iPhone官方租赁体验店
               </div>
-              <div style={{ height:50,display:'flex',alignItems:'center',justifyContent:'space-around' }}>
-                <div style={{width:80,height:30,border:'1px solid #f0f0f0',display:'flex',alignItems:'center',justifyContent:'center',marginLeft:10,background:'#E3E9F2'}}>进店逛逛</div>
-                <div style={{width:80,height:30,border:'1px solid #f0f0f0',display:'flex',alignItems:'center',justifyContent:'center',marginRight:10,background:'#E3E9F2'}}>关注店铺</div>
+              <div
+                style={{
+                  height: 50,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                }}
+              >
+                <div
+                  style={{
+                    width: 80,
+                    height: 30,
+                    border: '1px solid #f0f0f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginLeft: 10,
+                    background: '#E3E9F2',
+                  }}
+                >
+                  进店逛逛
+                </div>
+                <div
+                  style={{
+                    width: 80,
+                    height: 30,
+                    border: '1px solid #f0f0f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: 10,
+                    background: '#E3E9F2',
+                  }}
+                >
+                  关注店铺
+                </div>
               </div>
             </div>
-            <div style={{ width:200,height:30,background:'#E3E9F2',textAlign:'center',display:'flex',alignItems:'center',justifyContent:'center',marginTop:10}}>
+            <div
+              style={{
+                width: 200,
+                height: 30,
+                background: '#E3E9F2',
+                textAlign: 'center',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 10,
+              }}
+            >
               店内热销
             </div>
             <ProductCard
@@ -261,19 +339,19 @@ const ProductDetail: React.FC = props => {
           </div>
         </Col>
         <Col span={19} style={{}}>
-          <div style={{ display: 'flex', alignItems:'center',flexDirection:'column' }}>
+          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <div style={{ width: '95%', height: '30px', border: '1px solid gray' }}></div>
             <div style={{ width: '95%', height: '1000px', backgroundColor: 'gray' }}></div>
           </div>
-          <div style={{ width:'95%',margin:'auto',marginTop:10 }}>
+          <div style={{ width: '95%', margin: 'auto', marginTop: 10 }}>
             <ParameterList {...rowItem1} />
             <ParameterList {...rowItem1} />
             <ParameterList {...rowItem1} />
           </div>
         </Col>
       </Row>
-      <Divider/>
-      <HomeFooter/>
+      <Divider />
+      <HomeFooter />
     </div>
   );
 };

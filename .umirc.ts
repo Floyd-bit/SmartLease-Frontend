@@ -10,7 +10,8 @@ import { IConfig } from 'umi-types';
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
-  treeShaking: true,
+  dva: {},
+  antd: {},
   routes: [
     {
       path: '/',
@@ -34,7 +35,7 @@ const config: IConfig = {
           component: '../pages/Register',
         },
         {
-          path: '/detail',
+          path: '/detail/:id',
           component: '../pages/ProductDetail',
         },
         {
@@ -97,23 +98,9 @@ const config: IConfig = {
       ],
     },
   ],
-  plugins: [
-    // ref: https://umijs.org/plugin/umi-plugin-react.html
-    [
-      'umi-plugin-react',
-      {
-        antd: true,
-        dva: false,
-        dynamicImport: false,
-        title: '租享宝',
-        dll: false,
 
-        routes: {
-          exclude: [/components\//],
-        },
-      },
-    ],
-  ],
+  // ref: https://umijs.org/plugin/umi-plugin-react.htm
+
   proxy: {
     '/api': {
       target: 'http://jsonplaceholder.typicode.com/',
