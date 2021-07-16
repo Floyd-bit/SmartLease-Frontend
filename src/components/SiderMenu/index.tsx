@@ -32,7 +32,7 @@ function SiderMenu(props: any) {
       </Menu.Item>
       <SubMenu key="sub2" title="我的交易">
         <Menu.Item key="5">
-        <Link to="/user/shoppingcar">购物车</Link>
+          <Link to="/user/shoppingcar">购物车</Link>
         </Menu.Item>
         <Menu.Item key="6">
           <Link to="/user/orderlist">我的订单</Link>
@@ -41,7 +41,7 @@ function SiderMenu(props: any) {
       </SubMenu>
       <SubMenu key="sub3" title="我的账户">
         <Menu.Item key="9">
-        <Link to="/user/favorite">我的收藏</Link>
+          <Link to="/user/favorite">我的收藏</Link>
         </Menu.Item>
         <Menu.Item key="10">
           <Link to="/user/history">浏览历史</Link>
@@ -51,6 +51,9 @@ function SiderMenu(props: any) {
         </Menu.Item>
         <Menu.Item key="12">
           <Link to="/user/refund">退货管理</Link>
+        </Menu.Item>
+        <Menu.Item key="13">
+          <Link to="/user/customerservice">售后管理</Link>
         </Menu.Item>
       </SubMenu>
     </Menu>
