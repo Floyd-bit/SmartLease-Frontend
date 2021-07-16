@@ -1,7 +1,8 @@
 import HomeFooter from '@/components/HomeFooter';
 import { Button, Card, Col, Divider, Radio, Row } from 'antd';
-import React from 'react';
-import { useParams } from 'umi';
+import Select from 'rc-select';
+import React, { useEffect, useState } from 'react';
+import { getDetail } from './service';
 
 interface ParameterListProps {
   title: string;
@@ -117,7 +118,12 @@ const ParameterList: React.FC<ParameterListProps> = props => {
     </div>
   );
 };
-const ProductDetail: React.FC = props => {
+const ProductDetail: React.FC = (props:any) => {
+  const [detail, setDetail] = useState<any>({title:'商品参数错误',subImages:'',description:'不存在id为'+props.location.query.id+'的商品',price:99999.99});
+  const [bigimg, setBigimg] = useState('');
+  useEffect(() => {
+    getDetail({id:props.location.query.id?props.location.query.id:0}).then((res)=>{if(res.data.value){setDetail(res.data.value),setBigimg(res.data.value.subImages)}});
+  }, [props.location.query.id])
   return (
     <div>
       <Row>
@@ -132,11 +138,15 @@ const ProductDetail: React.FC = props => {
         >
           <div
             style={{ backgroundColor: 'gray', width: '520px', height: '520px', marginTop: '30px' }}
-          ></div>
+          >
+            <img src={bigimg} style={{width:'100%',height:'100%'}}/>
+          </div>
           <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'space-between' }}>
             <div
               style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
-            ></div>
+            >
+              <img src={detail.subImages} style={{width:'100%',height:'100%'}} onClick={()=>setBigimg(detail.subImages)}/>
+            </div>
             <div
               style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
             ></div>
@@ -161,10 +171,10 @@ const ProductDetail: React.FC = props => {
           }}
         >
           <div style={{ fontSize: '30px', marginBottom: '20px' }}>
-            苹果iPhone12九成新已激活出租 {/* props.title*/}
+            {detail.title}
           </div>
           <div style={{ marginBottom: '20px', color: 'red' }}>
-            支持联通移动电信5G 双卡双待手机 {/* props.description*/}
+            {detail.description}
           </div>
           <div style={{ display: 'flex', marginBottom: '20px' }}>
             <div>√ 七天以上包邮</div>
@@ -172,7 +182,7 @@ const ProductDetail: React.FC = props => {
             {/*这里看后端字段*/}
           </div>
           <div style={{ display: 'flex' }}>
-            租金：<p style={{ color: 'red', marginBottom: '20px' }}>￥2/天{/*props.price*/}</p>
+            租金：<p style={{ color: 'red', marginBottom: '20px' }}>￥{detail.rentPrice}/天</p>
           </div>
           <div style={{ marginBottom: '20px' }}>
             配送至： 广东省，广州市{/*这里要再讨论，先写死*/}

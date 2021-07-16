@@ -37,3 +37,12 @@ export async function showCommodityListByTime(data: any) {
     },
   );
 }
+
+export async function searchProductByName(data: any) {
+  return request(
+    `api2/customer/commodityList/searchByName?pageNum=${data.pageNum}&pageSize=${data.pageSize}&name=${data.name}`,
+    {
+      method: 'GET',
+    },
+  );
+}

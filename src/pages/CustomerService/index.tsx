@@ -3,6 +3,7 @@ import SiderMenu from '@/components/SiderMenu';
 import { Button, Col, Row } from 'antd';
 import Fix from '@/assets/CustomerService.png';
 import ServiceDetail from './ServiceDetail';
+import { history } from 'umi';
 
 const CustomerService: React.FC = () => {
   return (
@@ -44,6 +45,7 @@ const CustomerService: React.FC = () => {
                 width: '100px',
                 height: '40px',
               }}
+              onClick={() => history.push('/user/serviceapply')}
             >
               申请售后
             </Button>
@@ -245,6 +247,18 @@ const CustomerService: React.FC = () => {
                 <ServiceDetail />
               </div>
             </div>
+            <div
+              style={{
+                flex: 0.15,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderBottom:'1px solid #D5D5D5',
+                borderRight:'1px solid #D5D5D5',
+                cursor:'pointer'
+              }}
+              onClick={() => history.push('/user/servicerecord')}
+            >查看所有订单 >></div>
           </div>
         </div>
       </Col>

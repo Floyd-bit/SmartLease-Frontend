@@ -23,10 +23,10 @@ import { Link } from 'umi';
 
 const { Header, Content, Footer } = Layout;
 
-const BasicLayout: React.FC = props => {
-  const [keyword,setKeyword]=useState('');
+const BasicLayout: React.FC = (props) => {
+  const [keyword, setKeyword] = useState('');
   return (
-    <Layout style={{background:'white'}}>
+    <Layout style={{ background: 'white' }}>
       <Header style={{ width: '100%', padding: '0px' }}>
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <div
@@ -64,19 +64,19 @@ const BasicLayout: React.FC = props => {
             >
               <div>
                 <HomeOutlined />
-                <Link to="/" style={{ color: 'black',marginLeft:'5px' }}>
+                <Link to="/" style={{ color: 'black', marginLeft: '5px' }}>
                   首页
                 </Link>
               </div>
               <div>
-              <ShoppingCartOutlined />
-              <Link to="/user/shoppingcar" style={{color:'black',marginLeft:'5px'}}>
-                购物车
-              </Link>
+                <ShoppingCartOutlined />
+                <Link to="/user/shoppingcar" style={{ color: 'black', marginLeft: '5px' }}>
+                  购物车
+                </Link>
               </div>
               <div>
                 <UserOutlined />
-                <Link to="/user" style={{ color: 'black',marginLeft:'5px' }}>
+                <Link to="/user" style={{ color: 'black', marginLeft: '5px' }}>
                   个人中心
                 </Link>
               </div>
@@ -89,10 +89,12 @@ const BasicLayout: React.FC = props => {
               backgroundColor: '#4C7DD2',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
             }}
           >
-            <div><Avatar src={logo} style={{ marginLeft: '30px', height: '55px' }} /></div>
+            <div>
+              <Avatar src={logo} style={{ marginLeft: '30px', height: '55px' }} />
+            </div>
             <div
               style={{
                 marginLeft: '200px',
@@ -104,8 +106,18 @@ const BasicLayout: React.FC = props => {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Input placeholder="输入租品名称" size="large" onChange={(e)=>setKeyword(e.target.value)}/>
-                <Link to={"/search?keyword="+keyword} style={{ color: 'black'}} onClick={(e)=>{if(keyword==='') e.preventDefault()}}>
+                <Input
+                  placeholder="输入租品名称"
+                  size="large"
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
+                <Link
+                  to={`/search?keywords=${keyword}`}
+                  style={{ color: 'black' }}
+                  onClick={(e) => {
+                    if (keyword === '') e.preventDefault();
+                  }}
+                >
                   <Button icon={<SearchOutlined />} style={{ height: '40px', marginLeft: '10px' }}>
                     搜索
                   </Button>
@@ -115,12 +127,12 @@ const BasicLayout: React.FC = props => {
           </div>
         </div>
       </Header>
-      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26, }}>
+      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26 }}>
         <div className="site-layout-background" style={{ padding: 0, minHeight: 380 }}>
           {props.children}
         </div>
       </Content>
-      <Footer style={{ background:'white',textAlign: 'center' }}>@CopyRight 你说的都对</Footer>
+      <Footer style={{ background: 'white', textAlign: 'center' }}>@CopyRight 你说的都对</Footer>
     </Layout>
   );
 };
