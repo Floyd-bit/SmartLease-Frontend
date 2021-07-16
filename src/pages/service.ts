@@ -28,3 +28,12 @@ export async function getAllProductType() {
     method: 'GET',
   });
 }
+
+export async function showCommodityListByTime(data: any) {
+  return request(
+    `api2/customer/commodityList/showCommodityList?pageNum=${data.pageNum}&pageSize=${data.pageSize}`,
+    {
+      method: 'GET',
+    },
+  );
+}

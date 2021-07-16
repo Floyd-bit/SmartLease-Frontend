@@ -185,17 +185,66 @@ const CustomerService: React.FC = () => {
           </div>
           <div style={{ flex: 3, display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', flex: 1 }}>
-              <div style={{ flex: 1 }}>
+              <div
+                style={{
+                  flex: 1,
+                  borderRight: '1px solid #D5D5D5',
+                  borderTop: '1px solid #D5D5D5',
+                }}
+              >
                 <ServiceDetail />
               </div>
-              <div style={{ flex: 1 }}>
+              <div
+                style={{
+                  flex: 1,
+                  borderRight: '1px solid #D5D5D5',
+                  borderTop: '1px solid #D5D5D5',
+                }}
+              >
                 <ServiceDetail />
               </div>
-              <div style={{ flex: 1 }}>
+              <div
+                style={{
+                  flex: 1,
+                  borderRight: '1px solid #D5D5D5',
+                  borderTop: '1px solid #D5D5D5',
+                }}
+              >
                 <ServiceDetail />
               </div>
             </div>
-            <div style={{ display: 'flex', flex: 1 }}></div>
+            <div style={{ display: 'flex', flex: 1 }}>
+              <div
+                style={{
+                  flex: 1,
+                  borderTop: '1px solid #D5D5D5',
+                  borderBottom: '1px solid #D5D5D5',
+                  borderRight: '1px solid #D5D5D5',
+                }}
+              >
+                <ServiceDetail />
+              </div>
+              <div
+                style={{
+                  flex: 1,
+                  borderTop: '1px solid #D5D5D5',
+                  borderBottom: '1px solid #D5D5D5',
+                  borderRight: '1px solid #D5D5D5',
+                }}
+              >
+                <ServiceDetail />
+              </div>
+              <div
+                style={{
+                  flex: 1,
+                  borderTop: '1px solid #D5D5D5',
+                  borderBottom: '1px solid #D5D5D5',
+                  borderRight: '1px solid #D5D5D5',
+                }}
+              >
+                <ServiceDetail />
+              </div>
+            </div>
           </div>
         </div>
       </Col>
