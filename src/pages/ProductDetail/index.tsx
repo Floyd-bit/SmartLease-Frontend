@@ -120,10 +120,10 @@ const ParameterList: React.FC<ParameterListProps> = props => {
   );
 };
 const ProductDetail: React.FC = (props:any) => {
-  const [detail, setDetail] = useState<any>({});
+  const [detail, setDetail] = useState<any>({title:'商品参数错误',subImages:'',description:'不存在id为'+props.location.query.id+'的商品',price:99999.99});
   const [bigimg, setBigimg] = useState('');
   useEffect(() => {
-    getDetail({id:props.location.query.id?props.location.query.id:0}).then((res)=>{setDetail(res.data.value),setBigimg(res.data.value.subImages)});
+    getDetail({id:props.location.query.id?props.location.query.id:0}).then((res)=>{if(res.data.value){setDetail(res.data.value),setBigimg(res.data.value.subImages)}});
   }, [props.location.query.id])
   return (
     <div>
