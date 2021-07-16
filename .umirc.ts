@@ -76,6 +76,14 @@ const config: IConfig = {
               path: '/user/customerservice',
               component: '../pages/CustomerService',
             },
+            {
+              path: '/user/serviceapply',
+              component: '../pages/ServiceApply',
+            },
+            {
+              path: '/user/servicerecord',
+              component: '../pages/ServiceRecord',
+            },
           ],
         },
       ],
