@@ -119,7 +119,7 @@ const ParameterList: React.FC<ParameterListProps> = props => {
   );
 };
 const ProductDetail: React.FC = (props:any) => {
-  const [detail, setDetail] = useState<any>({title:'商品参数错误',subImages:'',description:'不存在id为'+props.location.query.id+'的商品',price:99999.99});
+  const [detail, setDetail] = useState<any>({commodityName:'商品参数错误',subImages:'',description:'不存在id为'+props.location.query.id+'的商品',price:99999.99});
   const [bigimg, setBigimg] = useState('');
   useEffect(() => {
     getDetail({id:props.location.query.id?props.location.query.id:0}).then((res)=>{if(res.data.value){setDetail(res.data.value),setBigimg(res.data.value.subImages)}});
@@ -171,7 +171,7 @@ const ProductDetail: React.FC = (props:any) => {
           }}
         >
           <div style={{ fontSize: '30px', marginBottom: '20px' }}>
-            {detail.title}
+            {detail.commodityName}
           </div>
           <div style={{ marginBottom: '20px', color: 'red' }}>
             {detail.description}
