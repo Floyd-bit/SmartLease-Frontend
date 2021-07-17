@@ -3,6 +3,8 @@ import { Button, Card, Col, Divider, Radio, Row } from 'antd';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
 import { getDetail } from './service';
+import { showCommodityListByTime } from '../service';
+import { history } from 'umi';
 
 interface ParameterListProps {
   title: string;
@@ -51,21 +53,26 @@ const ProductCard: React.FC = (props: any) => {
     <Card
       hoverable
       style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '0px' }}
+      onClick={() => history.push(`/detail?id=${props.id}`)}
     >
-      <div style={{ width: '150px', height: '150px', backgroundColor: 'gray' }}></div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div>{props.title}</div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <img width='150px' height='150px' src={props.src}></img>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{
+          fontSize: '20px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textOverflow: 'ellipsis', overflow: 'hidden'
+        }}>{props.title}</div>
+        <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
           <div style={{ color: 'red' }}>￥{props.price}</div>
           <div>
             <s>{props.preprice}</s>
           </div>
         </div>
       </div>
-    </Card>
+    </Card >
   );
 };
+
 const ParameterList: React.FC<ParameterListProps> = props => {
+
   return (
     <div>
       <div
@@ -118,12 +125,20 @@ const ParameterList: React.FC<ParameterListProps> = props => {
     </div>
   );
 };
-const ProductDetail: React.FC = (props:any) => {
-  const [detail, setDetail] = useState<any>({title:'商品参数错误',subImages:'',description:'不存在id为'+props.location.query.id+'的商品',price:99999.99});
+const ProductDetail: React.FC = (props: any) => {
+  const [storeProduct, setStoreProduct] = useState<any>([]);
+  const [detail, setDetail] = useState<any>({ title: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', price: 99999.99 });
   const [bigimg, setBigimg] = useState('');
   useEffect(() => {
-    getDetail({id:props.location.query.id?props.location.query.id:0}).then((res)=>{if(res.data.value){setDetail(res.data.value),setBigimg(res.data.value.subImages)}});
+    getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages) } });
   }, [props.location.query.id])
+  useEffect(
+    () => {
+      showCommodityListByTime({ pageSize: 5, pageNum: 1 }).then(res =>
+        setStoreProduct(res.data.value.records)
+      )
+    }, []
+  );
   return (
     <div>
       <Row>
@@ -139,26 +154,31 @@ const ProductDetail: React.FC = (props:any) => {
           <div
             style={{ backgroundColor: 'gray', width: '520px', height: '520px', marginTop: '30px' }}
           >
-            <img src={bigimg} style={{width:'100%',height:'100%'}}/>
+            <img src={bigimg} style={{ width: '100%', height: '100%' }} />
           </div>
           <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'space-between' }}>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
+              style={{ width: '80px', height: '80px', margin: '15px' }}
             >
-              <img src={detail.subImages} style={{width:'100%',height:'100%'}} onClick={()=>setBigimg(detail.subImages)}/>
+              <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
             </div>
             <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
-            ></div>
-            <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
-            ></div>
-            <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
-            ></div>
-            <div
-              style={{ backgroundColor: 'gray', width: '80px', height: '80px', margin: '15px' }}
-            ></div>
+              style={{ width: '80px', height: '80px', margin: '15px' }}
+            >
+              <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
+            </div><div
+              style={{ width: '80px', height: '80px', margin: '15px' }}
+            >
+              <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
+            </div><div
+              style={{ width: '80px', height: '80px', margin: '15px' }}
+            >
+              <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
+            </div><div
+              style={{ width: '80px', height: '80px', margin: '15px' }}
+            >
+              <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
+            </div>
           </div>
         </Col>
         <Col
@@ -170,8 +190,10 @@ const ProductDetail: React.FC = (props:any) => {
             marginTop: '30px',
           }}
         >
-          <div style={{ fontSize: '30px', marginBottom: '20px' }}>
-            {detail.title}
+          <div style={{
+            fontSize: '30px', marginBottom: '20px'
+          }}>
+            {detail.commodityName}
           </div>
           <div style={{ marginBottom: '20px', color: 'red' }}>
             {detail.description}
@@ -321,37 +343,30 @@ const ProductDetail: React.FC = (props:any) => {
             >
               店内热销
             </div>
-            <ProductCard
-              title="苹果 iPhone 5s铝金属外壳"
-              price="19999.99"
-              preprice="69999.99"
-            ></ProductCard>
-            <ProductCard
-              title="苹果 iPhone 5s铝金属外壳"
-              price="19999.99"
-              preprice="69999.99"
-            ></ProductCard>
-            <ProductCard
-              title="苹果 iPhone 5s铝金属外壳"
-              price="19999.99"
-              preprice="69999.99"
-            ></ProductCard>
-            <ProductCard
-              title="苹果 iPhone 5s铝金属外壳"
-              price="19999.99"
-              preprice="69999.99"
-            ></ProductCard>
-            <ProductCard
-              title="苹果 iPhone 5s铝金属外壳"
-              price="19999.99"
-              preprice="69999.99"
-            ></ProductCard>
+            {
+              storeProduct.map(
+                (item: any) =>
+
+                  <ProductCard
+                    title={item.commodityName}
+                    price={item.rentPrice}
+                    preprice="69999.99"
+                    src={item.subImages}
+                    id={item.id}
+                  ></ProductCard>
+
+              )
+            }
+
+
           </div>
         </Col>
         <Col span={19} style={{}}>
           <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <div style={{ width: '95%', height: '30px', border: '1px solid gray' }}></div>
-            <div style={{ width: '95%', height: '1000px', backgroundColor: 'gray' }}></div>
+            <div style={{ width: '95%', height: '1000px' }}>
+              <img src={detail.subImages} width='100%' height='100%'></img>
+            </div>
           </div>
           <div style={{ width: '95%', margin: 'auto', marginTop: 10 }}>
             <ParameterList {...rowItem1} />
