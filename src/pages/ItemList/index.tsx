@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-12 08:48:25
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 21:12:34
+ * @LastEditTime: 2021-07-17 09:49:04
  */
 import HomeFooter from "@/components/HomeFooter";
 import ItemCard from "@/components/ItemCard";
@@ -120,7 +120,7 @@ function ItemList(props: any){
       {items}
     </Row>
     <div style={{ textAlign: 'center' }}>
-      <Pagination size="small" total={total} current={Number(page)} pageSize={24} showSizeChanger={false} onChange={changePage}/>
+      <Pagination style={{marginTop:20}} size="small" total={total} current={Number(page)} pageSize={24} showSizeChanger={false} onChange={changePage}/>
     </div>
     <Divider/>
     <HomeFooter/>

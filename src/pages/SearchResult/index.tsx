@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-12 19:21:03
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-17 09:40:16
+ * @LastEditTime: 2021-07-17 09:48:32
  */
 import HomeFooter from '@/components/HomeFooter';
 import ItemCard from '@/components/ItemCard';
@@ -257,6 +257,7 @@ function SearchResult(props: any) {
       <Row>{items}</Row>
       <div style={{ textAlign: 'center' }}>
         <Pagination
+          style={{marginTop:20}}
           size="small"
           total={total}
           current={Number(page)}
