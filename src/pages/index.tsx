@@ -27,137 +27,23 @@ function goRegister() {
   window.location.href = 'register';
 }
 
-export default function() {
-  const [hotList, setHotList] = useState([
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-  ]);
-  const [latestList, setLatestList] = useState([
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-    {
-      image: 'https://z3.ax1x.com/2021/07/13/WEKzLj.png',
-      title: '商品名称',
-      price: '9999.99',
-      oldprice: '9999.99',
-      id: 1,
-    },
-  ]);
+export default function () {
+
 
   const [timeList, setTimeList] = useState<any>([]);
-
+  const [hotList, setHotList] = useState<any>([]);
   useEffect(() => {
-    getHotList().then(res => setHotList(res.data));
-    getLatestList().then(res => setLatestList(res.data));
     showCommodityListByTime({ pageNum: 1, pageSize: 8 }).then(res =>
       setTimeList(res.data.value.records),
+    );
+    showCommodityListByTime({ pageNum: 4, pageSize: 8 }).then(res =>
+      setHotList(res.data.value.records),
     );
   }, []);
   return (
     <div style={{ width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
       <Row gutter={{ xs: 8, sm: 16, md: 24 }} align="bottom" style={{ width: '100%' }}>
-        <Col span={4}>
+        <Col span={3}>
           <div style={{ height: 400, width: '100%', display: 'flex', flexDirection: 'column' }}>
             <div
               style={{
@@ -362,7 +248,7 @@ export default function() {
             </Carousel>
           </div>
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <div style={{ width: '100%', height: '190' }}>
             <Card>
               <div style={{ marginLeft: '50px' }}>
@@ -427,86 +313,22 @@ export default function() {
         <h1 style={{ marginLeft: '0.625%' }}>热销产品</h1>
       </Row>
       <Row>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[0].image}
-            title={hotList[0].title}
-            price={hotList[0].price}
-            oldprice={hotList[0].oldprice}
-            id={hotList[0].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[1].image}
-            title={hotList[1].title}
-            price={hotList[1].price}
-            oldprice={hotList[1].oldprice}
-            id={hotList[1].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[2].image}
-            title={hotList[2].title}
-            price={hotList[2].price}
-            oldprice={hotList[2].oldprice}
-            id={hotList[2].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[3].image}
-            title={hotList[3].title}
-            price={hotList[3].price}
-            oldprice={hotList[3].oldprice}
-            id={hotList[3].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[4].image}
-            title={hotList[4].title}
-            price={hotList[4].price}
-            oldprice={hotList[4].oldprice}
-            id={hotList[4].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[5].image}
-            title={hotList[5].title}
-            price={hotList[5].price}
-            oldprice={hotList[5].oldprice}
-            id={hotList[5].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[6].image}
-            title={hotList[6].title}
-            price={hotList[6].price}
-            oldprice={hotList[6].oldprice}
-            id={hotList[6].id}
-          />
-        </Col>
-        <Col span={3}>
-          <ItemCard
-            length={document.body.scrollWidth * 0.1125}
-            image={hotList[7].image}
-            title={hotList[7].title}
-            price={hotList[7].price}
-            oldprice={hotList[7].oldprice}
-            id={hotList[7].id}
-          />
-        </Col>
+        {
+          hotList.map(
+            item => <Col span={3}>
+              <ItemCard
+                length={document.body.scrollWidth * 0.1125}
+                image={item.subImages}
+                title={item.commodityName}
+                price={item.rentPrice}
+                oldprice="100"
+                id={item.id}
+              />
+            </Col>
+          )
+        }
+
+
       </Row>
       <Divider />
       <Row>
