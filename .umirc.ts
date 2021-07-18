@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-17 10:01:57
+ * @LastEditTime: 2021-07-18 19:14:23
  */
 import { IConfig } from 'umi-types';
 
@@ -103,11 +103,6 @@ const config: IConfig = {
   // ref: https://umijs.org/plugin/umi-plugin-react.htm
 
   proxy: {
-    '/api1': {
-      target: 'http://jsonplaceholder.typicode.com/',
-      changeOrigin: true,
-      pathRewrite: { '^/api1': '' },
-    },
     '/api2': {
       target: 'http://47.110.156.20:8085/',
       changeOrigin: true,

@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-12 19:21:03
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 21:02:37
+ * @LastEditTime: 2021-07-17 09:48:32
  */
 import HomeFooter from '@/components/HomeFooter';
 import ItemCard from '@/components/ItemCard';
@@ -27,13 +27,7 @@ function SearchResult(props: any) {
   >([]);
   const [isInit, setIsInit] = useState(true);
   const [total, setTotal] = useState(1);
-  useEffect(() => {
-    searchProductByName({ pageNum: 1, pageSize: 24, name: props.location.query.keywords }).then(
-      (res) => {
-        setSearchList(res.data.value.records);
-      },
-    );
-  });
+
   //点击综合排序
   const SimpleRank = () => {
     setRank('0');
@@ -63,52 +57,74 @@ function SearchResult(props: any) {
     }
   };
   //初次加载页面和改变排序后执行的操作
+  /* useEffect(() => {getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:1,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.keyword, rank]); */
+  useEffect(() => {
+    searchProductByName({ pageNum: 1, pageSize: 24, name: props.location.query.keywords?props.location.query.keywords:'',rank:rank,minprice:minPrice,maxprice:maxPrice }).then(
+      (res) => {
+        setPage(1);
+        setTotal(res.data.value.total);
+        setSearchList(res.data.value.records);
+      },
+    );
+  },[maxPrice, minPrice, props.location.query.keywords, rank]);
   //设定价格范围
+  /* const PriceSearch=()=>{
+    setMaxPrice(max);
+    setMinPrice(min);
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:1,pagesize:24,minprice:min,maxprice:max}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);});
+  } */
   const PriceSearch = () => {
     setMaxPrice(max);
     setMinPrice(min);
-    getSearchResult({
-      keyword: props.location.query.keyword ? props.location.query.keyword : '0',
+    searchProductByName({
+      name: props.location.query.keywords ? props.location.query.keywords : '',
       rank: rank,
-      pagenum: 1,
-      pagesize: 24,
+      pageNum: 1,
+      pageSize: 24,
       minprice: min,
       maxprice: max,
     }).then((res) => {
       setPage(1);
-      setTotal(res.total);
-      setItemList(res.data);
+      setTotal(res.data.value.total);
+      setSearchList(res.data.value.records);
     });
   };
   //点击下一页
+  /* const NextPage=()=>{
+    let newpage=page+1;
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:newpage,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage);setTotal(res.total);setItemList(res.data);});
+  } */
   const NextPage = () => {
     let newpage = page + 1;
-    getSearchResult({
-      keyword: props.location.query.keyword ? props.location.query.keyword : '0',
+    searchProductByName({
+      name: props.location.query.keywords ? props.location.query.keywords : '',
       rank: rank,
-      pagenum: newpage,
-      pagesize: 24,
+      pageNum: newpage,
+      pageSize: 24,
       minprice: minPrice,
       maxprice: maxPrice,
     }).then((res) => {
       setPage(newpage);
-      setTotal(res.total);
-      setItemList(res.data);
+      setTotal(res.data.value.total);
+      setSearchList(res.data.value.records);
     });
   };
   //点击底部分页
+  /* const changePage=(pagenum: any,pagesize: any)=>{
+    getSearchResult({keyword:props.location.query.keyword?props.location.query.keyword:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum);setTotal(res.total);setItemList(res.data);});
+  } */
   const changePage = (pagenum: any, pagesize: any) => {
-    getSearchResult({
-      keyword: props.location.query.keyword ? props.location.query.keyword : '0',
+    searchProductByName({
+      name: props.location.query.keywords ? props.location.query.keywords : '',
       rank: rank,
-      pagenum: pagenum,
-      pagesize: pagesize,
+      pageNum: pagenum,
+      pageSize: pagesize,
       minprice: minPrice,
       maxprice: maxPrice,
     }).then((res) => {
       setPage(pagenum);
-      setTotal(res.total);
-      setItemList(res.data);
+      setTotal(res.data.value.total);
+      setSearchList(res.data.value.records);
     });
   };
 
@@ -241,6 +257,7 @@ function SearchResult(props: any) {
       <Row>{items}</Row>
       <div style={{ textAlign: 'center' }}>
         <Pagination
+          style={{marginTop:20}}
           size="small"
           total={total}
           current={Number(page)}

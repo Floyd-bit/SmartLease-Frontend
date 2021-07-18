@@ -2,6 +2,7 @@ import HomeFooter from '@/components/HomeFooter';
 import { Button, Card, Col, Divider, Radio, Row } from 'antd';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'umi';
 import { getDetail } from './service';
 import { showCommodityListByTime } from '../service';
 import { history } from 'umi';
@@ -127,11 +128,19 @@ const ParameterList: React.FC<ParameterListProps> = props => {
 };
 const ProductDetail: React.FC = (props: any) => {
   const [storeProduct, setStoreProduct] = useState<any>([]);
-  const [detail, setDetail] = useState<any>({ title: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', price: 99999.99 });
+  const [detail, setDetail] = useState<any>({ commodityName: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', price: 99999.99 });
   const [bigimg, setBigimg] = useState('');
   useEffect(() => {
     getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages) } });
   }, [props.location.query.id])
+  const handleBuy = ()=>{
+    setTimeout(
+      () => {
+        history.push('/payment')
+      },1000
+    )
+  }
+
   useEffect(
     () => {
       showCommodityListByTime({ pageSize: 5, pageNum: 1 }).then(res =>
@@ -152,7 +161,7 @@ const ProductDetail: React.FC = (props: any) => {
           }}
         >
           <div
-            style={{ backgroundColor: 'gray', width: '520px', height: '520px', marginTop: '30px' }}
+            style={{  width: '520px', height: '520px', marginTop: '30px' }}
           >
             <img src={bigimg} style={{ width: '100%', height: '100%' }} />
           </div>
@@ -262,7 +271,7 @@ const ProductDetail: React.FC = (props: any) => {
             <div>租期（天）： - 1 +</div>
           </div>
           <div style={{ width: '350px', display: 'flex', justifyContent: 'space-between' }}>
-            <Button style={{ width: '140px', height: '50px' }}>立即租赁</Button>
+            <Button style={{ width: '140px', height: '50px' }} onClick={handleBuy}>立即租赁</Button>
             <Button style={{ width: '140px', height: '50px' }}>加入购物车</Button>
           </div>
         </Col>
