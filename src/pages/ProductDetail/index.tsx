@@ -3,7 +3,7 @@ import { Button, Card, Col, Divider, message, Radio, Row } from 'antd';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
-import { getDetail } from './service';
+import { addFavorite, getDetail } from './service';
 import { showCommodityListByTime } from '../service';
 import { history } from 'umi';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
@@ -166,6 +166,10 @@ const ProductDetail: React.FC = (props: any) => {
         history.push('/payment')
       },1000
     )
+  }
+  //收藏
+  const handleFavorite = ()=>{
+    addFavorite(detail.id).then((res)=>{if(res.message==='创建成功'){message.success('收藏成功')}})
   }
   //加载店内热销
   useEffect(
@@ -331,9 +335,10 @@ const ProductDetail: React.FC = (props: any) => {
               <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={TimePlus}></Button>
             </div>
           </div>
-          <div style={{ width: '350px', display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ width: '500px', display: 'flex', justifyContent: 'space-between' }}>
             <Button style={{ width: '140px', height: '50px' }} onClick={handleBuy}>立即租赁</Button>
             <Button style={{ width: '140px', height: '50px' }}>加入购物车</Button>
+            <Button style={{ width: '140px', height: '50px' }} onClick={handleFavorite}>收藏租品</Button>
           </div>
         </Col>
       </Row>
