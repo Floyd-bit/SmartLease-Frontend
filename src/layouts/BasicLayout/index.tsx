@@ -3,13 +3,14 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:48:42
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-19 15:36:03
  */
 import React, { useState } from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col } from 'antd';
+import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, Modal } from 'antd';
 import {
+  FireOutlined,
   HomeFilled,
   HomeOutlined,
   LeftCircleTwoTone,
@@ -20,11 +21,26 @@ import {
 } from '@ant-design/icons';
 import logo from '@/assets/logo.png';
 import { Link } from 'umi';
+import BaiDuAi from '@/pages/BaiDuAi';
 
 const { Header, Content, Footer } = Layout;
 
 const BasicLayout: React.FC = (props) => {
   const [keyword, setKeyword] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <Layout style={{ background: 'white' }}>
       <Header style={{ width: '100%', padding: '0px' }}>
@@ -80,6 +96,12 @@ const BasicLayout: React.FC = (props) => {
                   个人中心
                 </Link>
               </div>
+              <div>
+                <Button size="small"  type="link" onClick={showModal}>
+                  Logo识别
+                </Button>
+                <FireOutlined/>
+              </div>
             </div>
           </div>
           <div
@@ -133,6 +155,9 @@ const BasicLayout: React.FC = (props) => {
         </div>
       </Content>
       <Footer style={{ background: 'white', textAlign: 'center' }}>@CopyRight 你说的都对</Footer>
+      <Modal title="Logo识别" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <BaiDuAi/>
+      </Modal>
     </Layout>
   );
 };

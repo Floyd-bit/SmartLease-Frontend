@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-18 19:14:23
+ * @LastEditTime: 2021-07-19 15:20:34
  */
 import { IConfig } from 'umi-types';
 
@@ -115,6 +115,11 @@ const config: IConfig = {
       target: 'http://47.110.156.20:8085/',
       changeOrigin: true,
       pathRewrite: { '^/api2': '' },
+    },
+    '/api3': {
+      target: 'http://localhost:8085/',
+      changeOrigin: true,
+      pathRewrite: { '/api3': '/api'},
     },
   },
 };
