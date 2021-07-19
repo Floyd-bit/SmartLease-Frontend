@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-15 16:07:54
+ * @LastEditTime: 2021-07-19 14:15:18
  */
 import React from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -38,6 +38,7 @@ function ShoppingCar() {
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>商品</div>
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>价格</div>
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>数量</div>
+              <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>租期(天)</div>
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>小计</div>
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>操作</div>
             </div>
@@ -56,6 +57,7 @@ function ShoppingCar() {
             name="商品"
             count={2}
             payment={true}
+            time={1}
           />
           <ShoppingCarItem
             gmtCreate="2020/7/8"
@@ -71,6 +73,7 @@ function ShoppingCar() {
             name="商品"
             count={2}
             payment={true}
+            time={1}
           />
           <ShoppingCarItem
             gmtCreate="2020/7/8"
@@ -86,6 +89,7 @@ function ShoppingCar() {
             name="商品"
             count={2}
             payment={true}
+            time={1}
           />
           <div style={{ width: '100%', backgroundColor: '#C6DCF9', height: '50px' }}>
             <Row>

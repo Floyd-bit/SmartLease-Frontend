@@ -1,11 +1,12 @@
 import HomeFooter from '@/components/HomeFooter';
-import { Button, Card, Col, Divider, Radio, Row } from 'antd';
+import { Button, Card, Col, Divider, message, Radio, Row } from 'antd';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
 import { getDetail } from './service';
 import { showCommodityListByTime } from '../service';
 import { history } from 'umi';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 
 interface ParameterListProps {
   title: string;
@@ -129,10 +130,36 @@ const ParameterList: React.FC<ParameterListProps> = props => {
 const ProductDetail: React.FC = (props: any) => {
   const [storeProduct, setStoreProduct] = useState<any>([]);
   const [detail, setDetail] = useState<any>({ commodityName: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', price: 99999.99 });
+  //左侧大图
   const [bigimg, setBigimg] = useState('');
+  //商品数量相关
+  const [num, setNum] = useState(1);
+  const NumberMinus = () => {
+    if (num === 1) message.error('最小数量为1');
+    else {
+      setNum(num - 1);
+    }
+  };
+  const NumberPlus = () => {
+    setNum(num + 1);
+  };
+  //商品租期相关
+  const [time, setTime] = useState(1);
+  const TimeMinus = () => {
+    if (time === 1) message.error('最小数量为1');
+    else {
+      setTime(time - 1);
+    }
+  };
+  const TimePlus = () => {
+    setTime(time + 1);
+  };
+  //加载商品详情
   useEffect(() => {
     getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages) } });
   }, [props.location.query.id])
+
+  //点击立即租赁
   const handleBuy = ()=>{
     setTimeout(
       () => {
@@ -140,7 +167,7 @@ const ProductDetail: React.FC = (props: any) => {
       },1000
     )
   }
-
+  //加载店内热销
   useEffect(
     () => {
       showCommodityListByTime({ pageSize: 5, pageNum: 1 }).then(res =>
@@ -267,8 +294,42 @@ const ProductDetail: React.FC = (props: any) => {
               marginBottom: '40px',
             }}
           >
-            <div>数量（个）： - 1 +</div>
-            <div>租期（天）： - 1 +</div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'top',
+                flex: 1,
+              }}
+            >
+              数量：
+              <Button
+                shape="circle"
+                icon={<MinusOutlined />}
+                size="small"
+                onClick={NumberMinus}
+              ></Button>
+              <div style={{ marginLeft: '20px', marginRight: '20px' }}>{num}</div>
+              <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={NumberPlus}></Button>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'top',
+                flex: 1,
+              }}
+            >
+              租期(天)：
+              <Button
+                shape="circle"
+                icon={<MinusOutlined />}
+                size="small"
+                onClick={TimeMinus}
+              ></Button>
+              <div style={{ marginLeft: '20px', marginRight: '20px' }}>{time}</div>
+              <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={TimePlus}></Button>
+            </div>
           </div>
           <div style={{ width: '350px', display: 'flex', justifyContent: 'space-between' }}>
             <Button style={{ width: '140px', height: '50px' }} onClick={handleBuy}>立即租赁</Button>

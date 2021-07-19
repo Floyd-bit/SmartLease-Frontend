@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 11:23:22
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:48:50
+ * @LastEditTime: 2021-07-19 14:14:04
  */
 import React from 'react';
 import SiderMenu from '@/components/SiderMenu';
@@ -93,7 +93,8 @@ function User() {
             src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
-            payment={true} />
+            payment={true}
+            time={1} />
           <ShoppingCarItem
             gmtCreate="2020/7/8"
             id="1123123123"
@@ -107,7 +108,8 @@ function User() {
             src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
             name="商品"
             count={2}
-            payment={true} />
+            payment={true}
+            time={1} />
         </Card>
         <Card
           title="根据浏览，猜你喜欢"
