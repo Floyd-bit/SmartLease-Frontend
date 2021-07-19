@@ -1,10 +1,10 @@
 /*
- * @Description: 
+ * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-12 15:10:07
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-12 21:05:06
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-19 15:34:30
  */
 import React from 'react';
 import { message } from 'antd';
@@ -13,6 +13,7 @@ import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant
 import styles from './index.less';
 import logo from '@/assets/logo.png';
 import axios from 'axios';
+import { history } from 'umi';
 import Password from 'antd/lib/input/Password';
 
 
@@ -36,20 +37,19 @@ const handleSubmit = (values: LoginParamsType) => {
   .then(function (response) {
     console.log(response.data.message);
       if(response.data.message === "创建成功"){
-        alert("注册成功");
-        window.location.href = '/login';
+        message.success('注册成功',2).then(()=>history.push('/login'));
         console.log("success");
       }
       else{
-        alert("注册失败");
+        message.error('注册失败',2)
       }
       console.log("response: ", response);
   })
-  .catch(err => console.log(err))
-}
-else{
-  alert("两次密码输入不一致");
-}
+  .catch((err) => {if(err.response){message.error(err.response.data.message,2)}})
+  }
+  else{
+    alert("两次密码输入不一致");
+  }
 };
 
 const Register = () => {
@@ -170,7 +170,7 @@ const Register = () => {
             await waitTime(1000);
             message.success(`手机号 ${phone} 验证码发送成功!`);
           }}
-        />     
+        />
          <a href='login' style={{marginLeft:80}}>已有账号，点击登录</a>
       </ProForm>
 

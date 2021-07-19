@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-12 14:12:12
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-17 00:02:07
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-19 15:40:51
  */
 import React from 'react';
 import { message } from 'antd';
@@ -13,6 +13,7 @@ import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant
 import styles from './index.less';
 import logo from '@/assets/logo.png';
 import axios from 'axios';
+import {history} from 'umi';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -32,18 +33,15 @@ type LoginParamsType = {
 const handleSubmit = (values: LoginParamsType) => {
   axios.post('api2/customer/user/login', values)
   .then(function (response) {
-    console.log(response.data.message);
-      if(response.data.message === "登陆成功"){
-        alert("登陆成功");
-        window.location.href = '/';
-        console.log("success");
+      if(response.data.data.用户id != null){
+        message.success('登录成功',2).then(()=>history.push('/'));
       }
       else{
-        alert("登陆失败");
+        message.error('登录失败',2)
       }
       console.log("response: ", response);
   })
-  .catch(err => console.log(err))
+  .catch((err) => {if(err.response){message.error('登陆失败',2)}})
 };
 
 const Login = () => {

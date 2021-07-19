@@ -4,11 +4,11 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:48:42
+ * @LastEditTime: 2021-07-19 16:31:16
  */
 import React, { useState } from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col } from 'antd';
+import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, message } from 'antd';
 import {
   HomeFilled,
   HomeOutlined,
@@ -19,12 +19,30 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import logo from '@/assets/logo.png';
-import { Link } from 'umi';
+import { Link,history } from 'umi';
 
 const { Header, Content, Footer } = Layout;
 
+function getUserId()
+{
+  var name = "userId=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++)
+  {
+    var c = ca[i].trim();
+    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
+
 const BasicLayout: React.FC = (props) => {
   const [keyword, setKeyword] = useState('');
+  if(window.location.pathname!='/'&&window.location.pathname!='/login'&&window.location.pathname!='/register'){
+    if(getUserId()===""||getUserId()==="null"){
+      message.warning('请先登录')
+      history.push('/login')
+    }
+  }
   return (
     <Layout style={{ background: 'white' }}>
       <Header style={{ width: '100%', padding: '0px' }}>
