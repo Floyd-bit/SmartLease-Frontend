@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 16:36:20
+ * @LastEditTime: 2021-07-19 17:12:39
  */
 import React, { useState } from 'react';
 import styles from './index.css';
@@ -22,25 +22,14 @@ import {
 import logo from '@/assets/logo.png';
 import { Link,history } from 'umi';
 import BaiDuAi from '@/pages/BaiDuAi';
+import GetUserId from '@/components/GetUserId';
 
 const { Header, Content, Footer } = Layout;
-
-function getUserId()
-{
-  var name = "userId=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++)
-  {
-    var c = ca[i].trim();
-    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-  }
-  return "";
-}
 
 const BasicLayout: React.FC = (props) => {
   const [keyword, setKeyword] = useState('');
   if(window.location.pathname!='/'&&window.location.pathname!='/login'&&window.location.pathname!='/register'){
-    if(getUserId()===""||getUserId()==="null"){
+    if(GetUserId()===""||GetUserId()==="null"){
       message.warning('请先登录')
       history.push('/login')
     }

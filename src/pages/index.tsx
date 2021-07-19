@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-07 08:47:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 16:31:44
+ * @LastEditTime: 2021-07-19 17:11:31
  */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
@@ -20,6 +20,7 @@ import banner4 from '../assets/banner4.png';
 import banner5 from '../assets/banner5.png';
 import { UserOutlined } from '@ant-design/icons';
 import { ProFormColorPicker } from '@ant-design/pro-form';
+import GetUserId from '@/components/GetUserId';
 
 function goLogin() {
   window.location.href = 'login';
@@ -29,21 +30,8 @@ function goRegister() {
   window.location.href = 'register';
 }
 
-function getUserId()
-{
-  var name = "userId=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++)
-  {
-    var c = ca[i].trim();
-    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-  }
-  return "";
-}
-
 function UserInfo(){
-  console.log(getUserId())
-  if(getUserId()!=""&&getUserId()!="null"){
+  if(GetUserId()!=""&&GetUserId()!="null"){
     return(
       <Card>
         <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center',flexDirection:'column' }}>
@@ -55,7 +43,7 @@ function UserInfo(){
           <h2>Hi! 下午好</h2>
         </div>
         <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center', }}>
-          您是我们的第{getUserId()}位用户
+          您是我们的第{GetUserId()}位用户
         </div>
       </Card>
     )

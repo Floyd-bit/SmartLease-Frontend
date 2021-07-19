@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 11:23:22
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 16:33:14
+ * @LastEditTime: 2021-07-19 17:12:09
  */
 import React from 'react';
 import SiderMenu from '@/components/SiderMenu';
@@ -12,23 +12,13 @@ import { Row, Col, Card, Avatar, Button } from 'antd';
 import { CarOutlined, CiCircleOutlined, CreditCardOutlined, HistoryOutlined, OneToOneOutlined, RotateLeftOutlined, SearchOutlined, TransactionOutlined, UserOutlined } from '@ant-design/icons';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
 import ItemCard from '@/components/ItemCard';
+import GetUserId from '@/components/GetUserId';
 
 const gridStyle = {
   width: '16.66666%',
   textAlign: 'center',
 };
 
-function getUserId()
-{
-  var name = "userId=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++)
-  {
-    var c = ca[i].trim();
-    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
-  }
-  return "";
-}
 
 function User() {
   return (
@@ -191,7 +181,7 @@ function User() {
               <h2>Hi! 下午好</h2>
             </div>
             <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center', }}>
-              您是我们的第{getUserId()}位用户
+              您是我们的第{GetUserId()}位用户
             </div>
           </Card>
         </div>
