@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:05:27
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-10 10:56:54
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-19 14:16:53
  */
 import React, { useState } from 'react';
 import { Button, Image, message } from 'antd';
@@ -24,6 +24,7 @@ interface ShoppingCarItemProps {
   price: string; //价格
   number: number; //商品数量
   payment: boolean; //是否支付
+  time: number;//租期
 }
 const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
   const [num, setNum] = useState(props.number);
@@ -35,6 +36,16 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
   };
   const NumberPlus = () => {
     setNum(num + 1);
+  };
+  const [time, setTime] = useState(props.time);
+  const TimeMinus = () => {
+    if (time === 1) message.error('最小数量为1');
+    else {
+      setTime(time - 1);
+    }
+  };
+  const TimePlus = () => {
+    setTime(time + 1);
   };
   return (
     <div
@@ -104,6 +115,24 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
           ></Button>
           <div style={{ marginLeft: '20px', marginRight: '20px' }}>{num}</div>
           <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={NumberPlus}></Button>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'top',
+            flex: 1,
+            marginLeft:50
+          }}
+        >
+          <Button
+            shape="circle"
+            icon={<MinusOutlined />}
+            size="small"
+            onClick={TimeMinus}
+          ></Button>
+          <div style={{ marginLeft: '20px', marginRight: '20px' }}>{time}</div>
+          <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={TimePlus}></Button>
         </div>
         <div
           style={{

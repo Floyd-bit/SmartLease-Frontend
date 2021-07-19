@@ -4,27 +4,32 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 15:24:41
+ * @LastEditTime: 2021-07-19 15:00:58
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message } from "antd";
 import React, { useEffect, useState } from "react";
-import { deleteFavorite, getFavoriteList } from "./service";
+import { deleteFavorite, getDetail, getFavoriteList } from "./service";
 
-function FavoriteItem(props: { title: string, price: string, onClick: any, id:number }){
+function FavoriteItem(props: { commodityName: string, commodityId: number, onClick: any, id:number,subImages:string }){
+  const [price,setPrice]=useState(-1);
+  getDetail({id:props.commodityId}).then((res)=>{setPrice(res.data.value.rentPrice)})
   return(
     <>
     <div style={{height: '100px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',width: '100%',}}>
       <div style={{width:'20%',textAlign:'center'}}>
-        <a href={'/detail?id='+props.id}>
-        <span style={{color:'black'}}>{props.title}</span>
-        </a>
-      </div>
-      <div style={{width:'60%',textAlign:'center'}}>
-        <span>￥{props.price}</span>
+        <img src={props.subImages} style={{width:90,height:90}}/>
       </div>
       <div style={{width:'20%',textAlign:'center'}}>
-        <span onClick={props.onClick}>删除</span>
+        <a href={'/detail?id='+props.commodityId}>
+        <span style={{color:'black'}}>{props.commodityName}</span>
+        </a>
+      </div>
+      <div style={{width:'40%',textAlign:'center'}}>
+        <span>￥{price}</span>
+      </div>
+      <div style={{width:'20%',textAlign:'center'}}>
+        <Button onClick={props.onClick} danger>删除</Button>
       </div>
     </div>
     <Divider/>
@@ -33,16 +38,16 @@ function FavoriteItem(props: { title: string, price: string, onClick: any, id:nu
 }
 
 function Favorite(props:any){
-  const[favoriteList,setFavoriteList]=useState<Array<{title:string,price:string,id:number}>>([]);
+  const[favoriteList,setFavoriteList]=useState<Array<{commodityName:string,subImages:string,id:number,commodityId:number}>>([]);
   useEffect(() => {
-    getFavoriteList().then((res)=>setFavoriteList(res.data));
+    getFavoriteList().then((res)=>setFavoriteList(res.data.value));
   }, [])
   const deleteHandle=(id:number)=>{
-    message.loading({ content: 'Loading...', key:id, duration:0});
-    deleteFavorite().then((res)=>{
-      if(res.message==='success'){
+    message.loading({ content: 'Loading...', key:id, duration:5});
+    deleteFavorite(id).then((res)=>{
+      if(res.message==='删除成功'){
         console.log('删除收藏'+id);
-        getFavoriteList().then((res)=>setFavoriteList(res.data));
+        getFavoriteList().then((res)=>setFavoriteList(res.data.value));
         message.success({ content: '删除成功', key:id ,duration:1});
       }
       else{
@@ -53,7 +58,7 @@ function Favorite(props:any){
 
   const favorites=favoriteList.map((favorite)=>{
     return(
-      <FavoriteItem title={favorite.title} price={favorite.price} onClick={()=>deleteHandle(favorite.id)} id={favorite.id}/>
+      <FavoriteItem commodityName={favorite.commodityName} subImages={favorite.subImages} onClick={()=>deleteHandle(favorite.id)} id={favorite.id} commodityId={favorite.commodityId}/>
     )
   })
   return(
@@ -64,9 +69,12 @@ function Favorite(props:any){
       <Col span={20} offset={2}>
         <div style={{height: '50px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',backgroundColor: '#C6DCF9',width: '100%',}}>
           <div style={{width:'20%',textAlign:'center'}}>
+            <span>图片</span>
+          </div>
+          <div style={{width:'20%',textAlign:'center'}}>
             <span>商品</span>
           </div>
-          <div style={{width:'60%',textAlign:'center'}}>
+          <div style={{width:'40%',textAlign:'center'}}>
             <span>价格</span>
           </div>
           <div style={{width:'20%',textAlign:'center'}}>
