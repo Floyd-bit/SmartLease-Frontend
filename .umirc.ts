@@ -52,6 +52,14 @@ const config: IConfig = {
           component: '../pages/OrderDetail',
         },
         {
+          path: '/orderdetail',
+          component: '../pages/OrderDetail',
+        },
+        {
+          path: '/storedetail',
+          component: '../pages/StoreDetail',
+        },
+        {
           path: '/user',
           routes: [
             {
