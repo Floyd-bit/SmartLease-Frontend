@@ -4,10 +4,10 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-12 14:12:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-17 00:02:07
+ * @LastEditTime: 2021-07-20 10:21:49
  */
 import React from 'react';
-import { message } from 'antd';
+import { Col, message, Row } from 'antd';
 import ProForm, { ProFormText, ProFormCaptcha } from '@ant-design/pro-form';
 import { MobileOutlined, MailOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import styles from './index.less';
@@ -50,11 +50,13 @@ const Login = () => {
   return (
     <div
       style={{
-        width: 330,
-        margin: 'auto',
+        width: 500,
         marginTop: 100,
+        marginLeft: 560
       }}
     >
+      <Row justify="space-around" align="middle">
+        <Col span={16}>
       <ProForm
         onFinish={(values) => {
         console.log(values);
@@ -154,6 +156,15 @@ const Login = () => {
         />
        <a href='register' style={{marginLeft:80}}>还没有账号，点击注册</a>
       </ProForm>
+      </Col>
+      <Col span={3}>
+      <div className={styles.scene}>
+        <div className={styles.rocket}>
+            <img src= {logo} alt="" width="36"/>
+        </div>
+      </div>
+      </Col>
+      </Row>
     </div>
   );
 };
