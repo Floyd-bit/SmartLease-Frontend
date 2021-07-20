@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-19 13:59:31
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-19 15:36:58
+ * @LastEditTime: 2021-07-20 10:35:05
  */
 import { Button, Input, message, Table, Image } from 'antd';
 import React, {useState} from 'react';
@@ -50,7 +50,7 @@ function BaiDuAi() {
 
   const apply = () => {
     let filepath = recode(path);
-    axios.get(`api3/baidu/${filepath}`)
+    axios.get(`api2/api/baidu/${filepath}`)
     .then(function (response) {
       console.log(response);
         if(response){

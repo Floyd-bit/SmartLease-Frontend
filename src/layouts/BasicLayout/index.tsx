@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 17:12:39
+ * @LastEditTime: 2021-07-20 15:36:36
  */
 import React, { useState } from 'react';
 import styles from './index.css';
@@ -140,7 +140,7 @@ const BasicLayout: React.FC = (props) => {
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Input
-                  placeholder="输入租品名称"
+                  placeholder="想租什么，搜搜看"
                   size="large"
                   onChange={(e) => setKeyword(e.target.value)}
                 />

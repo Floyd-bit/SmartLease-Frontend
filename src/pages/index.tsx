@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-07 08:47:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 17:11:31
+ * @LastEditTime: 2021-07-20 16:11:00
  */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
@@ -18,6 +18,10 @@ import banner2 from '../assets/banner2.png';
 import banner3 from '../assets/banner3.png';
 import banner4 from '../assets/banner4.png';
 import banner5 from '../assets/banner5.png';
+import banner6 from '../assets/banner6.png';
+import banner7 from '../assets/banner7.png';
+import banner8 from '../assets/banner8.png';
+import banner9 from '../assets/banner9.png';
 import { UserOutlined } from '@ant-design/icons';
 import { ProFormColorPicker } from '@ant-design/pro-form';
 import GetUserId from '@/utils/GetUserId';
@@ -102,7 +106,7 @@ export default function () {
             </div>
             <div
               style={{
-                height: 70,
+                height: 55,
                 textAlign: 'center',
                 display: 'flex',
                 alignItems: 'center',
@@ -130,7 +134,7 @@ export default function () {
             </div>
             <div
               style={{
-                height: 70,
+                height: 55,
                 textAlign: 'center',
                 display: 'flex',
                 alignItems: 'center',
@@ -158,7 +162,7 @@ export default function () {
             </div>
             <div
               style={{
-                height: 70,
+                height: 55,
                 textAlign: 'center',
                 display: 'flex',
                 alignItems: 'center',
@@ -186,7 +190,7 @@ export default function () {
             </div>
             <div
               style={{
-                height: 70,
+                height: 55,
                 textAlign: 'center',
                 display: 'flex',
                 alignItems: 'center',
@@ -214,7 +218,7 @@ export default function () {
             </div>
             <div
               style={{
-                height: 70,
+                height: 55,
                 textAlign: 'center',
                 display: 'flex',
                 alignItems: 'center',
@@ -239,6 +243,26 @@ export default function () {
                   娱乐影音
                 </a>
               </div>
+            </div>
+            <div style={{display:'flex',justifyContent:'space-between',height:65,marginTop:10,fontSize:11}}>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+              <div style={{borderRadius:'100%', width: '42px', height: '42px', backgroundColor: 'rgb(255, 255, 255)', borderColor: 'rgb(238, 181, 74)', borderWidth: '1px', borderStyle: 'solid', display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 0 32 32" width="80%" height="80%" style={{fill:'rgb(255, 201, 68)'}}><path d="M26.016 25.536c0.256-0.8 0.384-1.696 0.384-2.784 0-5.888-4-10.336-7.296-12.384-0.48-0.288-0.576-0.832-0.224-1.248 3.776-4.544 2.432-7.2 0.288-5.312-2.336 2.048-3.936-0.704-8.288-1.728-3.328-0.8 0.256 4.544 2.112 7.072 0.352 0.448 0.192 1.024-0.288 1.344-3.264 2.080-7.104 6.464-7.104 12.256 0 1.152 0.16 2.112 0.416 2.912 0.192 0.544 0.16 1.344-0.064 1.856-0.192 0.608-0.192 1.088 0.096 1.344 0.256 0.256 0.736 0.256 1.28 0.096s1.312-0.16 1.856 0.064c1.824 0.8 4.192 0.992 6.816 0.992 2.656 0 5.056-0.192 6.912-1.024 0.512-0.224 1.28-0.224 1.824-0.064 0.608 0.224 1.12 0.192 1.376-0.064 0.32-0.288 0.288-0.832 0.032-1.504-0.224-0.512-0.288-1.312-0.128-1.824zM18.368 23.584c-0.384 0.48-0.928 0.8-1.664 0.96v1.408c-0.16 0.064-0.352 0.064-0.512 0.064-0.192 0-0.384 0-0.544-0.064v-1.28h-0.128c-0.256 0-0.512-0.032-0.704-0.032-0.224-0.032-0.416-0.064-0.608-0.096s-0.384-0.064-0.576-0.128c-0.192-0.064-0.384-0.128-0.576-0.224 0-0.224 0.064-0.48 0.128-0.704 0.064-0.256 0.128-0.512 0.224-0.768 0.352 0.16 0.672 0.224 0.992 0.288 0.288 0.064 0.608 0.064 0.96 0.064 0.512 0 0.928-0.064 1.184-0.256 0.288-0.16 0.448-0.448 0.448-0.832 0-0.192-0.032-0.384-0.128-0.48-0.052-0.141-0.154-0.254-0.285-0.319l-0.003-0.002c-0.111-0.080-0.237-0.155-0.369-0.218l-0.015-0.006c-0.193-0.074-0.341-0.138-0.485-0.208l0.037 0.016-0.64-0.256c-0.288-0.128-0.512-0.256-0.736-0.384s-0.416-0.288-0.576-0.448c-0.159-0.172-0.289-0.373-0.379-0.595l-0.005-0.013c-0.077-0.267-0.123-0.575-0.128-0.893l-0-0.003c0-0.736 0.224-1.312 0.64-1.728 0.416-0.448 0.992-0.672 1.728-0.768v-1.312c0.16-0.064 0.352-0.064 0.512-0.064 0.192 0 0.352 0 0.544 0.064v1.28c0.32 0 0.64 0.064 0.96 0.128 0.288 0.064 0.608 0.16 0.96 0.288-0.064 0.48-0.192 0.928-0.416 1.376-0.128-0.032-0.224-0.096-0.352-0.128-0.128-0.064-0.256-0.096-0.416-0.128l-0.48-0.096c-0.192 0-0.384-0.032-0.608-0.032-0.16 0-0.288 0.032-0.448 0.032-0.146 0.027-0.275 0.083-0.387 0.162l0.003-0.002c-0.096 0.064-0.192 0.128-0.256 0.256-0.096 0.128-0.128 0.288-0.128 0.48 0 0.16 0.032 0.288 0.096 0.416 0.032 0.096 0.128 0.192 0.224 0.288s0.192 0.128 0.32 0.192l0.384 0.16 0.736 0.32c0.32 0.128 0.576 0.256 0.832 0.384s0.48 0.288 0.64 0.48 0.32 0.416 0.416 0.672c0.096 0.256 0.16 0.608 0.16 0.992 0 0.672-0.192 1.248-0.576 1.696z"></path></svg>
+              </div>
+              <span>免押金</span>
+            </div>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+              <div style={{borderRadius:'100%', width: '42px', height: '42px', backgroundColor: 'rgb(255, 255, 255)', borderColor: 'rgb(225, 43, 46)', borderWidth: '1px', borderStyle: 'solid', display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="70%" height="70%" style={{fill: 'rgb(225, 43, 46)'}}><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"></path></svg>
+              </div>
+              <span>租金月付</span>
+            </div>
+            <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+              <div style={{borderRadius:'100%', width: '42px', height: '42px', backgroundColor: 'rgb(255, 255, 255)', borderColor: 'rgb(89, 185, 148)', borderWidth: '1px', borderStyle: 'solid', display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80%" height="80%" style={{fill: 'rgb(89, 185, 148)'}}><path d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a9 9 0 0 0 0-18zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+              </div>
+              <span>即租即还</span>
+            </div>
             </div>
           </div>
         </Col>
@@ -307,7 +331,7 @@ export default function () {
           <div style={{ width: '90%', height: 200, margin: '0 auto' }}>
             <img
               style={{ height: 200, width: '100%' }}
-              src="https://img.alicdn.com/tfs/TB1x7TyENYaK1RjSZFnXXa80pXa-502-380.jpg_240x240q90.jpg"
+              src={banner6}
             />
           </div>
         </Col>
@@ -315,7 +339,7 @@ export default function () {
           <div style={{ width: '90%', height: 200, margin: '0 auto' }}>
             <img
               style={{ height: 200, width: '100%' }}
-              src="https://img.alicdn.com/tfs/TB1jq1HekvoK1RjSZPfXXXPKFXa-502-380.jpg_240x240q90.jpg"
+              src={banner7}
             />
           </div>
         </Col>
@@ -323,7 +347,7 @@ export default function () {
           <div style={{ width: '90%', height: 200, margin: '0 auto' }}>
             <img
               style={{ height: 200, width: '100%' }}
-              src="https://img.alicdn.com/tfs/TB1NASFejDpK1RjSZFrXXa78VXa-502-380.jpg_240x240q90.jpg"
+              src={banner8}
             />
           </div>
         </Col>
@@ -331,7 +355,7 @@ export default function () {
           <div style={{ width: '90%', height: 200, margin: '0 auto' }}>
             <img
               style={{ height: 200, width: '100%' }}
-              src="https://img.alicdn.com/tfs/TB1gujqEFzqK1RjSZSgXXcpAVXa-502-380.jpg_240x240q90.jpg"
+              src={banner9}
             />
           </div>
         </Col>
@@ -343,13 +367,13 @@ export default function () {
       <Row>
         {
           hotList.map(
-            item => <Col span={3}>
+            (item:any) => <Col span={3}>
               <ItemCard
                 length={document.body.scrollWidth * 0.1125}
                 image={item.subImages}
                 title={item.commodityName}
                 price={item.rentPrice}
-                oldprice="100"
+                guaranteePrice={item.guaranteePrice}
                 id={item.id}
               />
             </Col>
@@ -364,7 +388,7 @@ export default function () {
       </Row>
       <Row>
         {timeList.map(
-          (item: { subImages: string; commodityName: string; rentPrice: string; id: number }) => {
+          (item: any) => {
             return (
               <Col span={3}>
                 <ItemCard
@@ -372,7 +396,7 @@ export default function () {
                   image={item.subImages}
                   title={item.commodityName}
                   price={item.rentPrice}
-                  oldprice="100"
+                  guaranteePrice={item.guaranteePrice}
                   id={item.id}
                 />
               </Col>

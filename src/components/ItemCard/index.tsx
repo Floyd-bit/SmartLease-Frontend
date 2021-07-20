@@ -4,15 +4,15 @@
  * @Author: 王宇阳
  * @Date: 2021-07-09 09:47:25
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 15:15:45
+ * @LastEditTime: 2021-07-20 10:03:08
  */
 import React from 'react';
 
 interface ItemCardProps {
   image: string;//图片链接
   title: string; //商品名称
-  price: string;
-  oldprice: string;
+  price: string;//租金
+  guaranteePrice: string;//保证金
   id: number; //商品id
   length: number//边长
 }
@@ -27,8 +27,8 @@ function ItemCard(props:ItemCardProps) {
           <h4 style={{marginBottom:0,textAlign:'center',overflow: 'hidden',textOverflow:'ellipsis',display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical'}}>{props.title}</h4>
         </a>
         <p style={{ height: '25%',textAlign:'center'}}>
-          <span style={{color:'red'}}>￥{props.price}</span>
-          <span style={{float:'right',textDecoration:'line-through'}}>￥{props.oldprice}</span>
+          <span style={{color:'red'}}>￥{props.price}/天</span>
+          <span style={{float:'right',/* textDecoration:'line-through' */}}>￥{props.guaranteePrice}</span>
         </p>
     </div>
     </div>
