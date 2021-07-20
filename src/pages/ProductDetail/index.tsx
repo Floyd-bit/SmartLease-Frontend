@@ -9,6 +9,7 @@ import { history } from 'umi';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { createShoppingCartRecord } from './service';
 import GetUserId from '@/utils/GetUserId';
+import ProductDetailParamsSelect from '@/components/ProductDetailParamsSelect';
 
 interface ParameterListProps {
   title: string;
@@ -217,6 +218,16 @@ const ProductDetail: React.FC = (props: any) => {
       setStoreProduct(res.data.value.records),
     );
   }, []);
+  const paramsList = [
+    {
+      title: '颜色分类',
+      values: ['银色', '黄色', '黑色', '白色', '红色'],
+    },
+    {
+      title: '颜色分类',
+      values: ['银色', '黄色', '黑色', '白色', '红色'],
+    },
+  ];
   return (
     <div>
       <Row>
@@ -302,43 +313,8 @@ const ProductDetail: React.FC = (props: any) => {
           <div style={{ marginBottom: '20px' }}>优 惠 券</div>
           <div style={{ display: 'flex' }}>重 量： 0.32kg</div>
           <Divider style={{ backgroundColor: 'gray' }} />
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-            颜色分类：
-            <Radio.Group defaultValue={1} buttonStyle="solid">
-              <Radio.Button value={1} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={2} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={3} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={4} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={5} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={6} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-            </Radio.Group>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-            内存容量：
-            <Radio.Group defaultValue={1} buttonStyle="solid">
-              <Radio.Button value={1} style={{ margin: '10px' }}>
-                64G
-              </Radio.Button>
-              <Radio.Button value={2} style={{ margin: '10px' }}>
-                128G
-              </Radio.Button>
-              <Radio.Button value={3} style={{ margin: '10px' }}>
-                256G
-              </Radio.Button>
-            </Radio.Group>
-          </div>
+          <ProductDetailParamsSelect paramsList={paramsList} />
+
           <div
             style={{
               display: 'flex',

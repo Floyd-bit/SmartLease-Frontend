@@ -14,13 +14,13 @@ const ProductDetailParamsSelect: React.FC<ParamsSelectProps> = (props) => {
     <>
       {props.paramsList.map((selectItem) => (
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-          {selectItem.title}
+          <div style={{ marginRight: '10px' }}>{selectItem.title}</div>
           <Radio.Group defaultValue={1} buttonStyle="solid">
-            {selectItem.values.map((item, index) => {
+            {selectItem.values.map((item, index) => (
               <Radio.Button value={index + 1} style={{ margin: '10px' }}>
                 {item}
-              </Radio.Button>;
-            })}
+              </Radio.Button>
+            ))}
           </Radio.Group>
         </div>
       ))}
