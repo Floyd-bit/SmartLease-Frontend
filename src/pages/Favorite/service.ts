@@ -4,15 +4,16 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:40:19
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 14:58:08
+ * @LastEditTime: 2021-07-19 17:14:02
  */
+import GetUserId from '@/components/GetUserId';
 import request from 'umi-request';
 
-const getFavoriteListUrl='/api2/customer/favorite/selectByUserId?userId=6'
+const getFavoriteListUrl='/api2/customer/favorite/selectByUserId?userId='
 const deleteFavoriteUrl='/api2/customer/favorite/deleteById?id='
 
 export async function getFavoriteList() {
-  return request(getFavoriteListUrl, {
+  return request(getFavoriteListUrl+GetUserId(), {
     method: 'GET',
   });
 }

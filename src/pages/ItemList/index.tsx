@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-12 08:48:25
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-17 09:49:04
+ * @LastEditTime: 2021-07-20 09:53:55
  */
 import HomeFooter from "@/components/HomeFooter";
 import ItemCard from "@/components/ItemCard";
@@ -21,7 +21,7 @@ function ItemList(props: any){
   const [maxPrice, setMaxPrice] = useState(null);
   const [min, setMin] = useState(null);//输入框的值
   const [max, setMax] = useState(null);//输入框的值
-  const [itemList, setItemList] = useState<Array<{image:string,title:string,price:string,oldprice:string,id:number}>>([]);
+  const [itemList, setItemList] = useState<Array<any>>([]);
   const [isInit, setIsInit] = useState(true);
   const [total, setTotal] = useState(1);
   //点击综合排序
@@ -41,21 +41,21 @@ function ItemList(props: any){
     if(rank!='5') {setRank('5')} else if(rank==='5') {setRank('6')};
   }
   //初次加载页面和改变排序后执行的操作
-  useEffect(() => {getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:1,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);})}, [maxPrice, minPrice, props.location.query.type, rank]);
+  useEffect(() => {getItemList({type:props.location.query.type?props.location.query.type:'',rank:rank,pagenum:1,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(1);setTotal(res.data.value.total);setItemList(res.data.value.records);})}, [maxPrice, minPrice, props.location.query.type, rank]);
   //设定价格范围
   const PriceSearch=()=>{
     setMaxPrice(max);
     setMinPrice(min);
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:1,pagesize:24,minprice:min,maxprice:max}).then(res=>{setPage(1);setTotal(res.total);setItemList(res.data);});
+    getItemList({type:props.location.query.type?props.location.query.type:'',rank:rank,pagenum:1,pagesize:24,minprice:min,maxprice:max}).then(res=>{setPage(1);setTotal(res.data.value.total);setItemList(res.data.value.records);});
   }
   //点击下一页
   const NextPage=()=>{
     let newpage=page+1;
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:newpage,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage);setTotal(res.total);setItemList(res.data);});
+    getItemList({type:props.location.query.type?props.location.query.type:'',rank:rank,pagenum:newpage,pagesize:24,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(newpage);setTotal(res.data.value.total);setItemList(res.data.value.records);});
   }
   //点击底部分页
   const changePage=(pagenum:any,pagesize:any)=>{
-    getItemList({type:props.location.query.type?props.location.query.type:'0',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum);setTotal(res.total);setItemList(res.data);});
+    getItemList({type:props.location.query.type?props.location.query.type:'',rank:rank,pagenum:pagenum,pagesize:pagesize,minprice:minPrice,maxprice:maxPrice}).then(res=>{setPage(pagenum);setTotal(res.data.value.total);setItemList(res.data.value.records);});
   }
 
   if(isInit){
@@ -66,8 +66,8 @@ function ItemList(props: any){
     return (
       <Col span={4}>
         <ItemCard length={document.body.scrollWidth*0.166}
-          image={item.image}
-          title={item.title} price={item.price} oldprice={item.oldprice} id={item.id}/>
+          image={item.subImages}
+          title={item.commodityName} price={item.rentPrice} guaranteePrice={item.guaranteePrice} id={item.id}/>
       </Col>
     );
   });
@@ -76,13 +76,11 @@ function ItemList(props: any){
     <>
     <div style={{height:100,display:'flex',justifyContent:'flex-start',alignItems:'center'}}>
       <div style={{marginLeft:'5%',alignContent:'flex-start'}}>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=0" style={{color:props.location.query.type!=0?'black':''}}>商品分类0</Link></span>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=1" style={{color:props.location.query.type!=1?'black':''}}>商品分类1</Link></span>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=2" style={{color:props.location.query.type!=2?'black':''}}>商品分类2</Link></span>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=3" style={{color:props.location.query.type!=3?'black':''}}>商品分类3</Link></span>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=4" style={{color:props.location.query.type!=4?'black':''}}>商品分类4</Link></span>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=5" style={{color:props.location.query.type!=5?'black':''}}>商品分类5</Link></span>
-        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=6" style={{color:props.location.query.type!=6?'black':''}}>商品分类6</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=1" style={{color:props.location.query.type!=1?'black':''}}>游戏装备</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=2" style={{color:props.location.query.type!=2?'black':''}}>数码摄影</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=3" style={{color:props.location.query.type!=3?'black':''}}>电脑办公</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=4" style={{color:props.location.query.type!=4?'black':''}}>精品手机</Link></span>
+        <span style={{marginRight:'80px'}}><Link to="/itemlist?type=5" style={{color:props.location.query.type!=5?'black':''}}>娱乐影音</Link></span>
       </div>
     </div>
     <div style={{height: '50px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',backgroundColor: '#C6DCF9',width: '100%',}}>

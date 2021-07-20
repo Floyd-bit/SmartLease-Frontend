@@ -4,19 +4,21 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 11:23:22
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 14:14:04
+ * @LastEditTime: 2021-07-19 17:12:09
  */
 import React from 'react';
 import SiderMenu from '@/components/SiderMenu';
 import { Row, Col, Card, Avatar, Button } from 'antd';
-import { CarOutlined, CiCircleOutlined, CreditCardOutlined, HistoryOutlined, OneToOneOutlined, RotateLeftOutlined, SearchOutlined, TransactionOutlined } from '@ant-design/icons';
+import { CarOutlined, CiCircleOutlined, CreditCardOutlined, HistoryOutlined, OneToOneOutlined, RotateLeftOutlined, SearchOutlined, TransactionOutlined, UserOutlined } from '@ant-design/icons';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
 import ItemCard from '@/components/ItemCard';
+import GetUserId from '@/components/GetUserId';
 
 const gridStyle = {
   width: '16.66666%',
   textAlign: 'center',
 };
+
 
 function User() {
   return (
@@ -170,9 +172,16 @@ function User() {
       <Col span={4}>
         <div>
           <Card>
-            <div style={{ marginLeft: 60 }}>
-              <Avatar size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} src='https://img0.baidu.com/it/u=493108106,1771945000&fm=26&fmt=auto&gp=0.jpg'/>
+            <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center',flexDirection:'column' }}>
+              <Avatar
+                size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                style={{background:'#1890ff'}}
+                icon={<UserOutlined/>}
+              />
               <h2>Hi! 下午好</h2>
+            </div>
+            <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center', }}>
+              您是我们的第{GetUserId()}位用户
             </div>
           </Card>
         </div>

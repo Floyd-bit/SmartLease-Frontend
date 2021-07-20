@@ -4,8 +4,9 @@
  * @Author: 王宇阳
  * @Date: 2021-07-16 15:18:24
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 15:13:31
+ * @LastEditTime: 2021-07-19 17:14:17
  */
+import GetUserId from '@/components/GetUserId';
 import request from 'umi-request';
 
 const BaseUrl='/api2/customer/commodityList/selectById?id='
@@ -28,7 +29,7 @@ export async function addFavorite(id:number) {
       id: 0,
       starCount: 0,
       subImages: "",
-      userId: 6
+      userId: GetUserId()
     }
   });
 }

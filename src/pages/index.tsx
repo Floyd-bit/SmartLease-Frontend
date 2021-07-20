@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-07 08:47:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-15 09:55:59
+ * @LastEditTime: 2021-07-20 09:58:20
  */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
@@ -18,6 +18,9 @@ import banner2 from '../assets/banner2.png';
 import banner3 from '../assets/banner3.png';
 import banner4 from '../assets/banner4.png';
 import banner5 from '../assets/banner5.png';
+import { UserOutlined } from '@ant-design/icons';
+import { ProFormColorPicker } from '@ant-design/pro-form';
+import GetUserId from '@/components/GetUserId';
 
 function goLogin() {
   window.location.href = 'login';
@@ -25,6 +28,43 @@ function goLogin() {
 
 function goRegister() {
   window.location.href = 'register';
+}
+
+function UserInfo(){
+  if(GetUserId()!=""&&GetUserId()!="null"){
+    return(
+      <Card>
+        <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center',flexDirection:'column' }}>
+          <Avatar
+            size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+            style={{background:'#1890ff'}}
+            icon={<UserOutlined/>}
+          />
+          <h2>Hi! 下午好</h2>
+        </div>
+        <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center', }}>
+          您是我们的第{GetUserId()}位用户
+        </div>
+      </Card>
+    )
+  }
+  else{
+    return(
+      <Card>
+        <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center',flexDirection:'column' }}>
+          <Avatar
+            size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+            icon={<UserOutlined/>}
+          />
+          <h2>Hi! 下午好</h2>
+        </div>
+        <div style={{display: 'flex',alignItems: 'center',justifyContent: 'center', }}>
+          <Button onClick={goLogin} style={{marginRight:5}}>登录</Button>
+          <Button onClick={goRegister} style={{marginLeft:5}}>注册</Button>
+        </div>
+      </Card>
+    )
+  }
 }
 
 export default function () {
@@ -250,19 +290,7 @@ export default function () {
         </Col>
         <Col span={5}>
           <div style={{ width: '100%', height: '190' }}>
-            <Card>
-              <div style={{ marginLeft: '50px' }}>
-                <Avatar
-                  size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-                  src="https://img0.baidu.com/it/u=493108106,1771945000&fm=26&fmt=auto&gp=0.jpg"
-                />
-                <h2>Hi! 下午好</h2>
-              </div>
-              <div style={{ marginLeft: '25px' }}>
-                <Button onClick={goLogin}>登录</Button>
-                <Button onClick={goRegister}>注册</Button>
-              </div>
-            </Card>
+            <UserInfo/>
           </div>
           <div style={{ width: '100%', height: 200, marginTop: 10 }}>
             <img
@@ -315,13 +343,13 @@ export default function () {
       <Row>
         {
           hotList.map(
-            item => <Col span={3}>
+            (item:any) => <Col span={3}>
               <ItemCard
                 length={document.body.scrollWidth * 0.1125}
                 image={item.subImages}
                 title={item.commodityName}
                 price={item.rentPrice}
-                oldprice="100"
+                guaranteePrice={item.guaranteePrice}
                 id={item.id}
               />
             </Col>
@@ -336,7 +364,7 @@ export default function () {
       </Row>
       <Row>
         {timeList.map(
-          (item: { subImages: string; commodityName: string; rentPrice: string; id: number }) => {
+          (item: any) => {
             return (
               <Col span={3}>
                 <ItemCard
@@ -344,7 +372,7 @@ export default function () {
                   image={item.subImages}
                   title={item.commodityName}
                   price={item.rentPrice}
-                  oldprice="100"
+                  guaranteePrice={item.guaranteePrice}
                   id={item.id}
                 />
               </Col>

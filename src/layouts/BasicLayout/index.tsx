@@ -3,12 +3,12 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-19 15:36:03
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-19 17:12:39
  */
 import React, { useState } from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, Modal } from 'antd';
+import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, message,Modal } from 'antd';
 import {
   FireOutlined,
   HomeFilled,
@@ -20,15 +20,22 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import logo from '@/assets/logo.png';
-import { Link } from 'umi';
+import { Link,history } from 'umi';
 import BaiDuAi from '@/pages/BaiDuAi';
+import GetUserId from '@/components/GetUserId';
 
 const { Header, Content, Footer } = Layout;
 
 const BasicLayout: React.FC = (props) => {
   const [keyword, setKeyword] = useState('');
+  if(window.location.pathname!='/'&&window.location.pathname!='/login'&&window.location.pathname!='/register'){
+    if(GetUserId()===""||GetUserId()==="null"){
+      message.warning('请先登录')
+      history.push('/login')
+    }
+  }
   const [isModalVisible, setIsModalVisible] = useState(false);
-  
+
   const showModal = () => {
     setIsModalVisible(true);
   };

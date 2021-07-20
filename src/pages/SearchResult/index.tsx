@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-12 19:21:03
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-17 09:48:32
+ * @LastEditTime: 2021-07-20 09:59:33
  */
 import HomeFooter from '@/components/HomeFooter';
 import ItemCard from '@/components/ItemCard';
@@ -132,7 +132,7 @@ function SearchResult(props: any) {
     setIsInit(false);
   }
 
-  const items = searchList.map((item) => {
+  const items = searchList.map((item:any) => {
     return (
       <Col span={4}>
         <ItemCard
@@ -140,7 +140,7 @@ function SearchResult(props: any) {
           image={item.subImages}
           title={item.commodityName}
           price={item.rentPrice}
-          oldprice="500"
+          guaranteePrice={item.guaranteePrice}
           id={item.id}
         />
       </Col>
