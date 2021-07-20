@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-07 08:47:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-20 16:11:00
+ * @LastEditTime: 2021-07-21 00:21:08
  */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
@@ -22,6 +22,7 @@ import banner6 from '../assets/banner6.png';
 import banner7 from '../assets/banner7.png';
 import banner8 from '../assets/banner8.png';
 import banner9 from '../assets/banner9.png';
+import banner10 from '../assets/banner10.png';
 import { UserOutlined } from '@ant-design/icons';
 import { ProFormColorPicker } from '@ant-design/pro-form';
 import GetUserId from '@/utils/GetUserId';
@@ -275,7 +276,7 @@ export default function () {
             </div>
             <div>
               <a href="/itemlist">
-                <img style={{ height: 400, width: '100%' }} src={banner2} />
+                <img style={{ height: 400, width: '100%' }} src={banner10} />
               </a>
             </div>
           </Carousel>
@@ -319,7 +320,7 @@ export default function () {
           <div style={{ width: '100%', height: 200, marginTop: 10 }}>
             <img
               style={{ height: 200, width: '100%' }}
-              src="https://img.alicdn.com/tfs/TB1x7TyENYaK1RjSZFnXXa80pXa-502-380.jpg_240x240q90.jpg"
+              src={banner2}
             />
           </div>
         </Col>

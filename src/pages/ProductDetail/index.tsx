@@ -182,9 +182,11 @@ const ProductDetail: React.FC = (props: any) => {
   //收藏
   const handleFavorite = () => {
     addFavorite(detail.id).then((res) => {
-      if (res.status / 2 === 100) {
+      if (res.message === '请求成功'&&res.data.value===true) {
         message.success('收藏成功');
-      } else {
+      } else if(res.message === '请求成功'&&res.data.value===false){
+        message.success('已经收藏过了');
+      }else {
         message.error('网络异常');
       }
     });
