@@ -8,7 +8,7 @@
  */
 import React, { useState } from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, message,Modal } from 'antd';
+import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, message, Modal } from 'antd';
 import {
   FireOutlined,
   HomeFilled,
@@ -20,18 +20,22 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import logo from '@/assets/logo.png';
-import { Link,history } from 'umi';
+import { Link, history } from 'umi';
 import BaiDuAi from '@/pages/BaiDuAi';
-import GetUserId from '@/components/GetUserId';
+import GetUserId from '@/utils/getUserId';
 
 const { Header, Content, Footer } = Layout;
 
 const BasicLayout: React.FC = (props) => {
   const [keyword, setKeyword] = useState('');
-  if(window.location.pathname!='/'&&window.location.pathname!='/login'&&window.location.pathname!='/register'){
-    if(GetUserId()===""||GetUserId()==="null"){
-      message.warning('请先登录')
-      history.push('/login')
+  if (
+    window.location.pathname != '/' &&
+    window.location.pathname != '/login' &&
+    window.location.pathname != '/register'
+  ) {
+    if (GetUserId() === '' || GetUserId() === 'null') {
+      message.warning('请先登录');
+      history.push('/login');
     }
   }
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -104,10 +108,10 @@ const BasicLayout: React.FC = (props) => {
                 </Link>
               </div>
               <div>
-                <Button size="small"  type="link" onClick={showModal}>
+                <Button size="small" type="link" onClick={showModal}>
                   Logo识别
                 </Button>
-                <FireOutlined/>
+                <FireOutlined />
               </div>
             </div>
           </div>
@@ -163,7 +167,7 @@ const BasicLayout: React.FC = (props) => {
       </Content>
       <Footer style={{ background: 'white', textAlign: 'center' }}>@CopyRight 你说的都对</Footer>
       <Modal title="Logo识别" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <BaiDuAi/>
+        <BaiDuAi />
       </Modal>
     </Layout>
   );

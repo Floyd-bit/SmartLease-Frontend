@@ -6,9 +6,10 @@
  * @LastEditors: 王宇阳
  * @LastEditTime: 2021-07-19 14:16:53
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Image, message } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { deleteShoppingCartById } from './service';
 
 interface ShoppingCarItemProps {
   gmtCreate: string;
@@ -24,18 +25,24 @@ interface ShoppingCarItemProps {
   price: string; //价格
   number: number; //商品数量
   payment: boolean; //是否支付
-  time: number;//租期
+  time: number; //租期
+  setValue: any;
+  total: number;
+  delete: any;
+  deleteflag: boolean;
 }
-const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
+const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
   const [num, setNum] = useState(props.number);
   const NumberMinus = () => {
     if (num === 1) message.error('最小数量为1');
     else {
       setNum(num - 1);
+      props.setValue(Number(props.total) - Number(props.price));
     }
   };
   const NumberPlus = () => {
     setNum(num + 1);
+    props.setValue(Number(props.total) + Number(props.price));
   };
   const [time, setTime] = useState(props.time);
   const TimeMinus = () => {
@@ -46,6 +53,14 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
   };
   const TimePlus = () => {
     setTime(time + 1);
+  };
+  const handleDelete = () => {
+    deleteShoppingCartById(Number(props.id)).then((res) => {
+      if (res.status / 100 === 2) {
+        message.success('删除成功！');
+        props.delete(!props.deleteflag);
+      }
+    });
   };
   return (
     <div
@@ -85,7 +100,6 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
           }}
         >
           <div style={{ width: '200px' }}>{props.productName}</div>
-          <div>{props.name}</div>
         </div>
         <div
           style={{
@@ -122,15 +136,10 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
             flexDirection: 'row',
             alignItems: 'top',
             flex: 1,
-            marginLeft:50
+            marginLeft: 50,
           }}
         >
-          <Button
-            shape="circle"
-            icon={<MinusOutlined />}
-            size="small"
-            onClick={TimeMinus}
-          ></Button>
+          <Button shape="circle" icon={<MinusOutlined />} size="small" onClick={TimeMinus}></Button>
           <div style={{ marginLeft: '20px', marginRight: '20px' }}>{time}</div>
           <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={TimePlus}></Button>
         </div>
@@ -155,7 +164,7 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = props => {
           }}
         >
           <div style={{ marginBottom: '10px', flex: 1, justifyContent: 'center' }}>
-            <Button type="primary" danger>
+            <Button type="primary" danger onClick={handleDelete}>
               删除
             </Button>
           </div>

@@ -20,7 +20,7 @@ import banner4 from '../assets/banner4.png';
 import banner5 from '../assets/banner5.png';
 import { UserOutlined } from '@ant-design/icons';
 import { ProFormColorPicker } from '@ant-design/pro-form';
-import GetUserId from '@/components/GetUserId';
+import GetUserId from '@/utils/GetUserId';
 
 function goLogin() {
   window.location.href = 'login';
