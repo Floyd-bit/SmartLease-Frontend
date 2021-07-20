@@ -169,7 +169,7 @@ const ProductDetail: React.FC = (props: any) => {
   }
   //收藏
   const handleFavorite = ()=>{
-    addFavorite(detail.id).then((res)=>{if(res.message==='创建成功'){message.success('收藏成功')}})
+    addFavorite(detail.id).then((res)=>{if(res.message==='请求成功'&&res.data.value===true){message.success('收藏成功')}else if(res.message==='请求成功'&&res.data.value===false){message.success('已经收藏过了')}})
   }
   //加载店内热销
   useEffect(

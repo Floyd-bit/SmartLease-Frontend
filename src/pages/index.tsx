@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-07 08:47:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 17:11:31
+ * @LastEditTime: 2021-07-20 09:58:20
  */
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Divider, Card, Carousel, Button } from 'antd';
@@ -343,13 +343,13 @@ export default function () {
       <Row>
         {
           hotList.map(
-            item => <Col span={3}>
+            (item:any) => <Col span={3}>
               <ItemCard
                 length={document.body.scrollWidth * 0.1125}
                 image={item.subImages}
                 title={item.commodityName}
                 price={item.rentPrice}
-                oldprice="100"
+                guaranteePrice={item.guaranteePrice}
                 id={item.id}
               />
             </Col>
@@ -364,7 +364,7 @@ export default function () {
       </Row>
       <Row>
         {timeList.map(
-          (item: { subImages: string; commodityName: string; rentPrice: string; id: number }) => {
+          (item: any) => {
             return (
               <Col span={3}>
                 <ItemCard
@@ -372,7 +372,7 @@ export default function () {
                   image={item.subImages}
                   title={item.commodityName}
                   price={item.rentPrice}
-                  oldprice="100"
+                  guaranteePrice={item.guaranteePrice}
                   id={item.id}
                 />
               </Col>

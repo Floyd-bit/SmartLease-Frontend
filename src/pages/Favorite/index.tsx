@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 15:00:58
+ * @LastEditTime: 2021-07-20 10:06:27
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message } from "antd";
@@ -13,7 +13,8 @@ import { deleteFavorite, getDetail, getFavoriteList } from "./service";
 
 function FavoriteItem(props: { commodityName: string, commodityId: number, onClick: any, id:number,subImages:string }){
   const [price,setPrice]=useState(-1);
-  getDetail({id:props.commodityId}).then((res)=>{setPrice(res.data.value.rentPrice)})
+  const [guaranteePrice,setGuaranteePrice]=useState(-1);
+  getDetail({id:props.commodityId}).then((res)=>{setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice)})
   return(
     <>
     <div style={{height: '100px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',width: '100%',}}>
@@ -26,7 +27,7 @@ function FavoriteItem(props: { commodityName: string, commodityId: number, onCli
         </a>
       </div>
       <div style={{width:'40%',textAlign:'center'}}>
-        <span>￥{price}</span>
+        <span>￥{price}/天+保证金￥{guaranteePrice}</span>
       </div>
       <div style={{width:'20%',textAlign:'center'}}>
         <Button onClick={props.onClick} danger>删除</Button>
