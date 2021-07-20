@@ -129,7 +129,8 @@ const ParameterList: React.FC<ParameterListProps> = props => {
 };
 const ProductDetail: React.FC = (props: any) => {
   const [storeProduct, setStoreProduct] = useState<any>([]);
-  const [detail, setDetail] = useState<any>({ commodityName: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', price: 99999.99 });
+  const [param,setParam]=useState<any>([{subtitle:'unknown',description:'unknown'}]);//基本参数
+  const [detail, setDetail] = useState<any>({ commodityName: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', rentPrice: 99999.99,guaranteePrice:99999.99, attribute:{weight:'unknown',origin:'unknown',detailImage:''},uniform:{images:[]} });
   //左侧大图
   const [bigimg, setBigimg] = useState('');
   //商品数量相关
@@ -156,7 +157,7 @@ const ProductDetail: React.FC = (props: any) => {
   };
   //加载商品详情
   useEffect(() => {
-    getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages) } });
+    getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages),setParam(JSON.parse(res.data.value.title)) } });
   }, [props.location.query.id])
 
   //点击立即租赁
@@ -197,12 +198,15 @@ const ProductDetail: React.FC = (props: any) => {
             <img src={bigimg} style={{ width: '100%', height: '100%' }} />
           </div>
           <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'space-between' }}>
-            <div
-              style={{ width: '80px', height: '80px', margin: '15px' }}
-            >
+            <div style={{ width: '80px', height: '80px', margin: '15px' }}>
               <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
             </div>
-            <div
+            {detail.uniform.images.map((image:any)=>{return(
+              <div style={{ width: '80px', height: '80px', margin: '15px' }}>
+                <img src={image} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(image)} />
+              </div>
+            )})}
+            {/* <div
               style={{ width: '80px', height: '80px', margin: '15px' }}
             >
               <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
@@ -218,7 +222,7 @@ const ProductDetail: React.FC = (props: any) => {
               style={{ width: '80px', height: '80px', margin: '15px' }}
             >
               <img src={detail.subImages} style={{ width: '100%', height: '100%' }} onClick={() => setBigimg(detail.subImages)} />
-            </div>
+            </div> */}
           </div>
         </Col>
         <Col
@@ -244,13 +248,14 @@ const ProductDetail: React.FC = (props: any) => {
             {/*这里看后端字段*/}
           </div>
           <div style={{ display: 'flex' }}>
-            租金：<p style={{ color: 'red', marginBottom: '20px' }}>￥{detail.rentPrice}/天</p>
+            租金：<p style={{ color: 'red', marginBottom: '20px' }}>￥{detail.rentPrice}/天　</p>
+            <span style={{border:'1px solid #4c7dd2',color:'#4c7dd2',marginBottom: '20px',borderRadius:'10px' }}>押金：￥{detail.guaranteePrice}</span>
           </div>
           <div style={{ marginBottom: '20px' }}>
-            配送至： 广东省，广州市{/*这里要再讨论，先写死*/}
+            发货地： {detail.attribute.origin}
           </div>
           <div style={{ marginBottom: '20px' }}>优 惠 券</div>
-          <div style={{ display: 'flex' }}>重 量： 0.32kg</div>
+          <div style={{ display: 'flex' }}>重 量： {detail.attribute.weight}</div>
           <Divider style={{ backgroundColor: 'gray' }} />
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
             颜色分类：
@@ -439,14 +444,12 @@ const ProductDetail: React.FC = (props: any) => {
         <Col span={19} style={{}}>
           <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
             <div style={{ width: '95%', height: '30px', border: '1px solid gray' }}></div>
-            <div style={{ width: '95%', height: '1000px' }}>
-              <img src={detail.subImages} width='100%' height='100%'></img>
+            <div style={{ width: '95%',}}>
+              <img src={detail.attribute.detailImage} width='100%' height='auto'></img>
             </div>
           </div>
           <div style={{ width: '95%', margin: 'auto', marginTop: 10 }}>
-            <ParameterList {...rowItem1} />
-            <ParameterList {...rowItem1} />
-            <ParameterList {...rowItem1} />
+            <ParameterList title='基本参数' rowItems={param} />
           </div>
         </Col>
       </Row>
