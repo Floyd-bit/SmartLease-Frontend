@@ -7,6 +7,9 @@ import { addFavorite, getDetail } from './service';
 import { showCommodityListByTime } from '../service';
 import { history } from 'umi';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { createShoppingCartRecord } from './service';
+import GetUserId from '@/utils/GetUserId';
+import ProductDetailParamsSelect from '@/components/ProductDetailParamsSelect';
 
 interface ParameterListProps {
   title: string;
@@ -33,6 +36,7 @@ const rowItem1 = {
     },
   ],
 };
+
 /* const SelectCard = (props: { content: string }) => {
   return (
     <div
@@ -57,11 +61,20 @@ const ProductCard: React.FC = (props: any) => {
       style={{ display: 'flex', flexDirection: 'column', width: '200px', padding: '0px' }}
       onClick={() => history.push(`/detail?id=${props.id}`)}
     >
-      <img width='150px' height='150px' src={props.src}></img>
+      <img width="150px" height="150px" src={props.src}></img>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{
-          fontSize: '20px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textOverflow: 'ellipsis', overflow: 'hidden'
-        }}>{props.title}</div>
+        <div
+          style={{
+            fontSize: '20px',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+          }}
+        >
+          {props.title}
+        </div>
         <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
           <div style={{ color: 'red' }}>￥{props.price}</div>
           <div>
@@ -69,12 +82,11 @@ const ProductCard: React.FC = (props: any) => {
           </div>
         </div>
       </div>
-    </Card >
+    </Card>
   );
 };
 
-const ParameterList: React.FC<ParameterListProps> = props => {
-
+const ParameterList: React.FC<ParameterListProps> = (props) => {
   return (
     <div>
       <div
@@ -90,7 +102,7 @@ const ParameterList: React.FC<ParameterListProps> = props => {
       >
         {props.title}
       </div>
-      {props.rowItems.map(rowItem => {
+      {props.rowItems.map((rowItem) => {
         return (
           <div style={{ display: 'flex' }}>
             <div
@@ -161,25 +173,53 @@ const ProductDetail: React.FC = (props: any) => {
   }, [props.location.query.id])
 
   //点击立即租赁
-  const handleBuy = ()=>{
-    setTimeout(
-      () => {
-        history.push('/payment')
-      },1000
-    )
-  }
+  const handleBuy = () => {
+    setTimeout(() => {
+      history.push('/payment');
+    }, 1000);
+  };
   //收藏
-  const handleFavorite = ()=>{
-    addFavorite(detail.id).then((res)=>{if(res.message==='请求成功'&&res.data.value===true){message.success('收藏成功')}else if(res.message==='请求成功'&&res.data.value===false){message.success('已经收藏过了')}})
-  }
+  const handleFavorite = () => {
+    addFavorite(detail.id).then((res) => {
+      if (res.status / 2 === 100) {
+        message.success('收藏成功');
+      } else {
+        message.error('网络异常');
+      }
+    });
+  };
+  //购物车
+  const handleShoppingCart = () => {
+    let data = {
+      userId: GetUserId(),
+      commodityIds: {
+        [detail.id]: time,
+      },
+    };
+    createShoppingCartRecord(data).then((res) => {
+      if (res.status / 100 === 2) {
+        message.success('添加购物车成功');
+      } else {
+        message.error('网络异常');
+      }
+    });
+  };
   //加载店内热销
-  useEffect(
-    () => {
-      showCommodityListByTime({ pageSize: 5, pageNum: 1 }).then(res =>
-        setStoreProduct(res.data.value.records)
-      )
-    }, []
-  );
+  useEffect(() => {
+    showCommodityListByTime({ pageSize: 5, pageNum: 1 }).then((res) =>
+      setStoreProduct(res.data.value.records),
+    );
+  }, []);
+  const paramsList = [
+    {
+      title: '颜色分类',
+      values: ['银色', '黄色', '黑色', '白色', '红色'],
+    },
+    {
+      title: '颜色分类',
+      values: ['银色', '黄色', '黑色', '白色', '红色'],
+    },
+  ];
   return (
     <div>
       <Row>
@@ -192,9 +232,7 @@ const ProductDetail: React.FC = (props: any) => {
             alignItems: 'center',
           }}
         >
-          <div
-            style={{  width: '520px', height: '520px', marginTop: '30px' }}
-          >
+          <div style={{ width: '520px', height: '520px', marginTop: '30px' }}>
             <img src={bigimg} style={{ width: '100%', height: '100%' }} />
           </div>
           <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'space-between' }}>
@@ -234,14 +272,15 @@ const ProductDetail: React.FC = (props: any) => {
             marginTop: '30px',
           }}
         >
-          <div style={{
-            fontSize: '30px', marginBottom: '20px'
-          }}>
+          <div
+            style={{
+              fontSize: '30px',
+              marginBottom: '20px',
+            }}
+          >
             {detail.commodityName}
           </div>
-          <div style={{ marginBottom: '20px', color: 'red' }}>
-            {detail.description}
-          </div>
+          <div style={{ marginBottom: '20px', color: 'red' }}>{detail.description}</div>
           <div style={{ display: 'flex', marginBottom: '20px' }}>
             <div>√ 七天以上包邮</div>
             <div>√ 线上租赁</div>
@@ -257,43 +296,8 @@ const ProductDetail: React.FC = (props: any) => {
           <div style={{ marginBottom: '20px' }}>优 惠 券</div>
           <div style={{ display: 'flex' }}>重 量： {detail.attribute.weight}</div>
           <Divider style={{ backgroundColor: 'gray' }} />
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-            颜色分类：
-            <Radio.Group defaultValue={1} buttonStyle="solid">
-              <Radio.Button value={1} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={2} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={3} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={4} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={5} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-              <Radio.Button value={6} style={{ margin: '10px' }}>
-                银色
-              </Radio.Button>
-            </Radio.Group>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-            内存容量：
-            <Radio.Group defaultValue={1} buttonStyle="solid">
-              <Radio.Button value={1} style={{ margin: '10px' }}>
-                64G
-              </Radio.Button>
-              <Radio.Button value={2} style={{ margin: '10px' }}>
-                128G
-              </Radio.Button>
-              <Radio.Button value={3} style={{ margin: '10px' }}>
-                256G
-              </Radio.Button>
-            </Radio.Group>
-          </div>
+          <ProductDetailParamsSelect paramsList={paramsList} />
+
           <div
             style={{
               display: 'flex',
@@ -319,7 +323,12 @@ const ProductDetail: React.FC = (props: any) => {
                 onClick={NumberMinus}
               ></Button>
               <div style={{ marginLeft: '20px', marginRight: '20px' }}>{num}</div>
-              <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={NumberPlus}></Button>
+              <Button
+                shape="circle"
+                icon={<PlusOutlined />}
+                size="small"
+                onClick={NumberPlus}
+              ></Button>
             </div>
             <div
               style={{
@@ -337,13 +346,24 @@ const ProductDetail: React.FC = (props: any) => {
                 onClick={TimeMinus}
               ></Button>
               <div style={{ marginLeft: '20px', marginRight: '20px' }}>{time}</div>
-              <Button shape="circle" icon={<PlusOutlined />} size="small" onClick={TimePlus}></Button>
+              <Button
+                shape="circle"
+                icon={<PlusOutlined />}
+                size="small"
+                onClick={TimePlus}
+              ></Button>
             </div>
           </div>
           <div style={{ width: '500px', display: 'flex', justifyContent: 'space-between' }}>
-            <Button style={{ width: '140px', height: '50px' }} onClick={handleBuy}>立即租赁</Button>
-            <Button style={{ width: '140px', height: '50px' }}>加入购物车</Button>
-            <Button style={{ width: '140px', height: '50px' }} onClick={handleFavorite}>收藏租品</Button>
+            <Button style={{ width: '140px', height: '50px' }} onClick={handleBuy}>
+              立即租赁
+            </Button>
+            <Button style={{ width: '140px', height: '50px' }} onClick={handleShoppingCart}>
+              加入购物车
+            </Button>
+            <Button style={{ width: '140px', height: '50px' }} onClick={handleFavorite}>
+              收藏租品
+            </Button>
           </div>
         </Col>
       </Row>
@@ -423,22 +443,15 @@ const ProductDetail: React.FC = (props: any) => {
             >
               店内热销
             </div>
-            {
-              storeProduct.map(
-                (item: any) =>
-
-                  <ProductCard
-                    title={item.commodityName}
-                    price={item.rentPrice}
-                    preprice="69999.99"
-                    src={item.subImages}
-                    id={item.id}
-                  ></ProductCard>
-
-              )
-            }
-
-
+            {storeProduct.map((item: any) => (
+              <ProductCard
+                title={item.commodityName}
+                price={item.rentPrice}
+                preprice="69999.99"
+                src={item.subImages}
+                id={item.id}
+              ></ProductCard>
+            ))}
           </div>
         </Col>
         <Col span={19} style={{}}>

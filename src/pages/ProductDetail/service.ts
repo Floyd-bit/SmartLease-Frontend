@@ -6,30 +6,37 @@
  * @LastEditors: 王宇阳
  * @LastEditTime: 2021-07-19 17:14:17
  */
-import GetUserId from '@/components/GetUserId';
+import GetUserId from '@/utils/GetUserId';
 import request from 'umi-request';
 
-const BaseUrl='/api2/customer/commodityList/selectById?id='
+const BaseUrl = '/api2/customer/commodityList/selectById?id=';
 
-export async function getDetail(props:any) {
-  const getDetailUrl=BaseUrl+props.id;
+export async function getDetail(props: any) {
+  const getDetailUrl = BaseUrl + props.id;
   return request(getDetailUrl, {
     method: 'GET',
   });
 }
 
-export async function addFavorite(id:number) {
-  const addFavoriteUrl='/api2/customer/favorite/create'
+export async function addFavorite(id: number) {
+  const addFavoriteUrl = '/api2/customer/favorite/create';
   return request(addFavoriteUrl, {
     method: 'POST',
-    data:{
+    data: {
       commodityId: id,
-      commodityName: "",
-      description: "",
+      commodityName: '',
+      description: '',
       id: 0,
       starCount: 0,
-      subImages: "",
-      userId: GetUserId()
-    }
+      subImages: '',
+      userId: GetUserId(),
+    },
+  });
+}
+
+export async function createShoppingCartRecord(data: any) {
+  return request(`api2/customer/commodityCart/create`, {
+    method: 'POST',
+    data: data,
   });
 }
