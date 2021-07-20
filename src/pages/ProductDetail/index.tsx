@@ -15,7 +15,7 @@ interface ParameterListProps {
   title: string;
   rowItems: { subtitle: string; description: string }[];
 }
-const rowItem1 = {
+/* const rowItem1 = {
   title: '基本参数',
   rowItems: [
     {
@@ -35,7 +35,7 @@ const rowItem1 = {
       description: '锂电池',
     },
   ],
-};
+}; */
 
 /* const SelectCard = (props: { content: string }) => {
   return (
@@ -142,6 +142,7 @@ const ParameterList: React.FC<ParameterListProps> = (props) => {
 const ProductDetail: React.FC = (props: any) => {
   const [storeProduct, setStoreProduct] = useState<any>([]);
   const [param,setParam]=useState<any>([{subtitle:'unknown',description:'unknown'}]);//基本参数
+  const [options,setOptions]=useState<any>([]);
   const [detail, setDetail] = useState<any>({ commodityName: '商品参数错误', subImages: '', description: '不存在id为' + props.location.query.id + '的商品', rentPrice: 99999.99,guaranteePrice:99999.99, attribute:{weight:'unknown',origin:'unknown',detailImage:''},uniform:{images:[]} });
   //左侧大图
   const [bigimg, setBigimg] = useState('');
@@ -169,7 +170,7 @@ const ProductDetail: React.FC = (props: any) => {
   };
   //加载商品详情
   useEffect(() => {
-    getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages),setParam(JSON.parse(res.data.value.title)) } });
+    getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => { if (res.data.value) { setDetail(res.data.value), setBigimg(res.data.value.subImages),setParam(JSON.parse(res.data.value.title)),setOptions(JSON.parse(res.data.value.attribute.options)) } });
   }, [props.location.query.id])
 
   //点击立即租赁
@@ -210,16 +211,6 @@ const ProductDetail: React.FC = (props: any) => {
       setStoreProduct(res.data.value.records),
     );
   }, []);
-  const paramsList = [
-    {
-      title: '颜色分类',
-      values: ['银色', '黄色', '黑色', '白色', '红色'],
-    },
-    {
-      title: '颜色分类',
-      values: ['银色', '黄色', '黑色', '白色', '红色'],
-    },
-  ];
   return (
     <div>
       <Row>
@@ -296,7 +287,7 @@ const ProductDetail: React.FC = (props: any) => {
           <div style={{ marginBottom: '20px' }}>优 惠 券</div>
           <div style={{ display: 'flex' }}>重 量： {detail.attribute.weight}</div>
           <Divider style={{ backgroundColor: 'gray' }} />
-          <ProductDetailParamsSelect paramsList={paramsList} />
+          <ProductDetailParamsSelect paramsList={options} />
 
           <div
             style={{
