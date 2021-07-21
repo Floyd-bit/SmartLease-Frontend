@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-21 14:42:11
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-21 21:05:23
  */
 import React, { useState } from 'react';
 import styles from './index.css';
@@ -22,7 +22,7 @@ import {
 import logo from '@/assets/logo.png';
 import { Link, history } from 'umi';
 import BaiDuAi from '@/pages/BaiDuAi';
-import GetUserId from '@/utils/getUserId';
+import GetUserId from '@/utils/GetUserId';
 
 const { Header, Content, Footer } = Layout;
 

@@ -1,4 +1,12 @@
-import GetUserId from '@/utils/getUserId';
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: 王宇阳
+ * @Date: 2021-07-20 17:00:38
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-21 21:05:35
+ */
+import GetUserId from '@/utils/GetUserId';
 import request from '@/utils/request';
 
 export async function getShoppingCart(data: any) {

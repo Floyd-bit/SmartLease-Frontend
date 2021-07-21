@@ -4,85 +4,60 @@
  * @Author: 王宇阳
  * @Date: 2021-07-08 21:22:53
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 20:02:34
+ * @LastEditTime: 2021-07-22 02:55:34
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SiderMenu from '../../components/SiderMenu';
 import { Row, Col, Button, Input, Pagination } from 'antd';
-import ShoppingCard from '@/components/personalShoppingCard';
+import OrderCard from '@/components/OrderCard';
 import { SearchOutlined } from '@ant-design/icons';
-import reqwest from 'reqwest';
+import { getOrderList } from './service';
 
 const { Search } = Input;
 
-interface ShoppingCardProps {
-  gmtCreate: string;
+interface OrderCardProps {
+  gmtCreate: string;//创建时间
   id: string; //订单号
-  receiver: string; //收货人，名字起得不好可以改
-  phone: string;
-  src: string; //图片地址
-  productName: string;
-  color?: string;
-  size?: string;
-  price: string;
-  number: number; //商品数量
-  payment: boolean; //是否支付
+  receiverAddressId:number;//收货地址id
+  transportPrice:number;//订单总价
+  status:string;//订单状态
+  orderItemIds:Array<number>;
 }
 
-function OrderList(props) {
-  const [isInit, setIsInit] = useState(true);
+function OrderList(props:any) {
   const [total, setTotal] = useState(1);
-  const [orderinfo, setOrderinfo] = useState([]);
-  if (isInit) {
-    const getData = callback => {
-      reqwest({
-        url: `http://rap2api.taobao.org/app/mock/286636/getOrderList?pageNum=1&pageSize=10`,
-        type: 'json',
-        method: 'get',
-        contentType: 'application/json',
-        success: res => {
-          callback(res);
-        },
-      });
-    };
-    getData(res => {
-      setIsInit(false);
-      setTotal(res.total);
-      setOrderinfo(res.data);
-    });
+  const [orderinfo, setOrderinfo] = useState<any>([]);
+  useEffect(() => {
+    getOrderList(1,5).then((res)=>{
+      setTotal(res.data.value.total);
+      setOrderinfo(res.data.value.records)
+    })
+  }, [])
+
+  const refresh=()=>{
+    getOrderList(1,5).then((res)=>{
+      setTotal(res.data.value.total);
+      setOrderinfo(res.data.value.records)
+    })
   }
-  const changePage = (page, pageSize) => {
-    const fakeDataUrl = `http://rap2api.taobao.org/app/mock/286636/getOrderList?pageNum=${page}&pageSize=${pageSize}`;
-    const getData = callback => {
-      reqwest({
-        url: fakeDataUrl,
-        type: 'json',
-        method: 'get',
-        contentType: 'application/json',
-        success: res => {
-          callback(res);
-        },
-      });
-    };
-    console.log('翻页点击');
-    getData(res => {
-      setTotal(res.total);
-      setOrderinfo(res.data);
-    });
+
+  const changePage = (page:any, pageSize:any) => {
+    getOrderList(page,pageSize).then((res)=>{
+      setTotal(res.data.value.total);
+      setOrderinfo(res.data.value.records)
+    })
   };
-  const orders = orderinfo.map((order: ShoppingCardProps) => {
+  const orders = orderinfo.map((order: OrderCardProps) => {
     return (
       <li key={order.id}>
-        <ShoppingCard
+        <OrderCard
           gmtCreate={order.gmtCreate}
           id={order.id}
-          receiver={order.receiver}
-          phone={order.phone}
-          src={order.src}
-          productName={order.productName}
-          price={order.price}
-          number={order.number}
-          payment={order.payment}
+          receiverAddressId={order.receiverAddressId}
+          transportPrice={order.transportPrice}
+          status={order.status}
+          orderItemIds={order.orderItemIds}
+          refresh  = {()=>refresh()}
         />
       </li>
     );

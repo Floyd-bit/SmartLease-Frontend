@@ -4,12 +4,13 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:05:27
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 16:22:36
+ * @LastEditTime: 2021-07-21 21:59:44
  */
 import React, { useEffect, useState } from 'react';
 import { Button, Image, message } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { deleteShoppingCartById } from './service';
+import { Link } from 'umi';
 
 interface ShoppingCarItemProps {
   id: string; //购物车项id
@@ -24,6 +25,7 @@ interface ShoppingCarItemProps {
   delete: any;//改变父组件的deleteflag以重新渲染
   deleteflag: boolean;//父组件的deleteflag
   selection: string;//规格
+  commodityId: string;//商品id
 }
 const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
   const [num, setNum] = useState(props.number);
@@ -98,7 +100,7 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
             alignItems: 'center',
           }}
         >
-          <div style={{ width: '200px' }}>{props.productName}<br/>{props.selection}</div>
+          <div style={{ width: '200px' }}><Link to={'/detail?id='+props.commodityId} style={{color:'black'}}>{props.productName}</Link><br/><br/>{props.selection}</div>
         </div>
         <div
           style={{

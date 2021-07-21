@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 18:42:48
+ * @LastEditTime: 2021-07-21 22:00:03
  */
 import React, { useEffect, useState } from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -123,6 +123,7 @@ function ShoppingCar() {
               deleteflag={subComponentDeleteFlag}
               selection={item.selection}
               key={item.shoppingCartId}
+              commodityId={item.id}
             />
           ))}
 
