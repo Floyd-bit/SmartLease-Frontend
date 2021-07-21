@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-08 21:11:12
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 03:08:00
+ * @LastEditTime: 2021-07-22 03:43:15
  */
 import { getProductById } from '@/pages/CreateOrder/service';
 import { Button, Image } from 'antd';
@@ -39,7 +39,7 @@ function OrderItemCard(props:any){
         <Link to={'/detail?id='+props.id} style={{color:'black'}}>{value.commodityName}<br/><br/>{props.selection}</Link>
       </div>
       <div style={{width:'30%',display:'flex',justifyContent:'flex-end',textAlign:'right'}}>
-        押金：￥{value.guaranteePrice}<br/>租金：￥{value.rentPrice}/天<br/><br/>{props.time}天×{props.number}
+        押金：￥{Number(value.guaranteePrice).toFixed(2)}<br/>租金：￥{Number(value.rentPrice).toFixed(2)}/天<br/><br/>{props.time}天×{props.number}
       </div>
     </div>
   )
@@ -92,7 +92,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
         </div>
         <div style={{width:'20%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
           <div>
-            总价：￥{props.transportPrice}<br/><span style={{color:'red',fontSize:16 }}>
+            总价：￥{props.transportPrice.toFixed(2)}<br/><span style={{color:'red',fontSize:16 }}>
               {props.status.replace('UNPAY','待付款').replace('UNSEND','待发货').replace('UNRECEIVE','待收货').replace('USING','使用中').replace('不知道','HAVEBUY').replace('未退还','UNCREDIT').replace('已退还','AFTERSALE')}
             </span><br/><Link to={'/orderdetail?id='+props.id}>订单详情</Link>
           </div>
@@ -105,7 +105,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
               </Link>
             </div>
             <div style={{textAlign:'center'}}>
-              <Button type="primary" danger onClick={handleDelete}>删除订单</Button>
+              <Button type="primary" disabled={props.status!='UNPAY'&&props.status!='AFTERSALE'} danger onClick={handleDelete}>删除订单</Button>
             </div>
           </div>
         </div>

@@ -4,10 +4,11 @@
  * @Author: 王宇阳
  * @Date: 2021-07-16 10:20:27
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-16 10:21:04
+ * @LastEditTime: 2021-07-22 03:37:07
  */
 import { Button, message } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAddressById, getOrderById } from './service';
 
 function OrderItemCard(props:any){
   return(
@@ -27,8 +28,17 @@ function OrderItemCard(props:any){
 
 
 
-function OrderDetail(){
-
+function OrderDetail(props:any){
+  const [orderInfo,setOrderInfo]=useState<any>({});
+  const [address,setAddress]=useState<any>({receiverName:'',receiverPhone:'',address:''});
+  useEffect(() => {
+    getOrderById(props.location.query.id).then((res)=>{
+      setOrderInfo(res.data.value);
+      getAddressById(res.data.value.receiverAddressId).then((res)=>{
+        setAddress(res.data.value);
+      })
+    })
+  }, [])
   return(
     <>
     <div style={{height: '50px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',backgroundColor: '#C6DCF9',width: '100%',}}>
@@ -43,7 +53,8 @@ function OrderDetail(){
             收货信息
           </div>
           <div style={{marginTop:30,fontWeight:'lighter'}}>
-            收货地址：湖北省武汉市洪山区珞喻路129号武汉大学信息学部 13093210533 邓罗奥
+            {address.receiverName}　{address.receiverPhone}<br/>
+            {address.address}
           </div>
         </div>
         <div style={{marginLeft:'auto',marginRight:0}}>
@@ -61,7 +72,7 @@ function OrderDetail(){
       </div>
       <div style={{display:'flex',marginTop:20}}>
         <div style={{marginRight:0,marginLeft:'auto'}}>
-          <span>应付金额: </span><span style={{fontSize:30,fontWeight:'bold',color:'#0099FF'}}>15000.00</span><span> 元</span>
+          <span>应付金额: </span><span style={{fontSize:30,fontWeight:'bold',color:'#0099FF'}}>{Number(orderInfo.transportPrice).toFixed(2)}</span><span> 元</span>
         </div>
       </div>
     </div>

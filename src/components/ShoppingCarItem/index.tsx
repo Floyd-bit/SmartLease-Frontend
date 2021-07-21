@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:05:27
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 21:59:44
+ * @LastEditTime: 2021-07-22 03:39:50
  */
 import React, { useEffect, useState } from 'react';
 import { Button, Image, message } from 'antd';
@@ -111,7 +111,7 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
             alignItems: 'center',
           }}
         >
-          <div>￥{props.price}/天+押金￥{props.guaranteePrice}</div>
+          <div>￥{Number(props.price).toFixed(2)}/天+押金￥{Number(props.guaranteePrice).toFixed(2)}</div>
         </div>
         <div
           style={{

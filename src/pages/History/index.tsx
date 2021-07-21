@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 10:39:18
+ * @LastEditTime: 2021-07-22 03:44:31
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message, Pagination } from "antd";
@@ -32,7 +32,7 @@ function HistoryItem(props: { commodityId: number, onClick: any, id:number }){
         </a>
       </div>
       <div style={{width:'40%',textAlign:'center'}}>
-        <span>￥{price}/天+保证金￥{guaranteePrice}</span>
+        <span>￥{Number(price).toFixed(2)}/天+保证金￥{Number(guaranteePrice).toFixed(2)}</span>
       </div>
       <div style={{width:'20%',textAlign:'center'}}>
         <Button onClick={props.onClick} danger>删除</Button>

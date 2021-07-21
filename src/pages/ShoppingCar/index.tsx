@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 22:00:03
+ * @LastEditTime: 2021-07-22 03:38:43
  */
 import React, { useEffect, useState } from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -131,7 +131,7 @@ function ShoppingCar() {
             <Row>
               <Col span={16}></Col>
               <Col span={3} style={{ marginTop: '13px' }}>
-                合计：￥{total}
+                合计：￥{total.toFixed(2)}
               </Col>
               <Col span={3} offset={2} style={{ marginTop: '5px' }}>
                 <Button type="primary" danger size="large" onClick={handleDelete}>
