@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-16 15:18:24
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 17:14:17
+ * @LastEditTime: 2021-07-21 09:43:48
  */
 import GetUserId from '@/utils/GetUserId';
 import request from 'umi-request';
@@ -38,5 +38,15 @@ export async function createShoppingCartRecord(data: any) {
   return request(`api2/customer/commodityCart/create`, {
     method: 'POST',
     data: data,
+  });
+}
+
+export async function addSearchRecord(commodityId:number) {
+  return request(`api2/customer/searchRecord/create`, {
+    method: 'POST',
+    data: {
+      userId: GetUserId(),
+      commodityId: commodityId,
+    },
   });
 }

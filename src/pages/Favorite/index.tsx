@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-20 10:06:27
+ * @LastEditTime: 2021-07-21 10:40:41
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message } from "antd";
@@ -12,9 +12,11 @@ import React, { useEffect, useState } from "react";
 import { deleteFavorite, getDetail, getFavoriteList } from "./service";
 
 function FavoriteItem(props: { commodityName: string, commodityId: number, onClick: any, id:number,subImages:string }){
-  const [price,setPrice]=useState(-1);
-  const [guaranteePrice,setGuaranteePrice]=useState(-1);
-  getDetail({id:props.commodityId}).then((res)=>{setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice)})
+  const [price,setPrice]=useState();
+  const [guaranteePrice,setGuaranteePrice]=useState();
+  useEffect(() => {
+    getDetail({id:props.commodityId}).then((res)=>{setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice)})
+  }, [])
   return(
     <>
     <div style={{height: '100px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',width: '100%',}}>
@@ -59,7 +61,7 @@ function Favorite(props:any){
 
   const favorites=favoriteList.map((favorite)=>{
     return(
-      <FavoriteItem commodityName={favorite.commodityName} subImages={favorite.subImages} onClick={()=>deleteHandle(favorite.id)} id={favorite.id} commodityId={favorite.commodityId}/>
+      <FavoriteItem commodityName={favorite.commodityName} subImages={favorite.subImages} onClick={()=>deleteHandle(favorite.id)} id={favorite.id} commodityId={favorite.commodityId} key={favorite.id}/>
     )
   })
   return(

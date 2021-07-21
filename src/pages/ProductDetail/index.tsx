@@ -3,7 +3,7 @@ import { Button, Card, Col, Divider, message, Radio, Row } from 'antd';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
-import { addFavorite, getDetail } from './service';
+import { addFavorite, addSearchRecord, getDetail } from './service';
 import { showCommodityListByTime } from '../service';
 import { history } from 'umi';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
@@ -181,9 +181,10 @@ const ProductDetail: React.FC = (props: any) => {
     getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => {
       if (res.data.value) {
         setDetail(res.data.value),
-          setBigimg(res.data.value.subImages),
-          setParam(JSON.parse(res.data.value.title)),
-          setOptions(JSON.parse(res.data.value.attribute.options));
+        setBigimg(res.data.value.subImages),
+        setParam(JSON.parse(res.data.value.title)),
+        setOptions(JSON.parse(res.data.value.attribute.options));
+        addSearchRecord(props.location.query.id);
       }
     });
   }, [props.location.query.id]);
