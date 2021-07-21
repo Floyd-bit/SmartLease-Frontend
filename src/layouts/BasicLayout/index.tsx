@@ -3,12 +3,12 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-20 15:36:36
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-21 14:42:11
  */
 import React, { useState } from 'react';
 import styles from './index.css';
-import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, message, Modal } from 'antd';
+import { Layout, Menu, Breadcrumb, Input, Avatar, Button, Row, Col, message, Modal, BackTop,Image } from 'antd';
 import {
   FireOutlined,
   HomeFilled,
@@ -54,7 +54,7 @@ const BasicLayout: React.FC = (props) => {
 
   return (
     <Layout style={{ background: 'white' }}>
-      <Header style={{ width: '100%', padding: '0px' }}>
+      <Header style={{ width: '100%', padding: '0px' ,position: 'fixed',zIndex: 1,}}>
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
           <div
             style={{
@@ -160,12 +160,15 @@ const BasicLayout: React.FC = (props) => {
           </div>
         </div>
       </Header>
-      <Content className="site-layout" style={{ padding: '0 0', marginTop: 26 }}>
+      <Content className="site-layout" style={{ padding: '0 0', marginTop: 100 }}>
         <div className="site-layout-background" style={{ padding: 0, minHeight: 380 }}>
           {props.children}
         </div>
       </Content>
       <Footer style={{ background: 'white', textAlign: 'center' }}>@CopyRight 你说的都对</Footer>
+      <BackTop style={{width: 50, height: 50}}>
+        <Image src={logo} preview={false} />
+      </BackTop>
       <Modal title="Logo识别" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <BaiDuAi />
       </Modal>

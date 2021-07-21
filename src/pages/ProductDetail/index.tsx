@@ -1,15 +1,17 @@
 import HomeFooter from '@/components/HomeFooter';
-import { Button, Card, Col, Divider, message, Radio, Row } from 'antd';
+import { Button, Card, Col, Divider, message, Radio, Row, Tabs, Comment, Tooltip, List } from 'antd';
 import Select from 'rc-select';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
-import { addFavorite, addSearchRecord, getDetail } from './service';
+import { addFavorite, addSearchRecord, getComments, getDetail } from './service';
 import { showCommodityListByTime } from '../service';
 import { history } from 'umi';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { createShoppingCartRecord } from './service';
 import GetUserId from '@/utils/GetUserId';
 import ProductDetailParamsSelect from '@/components/ProductDetailParamsSelect';
+
+import moment from 'moment';
 
 interface ParameterListProps {
   title: string;
@@ -54,6 +56,7 @@ interface ParameterListProps {
     </div>
   );
 }; */
+const { TabPane } = Tabs;
 const ProductCard: React.FC = (props: any) => {
   return (
     <Card
@@ -143,6 +146,7 @@ const ProductDetail: React.FC = (props: any) => {
   const [storeProduct, setStoreProduct] = useState<any>([]);
   const [param, setParam] = useState<any>([{ subtitle: 'unknown', description: 'unknown' }]); //基本参数
   const [options, setOptions] = useState<any>([]);
+  const [comments, setComments] = useState([]);
   const [detail, setDetail] = useState<any>({
     commodityName: '商品参数错误',
     subImages: '',
@@ -188,6 +192,15 @@ const ProductDetail: React.FC = (props: any) => {
       }
     });
   }, [props.location.query.id]);
+
+  // 加载评论
+  useEffect(() => {
+    getComments(1).then((res) => {
+      if(res.data.value) {
+        setComments(res.data.value.records);
+      }
+    })
+  },[])
 
   //点击立即租赁
   const handleBuy = () => {
@@ -485,10 +498,33 @@ const ProductDetail: React.FC = (props: any) => {
         </Col>
         <Col span={19} style={{}}>
           <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-            <div style={{ width: '95%', height: '30px', border: '1px solid gray' }}></div>
-            <div style={{ width: '95%' }}>
-              <img src={detail.attribute.detailImage} width="100%" height="auto"></img>
-            </div>
+            <Tabs defaultActiveKey="1" style={{width: '95%'}}>
+            <TabPane tab="租品详情" key="1">
+              <div style={{ width: '95%', height: '30px', border: '1px solid gray' }}></div>
+              <div style={{ width: '95%' }}>
+                <img src={detail.attribute.detailImage} width="100%" height="auto"></img>
+              </div>
+            </TabPane>
+            <TabPane tab={`用户评论 (${comments.length})`} key="2">
+              <List
+              className="comment-list"
+              header={`${comments.length} 条评论`}
+              itemLayout="horizontal"
+              dataSource={comments}
+              renderItem={item => (
+                <li>
+                  <Comment
+                    actions={item.actions}
+                    author={item.userNickName}
+                    avatar={item.pictures[0]}
+                    content={item.content}
+                    datetime={moment(item.time).format('YYYY-MM-DD HH:mm')}
+                  />
+                </li>
+              )}
+            />
+            </TabPane>
+          </Tabs>
           </div>
           <div style={{ width: '95%', margin: 'auto', marginTop: 10 }}>
             <ParameterList title="基本参数" rowItems={param} />
