@@ -143,7 +143,7 @@ const ProductDetail: React.FC = (props: any) => {
   const [storeProduct, setStoreProduct] = useState<any>([]);
   const [param, setParam] = useState<any>([{ subtitle: 'unknown', description: 'unknown' }]); //基本参数
   const [options, setOptions] = useState<any>([]);
-  const [selected,setSelected]=useState<any>([]);
+  const [selected,setSelected]=useState<any>();
   const [detail, setDetail] = useState<any>({
     commodityName: '商品参数错误',
     subImages: '',
@@ -186,7 +186,6 @@ const ProductDetail: React.FC = (props: any) => {
         setParam(JSON.parse(res.data.value.title)),
         setOptions(JSON.parse(res.data.value.attribute.options));
         addSearchRecord(props.location.query.id);
-        setSelected(Array(JSON.parse(res.data.value.attribute.options).length).fill(0));
       }
     });
   }, [props.location.query.id]);
@@ -211,23 +210,27 @@ const ProductDetail: React.FC = (props: any) => {
   };
   //购物车 100为商品id 200为数量 300为租期 400 500为规格
   const handleShoppingCart = () => {
-    let data = {
-      userId: GetUserId(),
-      commodityIds: {
-        100: props.location.query.id,
-        200: num,
-        300: time,
-        400: selected[0]?selected[0]:-1,
-        500: selected[1]?selected[1]:-1
-      },
-    };
-    createShoppingCartRecord(data).then((res) => {
-      if (res.status / 100 === 2) {
-        message.success('添加购物车成功');
-      } else {
-        message.error('网络异常');
-      }
-    });
+    if (selected.length===options.length&&selected[0]!=null){
+      let data = {
+        userId: GetUserId(),
+        commodityIds: {
+          100: props.location.query.id,
+          200: num,
+          300: time,
+          400: selected[0]!=null?selected[0]:-1,
+          500: selected[1]!=null?selected[1]:-1
+        },
+      };
+      createShoppingCartRecord(data).then((res) => {
+        if (res.status / 100 === 2) {
+          message.success('添加购物车成功');
+        } else {
+          message.error('网络异常');
+        }
+      });
+    }else{
+      message.warning('请先选择商品规格');
+    }
   };
   //加载店内热销
   useEffect(() => {

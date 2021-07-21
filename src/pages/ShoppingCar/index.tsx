@@ -4,18 +4,31 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 16:20:16
+ * @LastEditTime: 2021-07-21 18:42:48
  */
 import React, { useEffect, useState } from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
 import SiderMenu from '@/components/SiderMenu';
 import { Button, Col, message, Row } from 'antd';
+import { Link, history } from 'umi';
 import { getShoppingCart, getProductById, deleteShoppingCart } from './service';
 
 function ShoppingCar() {
   const [shoppingCartList, setShoppingCartList] = useState<any>([]);
   const [total, setTotal] = useState<number>(0);
   const [subComponentDeleteFlag, setFlag] = useState<boolean>(false);
+  const handleDelete=()=>{
+    deleteShoppingCart().then((res)=>{if(res.message==='删除成功'){message.success('清空成功');setFlag(!subComponentDeleteFlag)}})
+  }
+  const handleSubmit=()=>{
+    if(shoppingCartList.length===0){
+      message.warning('请先添加物品到购物车')
+    }
+    else{
+      history.push('/createorder')
+    }
+  }
+
   useEffect(() => {
     let data = {
       pageNum: 1,
@@ -51,12 +64,12 @@ function ShoppingCar() {
               length=length-1;
               if (shoppingList.length === length) {
                 setShoppingCartList(shoppingList);
-                /* let total = 0;
+                let total = 0;
                 shoppingList.forEach((item) => {
                   total =
-                    total + Number((Number(item.rentNum) + Number(item.rentPrice)).toFixed(2));
+                    total + Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2));
                 });
-                setTotal(total); */
+                setTotal(total);
               }
             }
           });
@@ -109,6 +122,7 @@ function ShoppingCar() {
               delete={setFlag}
               deleteflag={subComponentDeleteFlag}
               selection={item.selection}
+              key={item.shoppingCartId}
             />
           ))}
 
@@ -119,10 +133,10 @@ function ShoppingCar() {
                 合计：￥{total}
               </Col>
               <Col span={3} offset={2} style={{ marginTop: '5px' }}>
-                <Button type="primary" danger size="large" onClick={deleteShoppingCart}>
+                <Button type="primary" danger size="large" onClick={handleDelete}>
                   清空
                 </Button>
-                <Button type="primary" size="large">
+                <Button type="primary" size="large" onClick={handleSubmit}>
                   结算
                 </Button>
               </Col>

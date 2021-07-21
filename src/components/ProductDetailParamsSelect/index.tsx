@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-20 17:06:02
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 15:43:09
+ * @LastEditTime: 2021-07-21 18:58:51
  */
 import { Radio } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -23,7 +23,6 @@ const ProductDetailParamsSelect: React.FC<ParamsSelectProps> = (props) => {
   const [flag,setFlag]=useState(false);
   useEffect(() => {
     props.setSelected(value);
-    console.log(value)
   }, [flag])
   return (
     <>
