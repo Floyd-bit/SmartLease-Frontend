@@ -147,6 +147,7 @@ const ProductDetail: React.FC = (props: any) => {
   const [param, setParam] = useState<any>([{ subtitle: 'unknown', description: 'unknown' }]); //基本参数
   const [options, setOptions] = useState<any>([]);
   const [comments, setComments] = useState([]);
+  const [selected,setSelected]=useState<any>([]);
   const [detail, setDetail] = useState<any>({
     commodityName: '商品参数错误',
     subImages: '',
@@ -189,6 +190,7 @@ const ProductDetail: React.FC = (props: any) => {
         setParam(JSON.parse(res.data.value.title)),
         setOptions(JSON.parse(res.data.value.attribute.options));
         addSearchRecord(props.location.query.id);
+        setSelected(Array(JSON.parse(res.data.value.attribute.options).length).fill(0));
       }
     });
   }, [props.location.query.id]);
@@ -220,12 +222,16 @@ const ProductDetail: React.FC = (props: any) => {
       }
     });
   };
-  //购物车
+  //购物车 100为商品id 200为数量 300为租期 400 500为规格
   const handleShoppingCart = () => {
     let data = {
       userId: GetUserId(),
       commodityIds: {
-        [detail.id]: time,
+        100: props.location.query.id,
+        200: num,
+        300: time,
+        400: selected[0]?selected[0]:-1,
+        500: selected[1]?selected[1]:-1
       },
     };
     createShoppingCartRecord(data).then((res) => {
@@ -338,7 +344,7 @@ const ProductDetail: React.FC = (props: any) => {
           <div style={{ marginBottom: '20px' }}>优 惠 券</div>
           <div style={{ display: 'flex' }}>重 量： {detail.attribute.weight}</div>
           <Divider style={{ backgroundColor: 'gray' }} />
-          <ProductDetailParamsSelect paramsList={options} />
+          <ProductDetailParamsSelect paramsList={options} setSelected={setSelected}/>
 
           <div
             style={{

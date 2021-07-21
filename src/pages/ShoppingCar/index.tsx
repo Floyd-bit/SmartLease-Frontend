@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-19 14:15:18
+ * @LastEditTime: 2021-07-21 16:20:16
  */
 import React, { useEffect, useState } from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
@@ -19,7 +19,7 @@ function ShoppingCar() {
   useEffect(() => {
     let data = {
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 1000,
     };
     getShoppingCart(data).then((res) => {
       if (res.data.value.records.length === 0) {
@@ -29,22 +29,36 @@ function ShoppingCar() {
         let shoppingList: any[] = [];
         let length = res.data.value.records.length;
         res.data.value.records.forEach((items: any) => {
-          Object.keys(items.commodityIds).forEach((subItem) => {
-            getProductById(subItem).then((res) => {
+          getProductById(items.commodityIds["100"]).then((res) => {
+            if(res.data.value){
               let item = res.data.value;
-              item.rentNum = items.commodityIds[subItem];
+              item.rentNum = items.commodityIds["200"];
+              item.rentTime = items.commodityIds["300"];
               item.shoppingCartId = items.id;
+              let options=JSON.parse(res.data.value.attribute.options);
+              item.selection=(items.commodityIds["400"]===-1?"":options[0].title+":"+options[0].values[items.commodityIds["400"]]+" ")+(items.commodityIds["500"]===-1?"":options[1].title+":"+options[1].values[items.commodityIds["500"]]);
               shoppingList.push(item);
               if (shoppingList.length === length) {
                 setShoppingCartList(shoppingList);
                 let total = 0;
                 shoppingList.forEach((item) => {
                   total =
-                    total + Number((Number(item.rentNum) + Number(item.rentPrice)).toFixed(2));
+                    total + Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2));
                 });
                 setTotal(total);
               }
-            });
+            }else{
+              length=length-1;
+              if (shoppingList.length === length) {
+                setShoppingCartList(shoppingList);
+                /* let total = 0;
+                shoppingList.forEach((item) => {
+                  total =
+                    total + Number((Number(item.rentNum) + Number(item.rentPrice)).toFixed(2));
+                });
+                setTotal(total); */
+              }
+            }
           });
         });
       }
@@ -83,24 +97,18 @@ function ShoppingCar() {
           </div>
           {shoppingCartList.map((item: any) => (
             <ShoppingCarItem
-              gmtCreate="2020/7/8"
               id={item.shoppingCartId}
-              receiver="syx"
-              phone="12345678"
               number={item.rentNum}
               productName={item.commodityName}
-              color="红色"
-              size="32G"
               price={item.rentPrice}
+              guaranteePrice={item.guaranteePrice}
               src={item.subImages}
-              name="商品"
-              count={2}
-              payment={true}
-              time={1}
+              time={item.rentTime}
               setValue={setTotal}
               total={total}
               delete={setFlag}
               deleteflag={subComponentDeleteFlag}
+              selection={item.selection}
             />
           ))}
 
