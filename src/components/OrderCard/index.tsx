@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-08 21:11:12
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 03:43:15
+ * @LastEditTime: 2021-07-22 04:12:56
  */
 import { getProductById } from '@/pages/CreateOrder/service';
 import { Button, Image } from 'antd';
@@ -27,6 +27,8 @@ function OrderItemCard(props:any){
     getProductById(props.id).then((res)=>{
       if(res.data.value){
         setValue(res.data.value);
+      }else{
+        setValue({commodityName:'商品已下架'})
       }
     })
   }, [])

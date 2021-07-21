@@ -4,28 +4,31 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 03:44:09
+ * @LastEditTime: 2021-07-22 04:17:30
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { deleteFavorite, getDetail, getFavoriteList } from "./service";
+import loading from '../../assets/loading.png';
 
 function FavoriteItem(props: { commodityName: string, commodityId: number, onClick: any, id:number,subImages:string }){
   const [price,setPrice]=useState();
   const [guaranteePrice,setGuaranteePrice]=useState();
+  const [name,setName]=useState('');
+  const [image,setImage]=useState(loading);
   useEffect(() => {
-    getDetail({id:props.commodityId}).then((res)=>{setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice)})
+    getDetail({id:props.commodityId}).then((res)=>{if(res.data.value){setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice);setName(res.data.value.commodityName);setImage(res.data.value.subImages)}else{setName('商品已失效')}})
   }, [])
   return(
     <>
     <div style={{height: '100px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',width: '100%',}}>
       <div style={{width:'20%',textAlign:'center'}}>
-        <img src={props.subImages} style={{width:90,height:90}}/>
+        <img src={image} style={{width:90,height:90}}/>
       </div>
       <div style={{width:'20%',textAlign:'center'}}>
         <a href={'/detail?id='+props.commodityId}>
-        <span style={{color:'black'}}>{props.commodityName}</span>
+        <span style={{color:'black'}}>{name}</span>
         </a>
       </div>
       <div style={{width:'40%',textAlign:'center'}}>

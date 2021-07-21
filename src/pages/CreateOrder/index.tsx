@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-15 16:30:11
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 22:06:34
+ * @LastEditTime: 2021-07-22 04:37:03
  */
 import { Button, message } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -22,10 +22,10 @@ function OrderItemCard(props:any){
         {props.commodityName}<br/><br/>{props.selection}
       </div>
       <div style={{width:'30%'}}>
-        押金：￥{props.guaranteePrice} × {props.number}<br/>租金：￥{props.price} × {props.number} × {props.time}天
+        押金：￥{Number(props.guaranteePrice).toFixed(2)} × {props.number}<br/>租金：￥{Number(props.price).toFixed(2)} × {props.number} × {props.time}天
       </div>
       <div style={{width:'30%'}}>
-        合计：￥{props.guaranteePrice*props.number+props.price*props.number*props.time}
+        合计：￥{Number(props.guaranteePrice*props.number+props.price*props.number*props.time).toFixed(2)}
       </div>
     </div>
   )
@@ -166,7 +166,7 @@ function CreateOrder(){
       </div>
       <div style={{display:'flex',marginTop:20}}>
         <div style={{marginRight:0,marginLeft:'auto'}}>
-          <span>应付金额: </span><span style={{fontSize:30,fontWeight:'bold',color:'#0099FF'}}>{total}</span><span> 元</span>
+          <span>应付金额: </span><span style={{fontSize:30,fontWeight:'bold',color:'#0099FF'}}>{total.toFixed(2)}</span><span> 元</span>
         </div>
       </div>
     </div>
