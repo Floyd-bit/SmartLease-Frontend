@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 08:54:42
- * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-14 11:53:59
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-21 15:39:50
  */
 import React from 'react';
 import { Menu } from 'antd';
@@ -54,6 +54,9 @@ function SiderMenu(props: any) {
         </Menu.Item>
         <Menu.Item key="13">
           <Link to="/user/customerservice">售后管理</Link>
+        </Menu.Item>
+        <Menu.Item key="14">
+          <Link to="/user/transport">物流管理</Link>
         </Menu.Item>
       </SubMenu>
     </Menu>

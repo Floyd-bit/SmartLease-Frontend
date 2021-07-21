@@ -4,15 +4,23 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-20 10:34:57
+ * @LastEditTime: 2021-07-21 16:33:28
  */
 import { IConfig } from 'umi-types';
+
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
   dva: {},
   antd: {},
-  mfsu: {},
+  mfsu: {},  
+  	// 修改icon
+    links: [
+      // href的图片你可以放在public里面，直接./图片名.png 就可以了，也可以是cdn链接
+       { rel: 'icon', href: 'https://img0.baidu.com/it/u=842442191,584942941&fm=26&fmt=auto&gp=0.jpg' },
+     ],
+   // 修改title
+   title:'租享宝',
   routes: [
     {
       path: '/',
@@ -102,6 +110,14 @@ const config: IConfig = {
               path: '/user/servicerecord',
               component: '../pages/ServiceRecord',
             },
+            {
+              path: '/user/transport',
+              component: '../pages/Transport',
+            },
+            {
+              path: '/user/transportdetail',
+              component: '../pages/TransportDetail',
+            },
           ],
         },
       ],
@@ -115,6 +131,11 @@ const config: IConfig = {
       target: 'http://47.110.156.20:8085/',
       changeOrigin: true,
       pathRewrite: { '^/api2': '' },
+    },
+    '/api3': {
+      target: 'http://47.110.156.20:8083/',
+      changeOrigin: true,
+      pathRewrite: { '^/api3': '' },
     },
   },
 };
