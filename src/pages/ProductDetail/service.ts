@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-16 15:18:24
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-21 15:14:54
+ * @LastEditTime: 2021-07-22 11:38:11
  */
 import GetUserId from '@/utils/GetUserId';
 import request from 'umi-request';
@@ -19,7 +19,7 @@ export async function getDetail(props: any) {
 }
 
 export async function getComments(props: any) {
-  return request(`/api3/business/evaluation/selectByCommodityId?commodityId=1&page=1&size=5`,{
+  return request(`/api3/business/evaluation/selectByCommodityId?commodityId=2137&page=1&size=5`,{
     method: 'GET',
   })
 }
