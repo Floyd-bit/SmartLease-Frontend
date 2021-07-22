@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-08 21:11:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-22 16:05:09
+ * @LastEditTime: 2021-07-22 16:12:35
  */
 import { getProductById } from '@/pages/CreateOrder/service';
 import GetUserId from '@/utils/GetUserId';
@@ -154,6 +154,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
       </div>
     </div>
     <Modal title="评价" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Rate/>
       <Input onChange={(value) => setScore(Number(value.target.defaultValue))}/>
       <TextArea rows={4} onChange={changeComments} placeholder="请输入评价内容"/> 
     </Modal>
