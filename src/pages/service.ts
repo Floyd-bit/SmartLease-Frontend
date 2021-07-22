@@ -6,6 +6,7 @@
  * @LastEditors: 王宇阳
  * @LastEditTime: 2021-07-13 20:03:54
  */
+import GetUserId from '@/utils/GetUserId';
 import request from 'umi-request';
 
 const getHotListUrl = 'http://rap2api.taobao.org/app/mock/286636/getHotList';
@@ -47,4 +48,22 @@ export async function searchProductByName(data: any) {
   );
 }
 
+export async function getRecommendProduct() {
+  return request(
+    `api2/customer/commodityList/recommend?userId=${GetUserId()}
+    `,
+    {
+      method: 'GET',
+    },
+  );
+}
 
+export async function getOrderOnlyTwo() {
+  return request(
+    `api2/customer/order/getByUserId?pageNum=1&pageSize=2&userId=${GetUserId()}
+    `,
+    {
+      method: 'GET',
+    },
+  );
+}
