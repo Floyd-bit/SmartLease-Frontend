@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-10 11:37:49
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 15:37:17
+ * @LastEditTime: 2021-07-22 20:11:15
  */
 /*
  * @Description:
@@ -15,7 +15,7 @@
  * @LastEditTime: 2021-07-22 15:26:16
  */
 import React, { useEffect, useState } from 'react';
-import { Button, Image, message } from 'antd';
+import { Button, Image, message, Popconfirm, Spin } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { createShoppingCartRecord, deleteShoppingCartById } from './service';
 import { Link } from 'umi';
@@ -38,6 +38,7 @@ interface ShoppingCarItemProps {
   data:any //原数据，用来修改购物车项的参数
 }
 const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
+  const [loading, setLoading] = useState(false);
   const [num, setNum] = useState(props.number);
   //修改数量
   const NumberMinus = () => {
@@ -49,10 +50,12 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
         userId: GetUserId(),
         commodityIds:commodityIds,
       }
+      setLoading(true);
       deleteShoppingCartById(Number(props.id)).then((res)=>{
         if (res.status / 100 === 2) {
           createShoppingCartRecord(data).then((res)=>{
             if(res.status / 100 === 2){
+              setLoading(false);
               props.delete(!props.deleteflag);
             }
           })
@@ -67,11 +70,13 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
       userId: GetUserId(),
       commodityIds:commodityIds,
     }
+    setLoading(true);
     deleteShoppingCartById(Number(props.id)).then((res)=>{
       if (res.status / 100 === 2) {
         createShoppingCartRecord(data).then((res)=>{
           if(res.status / 100 === 2){
             props.delete(!props.deleteflag);
+            setLoading(false);
           }
         })
       }
@@ -88,11 +93,13 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
         userId: GetUserId(),
         commodityIds:commodityIds,
       }
+      setLoading(true);
       deleteShoppingCartById(Number(props.id)).then((res)=>{
         if (res.status / 100 === 2) {
           createShoppingCartRecord(data).then((res)=>{
             if(res.status / 100 === 2){
               props.delete(!props.deleteflag);
+              setLoading(false);
             }
           })
         }
@@ -106,11 +113,13 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
       userId: GetUserId(),
       commodityIds:commodityIds,
     }
+    setLoading(true);
     deleteShoppingCartById(Number(props.id)).then((res)=>{
       if (res.status / 100 === 2) {
         createShoppingCartRecord(data).then((res)=>{
           if(res.status / 100 === 2){
             props.delete(!props.deleteflag);
+            setLoading(false);
           }
         })
       }
@@ -126,6 +135,7 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
     });
   };
   return (
+    <Spin spinning={loading}>
     <div
       style={{
         display: 'flex',
@@ -227,13 +237,16 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
           }}
         >
           <div style={{ marginBottom: '10px', flex: 1, justifyContent: 'center' }}>
-            <Button type="primary" danger onClick={handleDelete}>
-              删除
-            </Button>
+            <Popconfirm title="确定要删除吗？" placement={'bottomRight'} onConfirm={handleDelete} okText="确定" cancelText="取消">
+              <Button type="primary" danger>
+                删除
+              </Button>
+            </Popconfirm>
           </div>
         </div>
       </div>
     </div>
+    </Spin>
   );
 };
 

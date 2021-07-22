@@ -3,12 +3,12 @@
  * @version:
  * @Author: 王宇阳
  * @Date: 2021-07-08 21:11:12
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-22 16:30:49
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-22 20:07:16
  */
 import { getProductById } from '@/pages/CreateOrder/service';
 import GetUserId from '@/utils/GetUserId';
-import { Button,Image,Input,message,Modal, Rate} from 'antd';
+import { Button,Image,Input,message,Modal, Popconfirm, Rate, Skeleton} from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
@@ -27,16 +27,20 @@ interface OrderCardProps {
 
 function OrderItemCard(props:any){
   const[value,setValue]=useState<any>({})
+  const[loading,setLoading]=useState(false)
   useEffect(() => {
+    setLoading(true);
     getProductById(props.id).then((res)=>{
       if(res.data.value){
         setValue(res.data.value);
       }else{
         setValue({commodityName:'商品已下架'})
       }
+      setLoading(false);
     })
   }, [])
   return(
+    <Skeleton active loading={loading}>
     <div style={{width:'100%',display:'flex',borderStyle:'none none solid',borderWidth:'1px',borderColor:'#DDDDDD',alignItems:'center'}}>
       <div style={{width:'30%',height:'150px',display:'flex',justifyContent:'center'}}>
         <img style={{height:'130px',width:'130px',marginTop:10}} src={value.subImages}/>
@@ -48,12 +52,13 @@ function OrderItemCard(props:any){
         押金：￥{Number(value.guaranteePrice).toFixed(2)}<br/>租金：￥{Number(value.rentPrice).toFixed(2)}/天<br/><br/>{props.time}天×{props.number}
       </div>
     </div>
+    </Skeleton>
   )
 }
 
 const OrderCard: React.FC<OrderCardProps> = props => {
-  //获取收货地址
-  const[address,setAddress]=useState({receiverName:'',receiverPhone:''})
+  const[loading,setLoading]=useState(false)
+  //Modal相关
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentCommodity, setCurrentCommodity] = useState({commodityId:0,commodityName:''});
   const [comments,setComments] = useState('');
@@ -89,18 +94,22 @@ const OrderCard: React.FC<OrderCardProps> = props => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  //获取收货地址
+  const[address,setAddress]=useState({receiverName:'',receiverPhone:''})
   useEffect(() => {
     getAddressById(props.receiverAddressId).then((res)=>setAddress(res.data.value));
   }, [])
   //获取订单项详情
   const [orderItemList,SetOrderItemList]=useState<any>([]);
   useEffect(() => {
+    setLoading(true);
     let orderItems:Array<any>=[]
     props.orderItemIds.forEach((orderItemId)=>{
       getOrderItemById(orderItemId).then((res)=>{
         orderItems.push(res.data.value);
         if(orderItems.length===props.orderItemIds.length){
           SetOrderItemList(orderItems)
+          setLoading(false);
         }
       })
     })
@@ -118,7 +127,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
   }
 
   return (
-    <>
+    <Skeleton active loading={loading}>
     <div style={{ width: '100%', height: 'auto', justifyContent: 'center', marginTop: '0px', }}>
       <div style={{ height: '50px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#C6DCF9', width: '100%', }}>
         <div style={{ display: 'flex', justifyContent: 'space-around', width: '60%' }}>
@@ -148,7 +157,9 @@ const OrderCard: React.FC<OrderCardProps> = props => {
               <Button type="primary" style={{display:props.status=='AFTERSALE'?'':'none'}} onClick={()=>{setCurrentCommodity({"commodityId":2137,"commodityName":"1"}); showModal();}}>立即评价</Button>
             </div>
             <div style={{textAlign:'center'}}>
-              <Button type="primary" disabled={props.status!='UNPAY'&&props.status!='AFTERSALE'} danger onClick={handleDelete}>删除订单</Button>
+            <Popconfirm title="确定要删除吗？" placement={'bottomRight'} onConfirm={handleDelete} disabled={props.status!='UNPAY'&&props.status!='AFTERSALE'} okText="确定" cancelText="取消">
+              <Button type="primary" disabled={props.status!='UNPAY'&&props.status!='AFTERSALE'} danger>删除订单</Button>
+            </Popconfirm>
             </div>
           </div>
         </div>
@@ -156,9 +167,9 @@ const OrderCard: React.FC<OrderCardProps> = props => {
     </div>
     <Modal title="评价" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
       <Rate onChange={(value) => setScore(value)}/>
-      <TextArea rows={4} onChange={changeComments} placeholder="请输入评价内容"/> 
+      <TextArea rows={4} onChange={changeComments} placeholder="请输入评价内容"/>
     </Modal>
-    </>
+    </Skeleton>
   );
 };
 

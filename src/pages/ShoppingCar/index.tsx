@@ -4,16 +4,18 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:23:04
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 03:38:43
+ * @LastEditTime: 2021-07-22 20:09:57
  */
 import React, { useEffect, useState } from 'react';
 import ShoppingCarItem from '@/components/ShoppingCarItem';
 import SiderMenu from '@/components/SiderMenu';
-import { Button, Col, message, Row } from 'antd';
+import { Button, Col, message, Popconfirm, Row, Skeleton } from 'antd';
 import { Link, history } from 'umi';
 import { getShoppingCart, getProductById, deleteShoppingCart } from './service';
 
 function ShoppingCar() {
+  const [isInit,setIsInit]=useState(true);
+  const [loading,setLoading]=useState(false)
   const [shoppingCartList, setShoppingCartList] = useState<any>([]);
   const [total, setTotal] = useState<number>(0);
   const [subComponentDeleteFlag, setFlag] = useState<boolean>(false);
@@ -30,6 +32,9 @@ function ShoppingCar() {
   }
 
   useEffect(() => {
+    if(isInit){
+      setLoading(true);
+    }
     let data = {
       pageNum: 1,
       pageSize: 1000,
@@ -38,6 +43,7 @@ function ShoppingCar() {
       if (res.data.value.records.length === 0) {
         message.info('目前购物车为空');
         setShoppingCartList([]);
+        setLoading(false);
       } else {
         let shoppingList: any[] = [];
         let length = res.data.value.records.length;
@@ -60,6 +66,8 @@ function ShoppingCar() {
                     total + Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2));
                 });
                 setTotal(total);
+                setIsInit(false);
+                setLoading(false);
               }
             }else{
               length=length-1;
@@ -71,6 +79,8 @@ function ShoppingCar() {
                     total + Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2));
                 });
                 setTotal(total);
+                setIsInit(false);
+                setLoading(false);
               }
             }
           });
@@ -109,6 +119,7 @@ function ShoppingCar() {
               <div style={{ flex: 1, justifyContent: 'center', display: 'flex' }}>操作</div>
             </div>
           </div>
+          <Skeleton active loading={loading}>
           {shoppingCartList.map((item: any) => (
             <ShoppingCarItem
               id={item.shoppingCartId}
@@ -128,7 +139,7 @@ function ShoppingCar() {
               data={item.data}
             />
           ))}
-
+          </Skeleton>
           <div style={{ width: '100%', backgroundColor: '#C6DCF9', height: '50px' }}>
             <Row>
               <Col span={16}></Col>
@@ -136,9 +147,11 @@ function ShoppingCar() {
                 合计：￥{total.toFixed(2)}
               </Col>
               <Col span={3} offset={2} style={{ marginTop: '5px' }}>
-                <Button type="primary" danger size="large" onClick={handleDelete}>
-                  清空
-                </Button>
+                <Popconfirm title="确定要清空购物车吗？" placement={'bottomRight'} onConfirm={handleDelete} okText="确定" cancelText="取消">
+                  <Button type="primary" danger size="large">
+                    清空
+                  </Button>
+                </Popconfirm>
                 <Button type="primary" size="large" onClick={handleSubmit}>
                   结算
                 </Button>

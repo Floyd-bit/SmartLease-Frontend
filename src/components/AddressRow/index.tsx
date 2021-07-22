@@ -4,9 +4,9 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 11:00:07
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-20 11:06:59
+ * @LastEditTime: 2021-07-22 20:03:37
  */
-import { Button, Input, message, Switch } from "antd";
+import { Button, Input, message, Popconfirm, Switch } from "antd";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { addAddress, deleteAddress, editAddress } from "./service";
@@ -101,7 +101,9 @@ function AddressRow(props: AddressRowProps){
         </div>
         <div style={{width:'20%',textAlign:'center'}}>
           <Button size='small' style={{marginRight:10}} onClick={()=>setIsEdit(1)}>编辑</Button>
-          <Button size='small' style={{marginLeft:10}} onClick={handleDelete}>删除</Button>
+          <Popconfirm title="确定要删除吗？" placement={'bottomRight'} onConfirm={handleDelete} okText="确定" cancelText="取消">
+            <Button size='small' style={{marginLeft:10}}>删除</Button>
+          </Popconfirm>
         </div>
       </div>
     )
@@ -123,7 +125,9 @@ function AddressRow(props: AddressRowProps){
         </div>
         <div style={{width:'20%',textAlign:'center'}}>
           <Button size='small' style={{marginRight:10}} onClick={handleSave}>保存</Button>
-          <Button size='small' style={{marginLeft:10}} onClick={handleDelete}>删除</Button>
+          <Popconfirm title="确定要删除吗？" placement={'bottomRight'} onConfirm={handleDelete} okText="确定" cancelText="取消">
+            <Button size='small' style={{marginLeft:10}}>删除</Button>
+          </Popconfirm>
         </div>
       </div>
     )

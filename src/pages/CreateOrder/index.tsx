@@ -4,9 +4,9 @@
  * @Author: 王宇阳
  * @Date: 2021-07-15 16:30:11
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 14:57:46
+ * @LastEditTime: 2021-07-22 19:34:44
  */
-import { Button, message } from 'antd';
+import { Button, message, Skeleton } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { CreateOrderApi, deleteShoppingCart, getDefaultAddress, getProductById, getShoppingCart } from './service';
 import { Link, history } from 'umi';
@@ -32,6 +32,7 @@ function OrderItemCard(props:any){
 }
 
 function CreateOrder(props:any){
+  const [loading,setLoading]=useState(false)
   const [itemList, setItemList] = useState<any>([])
   const [total, setTotal] = useState<number>(0);
   const [address,setAddress]=useState<any>({});
@@ -43,6 +44,7 @@ function CreateOrder(props:any){
   }, [])
   //获取订单项
   useEffect(() => {
+    setLoading(true);
     if(window.location.search===""){
       let data = {
         pageNum: 1,
@@ -73,6 +75,7 @@ function CreateOrder(props:any){
                       total + Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2));
                   });
                   setTotal(total);
+                  setLoading(false);
                 }
               }else{
                 length=length-1;
@@ -84,6 +87,7 @@ function CreateOrder(props:any){
                       total + Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2));
                   });
                   setTotal(total);
+                  setLoading(false);
                 }
               }
             })
@@ -111,6 +115,7 @@ function CreateOrder(props:any){
           shoppingList.push(item);
           setItemList(shoppingList);
           setTotal(Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2)));
+          setLoading(false);
         }else{
           message.info('商品不存在');
           history.push('/');
@@ -166,7 +171,9 @@ function CreateOrder(props:any){
       <div style={{marginLeft:'auto',marginRight:'25%'}}><Button onClick={handleCreateOrder}>提交订单</Button></div>
     </div>
     <div style={{width:'50%',margin:'auto'}}>
+      <Skeleton active loading={loading}>
       {orderItems}
+      </Skeleton>
       <div style={{display:'flex',height:130,marginTop:30,borderStyle:'none none solid',borderWidth:'1px',borderColor:'#DDDDDD'}}>
         <div>
           <div style={{fontSize:18,fontWeight:'bold'}}>

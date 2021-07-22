@@ -4,24 +4,26 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 03:44:31
+ * @LastEditTime: 2021-07-22 19:52:05
  */
 import SiderMenu from "@/components/SiderMenu";
-import { Row, Col, Button, Divider, message, Pagination } from "antd";
+import { Row, Col, Button, Divider, message, Pagination, Skeleton, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import { deleteHistory, getDetail, getHistoryList } from "./service";
 import loading from '../../assets/loading.png';
 
 function HistoryItem(props: { commodityId: number, onClick: any, id:number }){
+  const [loading,setLoading]=useState(false);
   const [price,setPrice]=useState();
   const [guaranteePrice,setGuaranteePrice]=useState();
   const [name,setName]=useState('');
   const [image,setImage]=useState(loading);
   useEffect(() => {
-    getDetail({id:props.commodityId}).then((res)=>{if(res.data.value){setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice);setName(res.data.value.commodityName);setImage(res.data.value.subImages)}else{setName('商品已失效')}})
+    setLoading(true);
+    getDetail({id:props.commodityId}).then((res)=>{if(res.data.value){setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice);setName(res.data.value.commodityName);setImage(res.data.value.subImages)}else{setName('商品已失效')}setLoading(false)})
   }, [])
   return(
-    <>
+    <Skeleton active loading={loading}>
     <div style={{height: '100px',display: 'flex',justifyContent: 'flex-start',alignItems: 'center',width: '100%',}}>
       <div style={{width:'20%',textAlign:'center'}}>
         <img src={image} style={{width:90,height:90}}/>
@@ -35,11 +37,13 @@ function HistoryItem(props: { commodityId: number, onClick: any, id:number }){
         <span>￥{Number(price).toFixed(2)}/天+保证金￥{Number(guaranteePrice).toFixed(2)}</span>
       </div>
       <div style={{width:'20%',textAlign:'center'}}>
-        <Button onClick={props.onClick} danger>删除</Button>
+        <Popconfirm title="确定要删除吗？" placement={'bottomRight'} onConfirm={props.onClick} okText="确定" cancelText="取消">
+          <Button danger>删除</Button>
+        </Popconfirm>
       </div>
     </div>
     <Divider/>
-    </>
+    </Skeleton>
   )
 }
 

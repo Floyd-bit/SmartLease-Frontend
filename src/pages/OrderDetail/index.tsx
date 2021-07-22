@@ -3,10 +3,10 @@
  * @version:
  * @Author: 王宇阳
  * @Date: 2021-07-16 10:20:27
- * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-22 15:44:22
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-22 20:16:13
  */
-import { Button, message } from 'antd';
+import { Button, message, Skeleton } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { getAddressById, getOrderById, getOrderItemById, getProductById } from './service';
 import { Link, history } from 'umi';
@@ -18,7 +18,7 @@ function OrderItemCard(props:any){
         <img style={{height:'130px',width:'130px',marginTop:10}} src={props.image}/>
       </div>
       <div style={{width:'40%'}}>
-        {props.commodityName}<br/><br/>{props.selection}
+        <Link to={'/detail?id='+props.id} style={{color:'black'}}>{props.commodityName}<br/><br/>{props.selection}</Link>
       </div>
       <div style={{width:'30%'}}>
         押金：￥{Number(props.guaranteePrice).toFixed(2)} × {props.number}<br/>租金：￥{Number(props.price).toFixed(2)} × {props.number} × {props.time}天
@@ -31,10 +31,12 @@ function OrderItemCard(props:any){
 }
 
 function OrderDetail(props:any){
+  const [loading,setLoading]=useState(false)
   const [itemList, setItemList] = useState<any>([])
   const [orderInfo,setOrderInfo]=useState<any>({});
   const [address,setAddress]=useState<any>({receiverName:'',receiverPhone:'',address:''});
   useEffect(() => {
+    setLoading(true);
     getOrderById(props.location.query.id).then((res)=>{
       if(!res.data.value){
         message.info('订单不存在');
@@ -59,12 +61,14 @@ function OrderDetail(props:any){
                 shoppingList.push(item);
                 if (shoppingList.length === length) {
                   setItemList(shoppingList);
+                  setLoading(false);
                 }
               }else{
                 let item = {commodityName:'商品已下架',rentPrice:0,guaranteePrice:0,rentNum:res1.data.value.number,rentTime:res1.data.value.rentDays,selection:res1.data.value.uniform.selection,total:res1.data.value.transportPrice};
                 shoppingList.push(item);
                 if (shoppingList.length === length) {
                   setItemList(shoppingList);
+                  setLoading(false);
                 }
               }
             })
@@ -77,6 +81,7 @@ function OrderDetail(props:any){
   const orderItems=itemList.map((item:any)=>{
     return(
       <OrderItemCard
+      id={item.id}
       image={item.subImages}
       commodityName={item.commodityName}
       selection={item.selection}
@@ -96,7 +101,9 @@ function OrderDetail(props:any){
       <div style={{marginLeft:'auto',marginRight:'25%'}}><Button onClick={()=>{history.go(-1)}}>返回</Button></div>
     </div>
     <div style={{width:'50%',margin:'auto'}}>
+      <Skeleton active loading={loading}>
       {orderItems}
+      </Skeleton>
       <div style={{display:'flex',height:130,marginTop:30,borderStyle:'none none solid',borderWidth:'1px',borderColor:'#DDDDDD'}}>
         <div>
           <div style={{fontSize:18,fontWeight:'bold'}}>
