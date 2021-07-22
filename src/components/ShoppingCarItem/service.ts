@@ -5,3 +5,10 @@ export async function deleteShoppingCartById(id: number) {
     method: 'DELETE',
   });
 }
+
+export async function createShoppingCartRecord(data: any) {
+  return request(`/api2/customer/commodityCart/create`, {
+    method: 'POST',
+    data: data,
+  });
+}

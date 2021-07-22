@@ -48,6 +48,7 @@ function ShoppingCar() {
               item.rentNum = items.commodityIds["200"];
               item.rentTime = items.commodityIds["300"];
               item.shoppingCartId = items.id;
+              item.data=items.commodityIds;
               let options=JSON.parse(res.data.value.attribute.options);
               item.selection=(items.commodityIds["400"]===-1?"":options[0].title+":"+options[0].values[items.commodityIds["400"]]+" ")+(items.commodityIds["500"]===-1?"":options[1].title+":"+options[1].values[items.commodityIds["500"]]);
               shoppingList.push(item);
@@ -124,6 +125,7 @@ function ShoppingCar() {
               selection={item.selection}
               key={item.shoppingCartId}
               commodityId={item.id}
+              data={item.data}
             />
           ))}
 

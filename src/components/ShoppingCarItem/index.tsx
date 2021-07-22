@@ -1,16 +1,25 @@
 /*
+ * @Descripttion:
+ * @version:
+ * @Author: 王宇阳
+ * @Date: 2021-07-10 11:37:49
+ * @LastEditors: 王宇阳
+ * @LastEditTime: 2021-07-22 15:37:17
+ */
+/*
  * @Description:
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-10 10:05:27
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 03:39:50
+ * @LastEditTime: 2021-07-22 15:26:16
  */
 import React, { useEffect, useState } from 'react';
 import { Button, Image, message } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import { deleteShoppingCartById } from './service';
+import { createShoppingCartRecord, deleteShoppingCartById } from './service';
 import { Link } from 'umi';
+import GetUserId from '@/utils/GetUserId';
 
 interface ShoppingCarItemProps {
   id: string; //购物车项id
@@ -26,6 +35,7 @@ interface ShoppingCarItemProps {
   deleteflag: boolean;//父组件的deleteflag
   selection: string;//规格
   commodityId: string;//商品id
+  data:any //原数据，用来修改购物车项的参数
 }
 const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
   const [num, setNum] = useState(props.number);
@@ -33,26 +43,78 @@ const ShoppingCarItem: React.FC<ShoppingCarItemProps> = (props) => {
   const NumberMinus = () => {
     if (num === 1) message.error('最小数量为1');
     else {
-      setNum(num - 1);
-      props.setValue(Number(props.total) - Number(props.price)*time - Number(props.guaranteePrice));
+      let commodityIds=props.data;
+      commodityIds['200']=commodityIds['200']-1;
+      let data={
+        userId: GetUserId(),
+        commodityIds:commodityIds,
+      }
+      deleteShoppingCartById(Number(props.id)).then((res)=>{
+        if (res.status / 100 === 2) {
+          createShoppingCartRecord(data).then((res)=>{
+            if(res.status / 100 === 2){
+              props.delete(!props.deleteflag);
+            }
+          })
+        }
+      })
     }
   };
   const NumberPlus = () => {
-    setNum(num + 1);
-    props.setValue(Number(props.total) + Number(props.price)*time + Number(props.guaranteePrice));
-  };
+    let commodityIds=props.data;
+    commodityIds['200']=commodityIds['200']+1;
+    let data={
+      userId: GetUserId(),
+      commodityIds:commodityIds,
+    }
+    deleteShoppingCartById(Number(props.id)).then((res)=>{
+      if (res.status / 100 === 2) {
+        createShoppingCartRecord(data).then((res)=>{
+          if(res.status / 100 === 2){
+            props.delete(!props.deleteflag);
+          }
+        })
+      }
+    })
+  }
   //修改租期
   const [time, setTime] = useState(props.time);
   const TimeMinus = () => {
     if (time === 1) message.error('最小数量为1');
     else {
-      setTime(time - 1);
-      props.setValue(Number(props.total) - Number(props.price)*num);
+      let commodityIds=props.data;
+      commodityIds['300']=commodityIds['300']-1;
+      let data={
+        userId: GetUserId(),
+        commodityIds:commodityIds,
+      }
+      deleteShoppingCartById(Number(props.id)).then((res)=>{
+        if (res.status / 100 === 2) {
+          createShoppingCartRecord(data).then((res)=>{
+            if(res.status / 100 === 2){
+              props.delete(!props.deleteflag);
+            }
+          })
+        }
+      })
     }
   };
   const TimePlus = () => {
-    setTime(time + 1);
-    props.setValue(Number(props.total) + Number(props.price)*num);
+    let commodityIds=props.data;
+    commodityIds['300']=commodityIds['300']+1;
+    let data={
+      userId: GetUserId(),
+      commodityIds:commodityIds,
+    }
+    deleteShoppingCartById(Number(props.id)).then((res)=>{
+      if (res.status / 100 === 2) {
+        createShoppingCartRecord(data).then((res)=>{
+          if(res.status / 100 === 2){
+            props.delete(!props.deleteflag);
+          }
+        })
+      }
+    })
   };
   //删除
   const handleDelete = () => {
