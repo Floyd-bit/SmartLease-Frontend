@@ -205,9 +205,11 @@ const ProductDetail: React.FC = (props: any) => {
 
   //点击立即租赁
   const handleBuy = () => {
-    setTimeout(() => {
-      history.push('/payment');
-    }, 1000);
+    if (selected.length===options.length&&selected[0]!=null){
+      history.push('/createorder?id='+props.location.query.id+'&num='+num+'&time='+time+'&s1='+(selected[0]!=null?selected[0]:-1)+'&s2='+(selected[1]!=null?selected[1]:-1))
+    }else{
+      message.warning('请先选择商品规格');
+    }
   };
   //收藏
   const handleFavorite = () => {

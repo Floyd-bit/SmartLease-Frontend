@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-15 16:30:11
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 04:37:03
+ * @LastEditTime: 2021-07-22 14:57:46
  */
 import { Button, message } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -31,7 +31,7 @@ function OrderItemCard(props:any){
   )
 }
 
-function CreateOrder(){
+function CreateOrder(props:any){
   const [itemList, setItemList] = useState<any>([])
   const [total, setTotal] = useState<number>(0);
   const [address,setAddress]=useState<any>({});
@@ -88,6 +88,33 @@ function CreateOrder(){
               }
             })
           })
+        }
+      })
+    }else{
+      let items={
+        commodityIds:{
+          100:props.location.query.id,
+          200:props.location.query.num,
+          300:props.location.query.time,
+          400:props.location.query.s1,
+          500:props.location.query.s2
+        }
+      }
+      let shoppingList: any[] = [];
+      getProductById(items.commodityIds["100"]).then((res) => {
+        if(res.data.value){
+          let item = res.data.value;
+          item.rentNum = items.commodityIds["200"];
+          item.rentTime = items.commodityIds["300"];
+          let options=JSON.parse(res.data.value.attribute.options);
+          item.selection=(items.commodityIds["400"]==-1?"":options[0].title+":"+options[0].values[items.commodityIds["400"]]+" ")+(items.commodityIds["500"]==-1?"":options[1].title+":"+options[1].values[items.commodityIds["500"]]);
+          shoppingList.push(item);
+          setItemList(shoppingList);
+          setTotal(Number((Number(item.guaranteePrice)*Number(item.rentNum) + Number(item.rentPrice)*Number(item.rentNum)*Number(item.rentTime)).toFixed(2)));
+        }else{
+          message.info('商品不存在');
+          history.push('/');
+          setItemList([]);
         }
       })
     }
