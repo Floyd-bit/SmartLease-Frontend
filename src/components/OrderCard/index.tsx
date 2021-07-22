@@ -3,14 +3,18 @@
  * @version:
  * @Author: 王宇阳
  * @Date: 2021-07-08 21:11:12
- * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 04:12:56
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-22 16:05:09
  */
 import { getProductById } from '@/pages/CreateOrder/service';
-import { Button, Image } from 'antd';
+import GetUserId from '@/utils/GetUserId';
+import { Button,Image,Input,message,Modal, Rate} from 'antd';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'umi';
 import { deleteOrderById, getAddressById, getOrderItemById } from './service';
+
+const { TextArea } = Input;
 interface OrderCardProps {
   gmtCreate: string;//创建时间
   id: string; //订单号
@@ -50,6 +54,40 @@ function OrderItemCard(props:any){
 const OrderCard: React.FC<OrderCardProps> = props => {
   //获取收货地址
   const[address,setAddress]=useState({receiverName:'',receiverPhone:''})
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [currentCommodity, setCurrentCommodity] = useState({commodityId:0,commodityName:''});
+  const [comments,setComments] = useState('');
+  const [score,setScore] = useState(0);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const changeComments = (value: any) => {
+    console.log(value.target.defaultValue);
+    setComments(value.target.defaultValue);
+  }
+
+  const handleOk = () => {
+    axios.post(`/api2/customer/evaluation/create`,{
+      commodityId: currentCommodity.commodityId,
+      commodityName: currentCommodity.commodityName,
+      content: comments,
+      score: score,
+      userId: GetUserId(),
+      time: new Date(),
+    }
+    )
+    .then((res) => {
+      message.success(res.data.message);
+    })
+    .catch()
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   useEffect(() => {
     getAddressById(props.receiverAddressId).then((res)=>setAddress(res.data.value));
   }, [])
@@ -79,6 +117,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
   }
 
   return (
+    <>
     <div style={{ width: '100%', height: 'auto', justifyContent: 'center', marginTop: '0px', }}>
       <div style={{ height: '50px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#C6DCF9', width: '100%', }}>
         <div style={{ display: 'flex', justifyContent: 'space-around', width: '60%' }}>
@@ -95,7 +134,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
         <div style={{width:'20%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
           <div>
             总价：￥{props.transportPrice.toFixed(2)}<br/><span style={{color:'red',fontSize:16 }}>
-              {props.status.replace('UNPAY','待付款').replace('UNSEND','待发货').replace('UNRECEIVE','待收货').replace('USING','使用中').replace('不知道','HAVEBUY').replace('未退还','UNCREDIT').replace('已退还','AFTERSALE')}
+              {props.status.replace('UNPAY','待付款').replace('UNSEND','待发货').replace('UNRECEIVE','待收货').replace('USING','使用中').replace('HAVEBUY','不知道').replace('UNCREDIT','未退还').replace('AFTERSALE','已退还')}
             </span><br/><Link to={'/orderdetail?id='+props.id}>订单详情</Link>
           </div>
         </div>
@@ -105,6 +144,7 @@ const OrderCard: React.FC<OrderCardProps> = props => {
               <Link to={'/payment?id='+props.id}>
                 <Button type="primary" style={{display:props.status=='UNPAY'?'':'none'}}>立即付款</Button>
               </Link>
+              <Button type="primary" style={{display:props.status=='AFTERSALE'?'':'none'}} onClick={()=>{setCurrentCommodity({"commodityId":2137,"commodityName":"1"}); showModal();}}>立即评价</Button>
             </div>
             <div style={{textAlign:'center'}}>
               <Button type="primary" disabled={props.status!='UNPAY'&&props.status!='AFTERSALE'} danger onClick={handleDelete}>删除订单</Button>
@@ -113,6 +153,11 @@ const OrderCard: React.FC<OrderCardProps> = props => {
         </div>
       </div>
     </div>
+    <Modal title="评价" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Input onChange={(value) => setScore(Number(value.target.defaultValue))}/>
+      <TextArea rows={4} onChange={changeComments} placeholder="请输入评价内容"/> 
+    </Modal>
+    </>
   );
 };
 

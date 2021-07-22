@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-12 14:12:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-20 10:23:16
+ * @LastEditTime: 2021-07-22 14:15:31
  */
 import React from 'react';
 import { Col, message, Row } from 'antd';
@@ -148,7 +148,7 @@ const Login = () => {
           ]}
           placeholder="请输入验证码"
           onGetCaptcha={async (phone) => {
-            await waitTime(1000);
+            await waitTime(2000);
             message.success(`手机号 ${phone} 验证码发送成功!`);
           }}
         />
