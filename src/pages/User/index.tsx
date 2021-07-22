@@ -6,9 +6,9 @@
  * @LastEditors: 王宇阳
  * @LastEditTime: 2021-07-19 17:12:09
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SiderMenu from '@/components/SiderMenu';
-import { Row, Col, Card, Avatar, Button } from 'antd';
+import { Row, Col, Card, Avatar, Button, Divider } from 'antd';
 import {
   CarOutlined,
   CiCircleOutlined,
@@ -23,6 +23,7 @@ import {
 import ShoppingCarItem from '@/components/ShoppingCarItem';
 import ItemCard from '@/components/ItemCard';
 import GetUserId from '@/utils/GetUserId';
+import { getOrderOnlyTwo, getRecommendProduct } from '../service';
 
 const gridStyle = {
   width: '16.66666%',
@@ -30,6 +31,22 @@ const gridStyle = {
 };
 
 function User() {
+  const getData = () => {
+    getRecommendProduct().then(
+      res => setRecommendList(res.data.value.slice(0, 9))
+    )
+  }
+  const [recommendList, setRecommendList] = useState<any>([]);
+  const [orderList, setOrderList] = useState<any>([]);
+  useEffect(() => {
+    getData();
+    getOrderOnlyTwo().then(
+      res => {
+        setOrderList(res.data.value.records);
+      }
+    )
+  }
+    , [])
   return (
     <Row justify="space-around" align="top">
       <Col span={5}>
@@ -79,128 +96,82 @@ function User() {
           style={{ width: 900, marginTop: 20 }}
           extra={<a href="#">全部订单</a>}
         >
-          <ShoppingCarItem
-            gmtCreate="2020/7/8"
-            id="1123123123"
-            receiver="syx"
-            phone="12345678"
-            number={1}
-            productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
-            color="红色"
-            size="32G"
-            price="99999.99"
-            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
-            name="商品"
-            count={2}
-            payment={true}
-            time={1}
-          />
-          <ShoppingCarItem
-            gmtCreate="2020/7/8"
-            id="1123123123"
-            receiver="syx"
-            phone="12345678"
-            number={1}
-            productName="苹果 iPad mini3 MGY92CH苹果 iPad mini3 MGY92CH "
-            color="红色"
-            size="32G"
-            price="99999.99"
-            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/16ac55cd89b6ab5f015a2e5c9392dc2e.jpg"
-            name="商品"
-            count={2}
-            payment={true}
-            time={1}
-          />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {
+              orderList.length === 0 ? <div>暂无订单哦
+              </div> : (
+                <>
+                  <div style={{ display: 'flex' }}>
+                    <div style={{ flex: 1 }}>
+                      商品图片
+               </div>
+                    <div style={{ flex: 1 }}>
+                      商品名称
+               </div>
+                    <div style={{ flex: 1 }}>
+                      价格
+               </div>
+                    <div style={{ flex: 1 }}>
+                      数量
+               </div>
+                    <div style={{ flex: 1 }}>
+                      租期
+               </div>
+                  </div>
+                  {
+                    orderList.map(
+                      item => {
+                        <div style={{ display: 'flex' }}>
+                          <div>
+                            <img src={item.subImages}></img>
+                          </div>
+                          <div>
+                            <img src={item.subImages}></img>
+                          </div>
+                          <div>
+                            <img src={item.subImages}></img>
+                          </div>
+                          <div>
+                            <img src={item.subImages}></img>
+                          </div>
+                          <div>
+                            <img src={item.subImages}></img>
+                          </div>
+                          <div>
+                            <img src={item.subImages}></img>
+                          </div>
+                        </div>
+                      }
+                    )
+                  }
+
+                </>)
+            }
+
+          </div>
         </Card>
         <Card
           title="根据浏览，猜你喜欢"
           style={{ width: 900, marginTop: 20 }}
-          extra={<Button>换一组</Button>}
+          extra={<Button onClick={getData}>换一组</Button>}
         >
           <Row gutter={[24, 16]}>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i4/15380848/O1CN01cKtKXt1I8QYSSnARW_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i2/110854353/O1CN017A07qO1i1ilSiwSuG_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i3/16185481/O1CN01CTDpok1qMLWfeCyIB_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
+            {
+              recommendList.map((item) => {
+                return (
+                  <Col span={8}>
+                    <ItemCard
+                      image={item.subImages}
+                      title={item.commodityName}
+                      price={item.rentPrice}
+                      guaranteePrice={item.guaranteePrice}
+                      id={item.id}
+                    />
+                  </Col>
+                )
+              })
+            }
 
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i3/6000000001226/O1CN01mTLirm1KvYGbpkCl2_!!6000000001226-2-octopus.png"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i2/110854353/O1CN017A07qO1i1ilSiwSuG_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i2/130148900/O1CN01ndeQop2FcFaMNvTKP_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i3/133451333/O1CN01f15o3t1LiYalhaT35_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i2/124643983/O1CN01j4JOoe1fIGDNAVs1a_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
-            <Col span={8}>
-              <ItemCard
-                image="https://img.alicdn.com/imgextra/i1/31799034/O1CN01iUvvAF2GbcjnYsmCE_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"
-                title="商品名称"
-                price="9999.99"
-                oldprice="9999.99"
-                id="1"
-              />
-            </Col>
           </Row>
         </Card>
       </Col>
