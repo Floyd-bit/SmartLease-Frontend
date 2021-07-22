@@ -4,17 +4,31 @@
  * @Author: 王宇阳
  * @Date: 2021-07-15 11:02:29
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-15 15:40:55
+ * @LastEditTime: 2021-07-22 16:38:45
  */
 import { Button, message } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import qrcode from '../../assets/payqrcode.png'
+import { getOrderById } from './service';
 
-function Payment(){
-
+function Payment(props:any){
+  const [orderInfo, setOrderInfo] = useState<any>({})
+  useEffect(() => {
+    getOrderById(props.location.query.id).then((res)=>{
+      if(res.data.value){
+        setOrderInfo(res.data.value)
+      }
+    })
+  }, [])
   const confirmPayment=()=>{
-    //向后台确认
-    message.success('支付成功！即将跳转到首页...',2).then(()=>window.location.href='/')
+    getOrderById(props.location.query.id).then((res)=>{
+      if(res.data.value&&res.data.value.status!='UNPAY'){
+        message.success('支付成功！即将跳转到我的订单...',2).then(()=>window.location.href='/user/orderlist')
+      }else{
+        message.success('暂未检测到支付成功，如有问题请联系孙逸翔')
+      }
+    })
+
   }
 
   return(
@@ -24,9 +38,9 @@ function Payment(){
         微信支付
       </div>
       <div style={{height:500,background:'#DDDDDD',marginTop:5,border:'1px',display:'flex',flexDirection:'column',alignItems:'center'}}>
-        <span style={{fontSize:30,marginTop:10,marginBottom:10}}>￥1000.00</span>
+        <span style={{fontSize:30,marginTop:10,marginBottom:10}}>￥{Number(orderInfo.transportPrice).toFixed(2)}</span>
         <img src={qrcode}/>
-        <span style={{width:200,textAlignLast:'justify',fontSize:15,fontWeight:'bold',marginTop:10}}>订单号：1234567890</span>
+        <span style={{width:200,textAlignLast:'justify',fontSize:15,fontWeight:'bold',marginTop:10}}>订单号：{orderInfo.id}</span>
         <span style={{width:200,textAlignLast:'justify',fontSize:15,fontWeight:'bold',marginBottom:10}}>请扫码支付，并点击确认按钮</span>
         <Button onClick={confirmPayment}>确认</Button>
       </div>
