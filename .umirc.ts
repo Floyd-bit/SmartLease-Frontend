@@ -4,7 +4,7 @@
  * @Author: 赵卓轩
  * @Date: 2021-07-10 15:18:12
  * @LastEditors: 赵卓轩
- * @LastEditTime: 2021-07-21 16:33:28
+ * @LastEditTime: 2021-07-22 16:43:35
  */
 import { IConfig } from 'umi-types';
 
@@ -20,7 +20,7 @@ const config: IConfig = {
        { rel: 'icon', href: 'https://img0.baidu.com/it/u=842442191,584942941&fm=26&fmt=auto&gp=0.jpg' },
      ],
    // 修改title
-   title:'租享宝',
+   title:'租享宝—智能化共享租赁平台',
   routes: [
     {
       path: '/',

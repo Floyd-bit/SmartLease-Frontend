@@ -3,8 +3,8 @@
  * @version: 1.0
  * @Author: 赵卓轩
  * @Date: 2021-07-09 11:40:35
- * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-21 21:05:23
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-23 15:32:26
  */
 import React, { useState } from 'react';
 import styles from './index.css';
@@ -75,10 +75,10 @@ const BasicLayout: React.FC = (props) => {
               }}
             >
               <div style={{ marginRight: '10px' }}>
-                <LeftCircleTwoTone style={{ fontSize: '20px' }} />
+                <div onClick={()=>{history.go(-1)}}><LeftCircleTwoTone style={{ fontSize: '20px' }} /></div>
               </div>
               <div>
-                <RightCircleTwoTone style={{ fontSize: '20px' }} />
+                <div onClick={()=>{history.go(1)}}><RightCircleTwoTone style={{ fontSize: '20px' }} /></div>
               </div>
             </div>
             <div

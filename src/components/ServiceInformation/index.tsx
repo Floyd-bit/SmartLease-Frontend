@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-22 16:23:12
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-23 14:45:44
+ */
 import React from 'react';
 
 const ServiceInformation: React.FC = () => {
@@ -25,7 +33,7 @@ const ServiceInformation: React.FC = () => {
         <div>返回方式：快递至商家</div>
         <div>取件时间：默认</div>
         <div style={{ display: 'flex' }}>
-          <p style={{ color: 'red' }}>*</p>&nbsp;收货信息：xxxxxxxxxxx
+          <p style={{ color: 'red' }}>*</p>&nbsp;收货信息：武汉大学信息学部国软C3舍
         </div>
       </div>
     </div>

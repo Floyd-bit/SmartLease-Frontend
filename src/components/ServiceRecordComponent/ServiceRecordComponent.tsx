@@ -120,37 +120,9 @@ const ServiceApply: React.FC = () => {
       </div>
       <TableColumn
         orderTime="2021/7/16"
-        orderId="xxxxxx"
-        productName="xxxxxxxxxxxx"
-        serviceId="xxxxxxx"
-        status
-      />
-      <TableColumn
-        orderTime="2021/7/16"
-        orderId="xxxxxx"
-        productName="xxxxxxxxxxxx"
-        serviceId="xxxxxxx"
-        status
-      />
-      <TableColumn
-        orderTime="2021/7/16"
-        orderId="xxxxxx"
-        productName="xxxxxxxxxxxx"
-        serviceId="xxxxxxx"
-        status
-      />
-      <TableColumn
-        orderTime="2021/7/16"
-        orderId="xxxxxx"
-        productName="xxxxxxxxxxxx"
-        serviceId="xxxxxxx"
-        status
-      />
-      <TableColumn
-        orderTime="2021/7/16"
-        orderId="xxxxxx"
-        productName="xxxxxxxxxxxx"
-        serviceId="xxxxxxx"
+        orderId="25"
+        productName="新款骁龙865手机5G全网通大屏智能安卓千元学生价游戏分期免息"
+        serviceId="20"
         status
       />
 
