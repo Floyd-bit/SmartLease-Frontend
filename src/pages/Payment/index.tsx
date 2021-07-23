@@ -4,12 +4,12 @@
  * @Author: 王宇阳
  * @Date: 2021-07-15 11:02:29
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 16:38:45
+ * @LastEditTime: 2021-07-23 17:29:51
  */
 import { Button, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import qrcode from '../../assets/payqrcode.png'
-import { getOrderById } from './service';
+import { getOrderById, getOrderPaid } from './service';
 
 function Payment(props:any){
   const [orderInfo, setOrderInfo] = useState<any>({})
@@ -21,14 +21,9 @@ function Payment(props:any){
     })
   }, [])
   const confirmPayment=()=>{
-    getOrderById(props.location.query.id).then((res)=>{
-      if(res.data.value&&res.data.value.status!='UNPAY'){
-        message.success('支付成功！即将跳转到我的订单...',2).then(()=>window.location.href='/user/orderlist')
-      }else{
-        message.success('暂未检测到支付成功，如有问题请联系孙逸翔')
-      }
+    getOrderPaid(props.location.query.id).then((res)=>{
+      message.success('支付成功！即将跳转到我的订单...',2).then(()=>window.location.href='/user/orderlist')
     })
-
   }
 
   return(

@@ -185,11 +185,11 @@ const ProductDetail: React.FC = (props: any) => {
   useEffect(() => {
     getDetail({ id: props.location.query.id ? props.location.query.id : 0 }).then((res) => {
       if (res.data.value) {
-        setDetail(res.data.value),
-        setBigimg(res.data.value.subImages),
-        setParam(JSON.parse(res.data.value.title)),
+        setDetail(res.data.value);
+        setBigimg(res.data.value.subImages);
         setOptions(JSON.parse(res.data.value.attribute.options));
         addSearchRecord(props.location.query.id);
+        setParam(JSON.parse(res.data.value.title));
       }
     });
   }, [props.location.query.id]);
