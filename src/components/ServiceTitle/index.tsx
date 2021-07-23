@@ -1,4 +1,13 @@
+/*
+ * @Description: 
+ * @version: 1.0
+ * @Author: 赵卓轩
+ * @Date: 2021-07-22 16:23:12
+ * @LastEditors: 赵卓轩
+ * @LastEditTime: 2021-07-23 14:44:26
+ */
 import React from 'react';
+import {Image} from 'antd';
 
 const ServiceTitle: React.FC = () => {
   return (
@@ -39,8 +48,8 @@ const ServiceTitle: React.FC = () => {
               marginRight: '20px',
               backgroundColor: 'gray',
             }}
-          ></div>
-          <div>xxxxxx</div>
+          ><Image src="https://img.alicdn.com/imgextra/i3/24386130/O1CN01nHyquc1v9aZRNeTn9_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"/></div>
+          <div>新款骁龙865手机5G全网通大屏智能安卓千元学生价游戏分期免息</div>
         </div>
         <div
           style={{
@@ -52,7 +61,7 @@ const ServiceTitle: React.FC = () => {
             borderLeft: '2px solid #D5D5D5',
           }}
         >
-          xxxxxx * 1 , xxxxxx * 2
+          蓝色 金属 * 1 
         </div>
         <div
           style={{

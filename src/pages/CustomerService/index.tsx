@@ -1,6 +1,6 @@
 import React from 'react';
 import SiderMenu from '@/components/SiderMenu';
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Row, Image } from 'antd';
 import Fix from '@/assets/CustomerService.png';
 import ServiceDetail from './ServiceDetail';
 import { history } from 'umi';
@@ -145,8 +145,10 @@ const CustomerService: React.FC = () => {
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: '20px', margin: '20px' }}>公告</div>
             <div style={{ fontSize: '15px', margin: '20px' }}>
-              <div>[xx] xxxxx,xxxxxx!</div>
-              <div>[xx] xxxxx,xxxxxx!</div>
+              <div>[新品上线] 618年终大促!</div>
+              <div>[售后保证] 7天无理由退货!</div>
+              <div style={{fontSize: 28, marginTop:20}}>全国客服热线</div>
+              <div style={{color:"red",fontSize: 20, marginLeft: 15}}>4000-778-768</div>
             </div>
           </div>
         </div>
@@ -203,7 +205,7 @@ const CustomerService: React.FC = () => {
                   borderTop: '1px solid #D5D5D5',
                 }}
               >
-                <ServiceDetail />
+                
               </div>
               <div
                 style={{
@@ -212,7 +214,7 @@ const CustomerService: React.FC = () => {
                   borderTop: '1px solid #D5D5D5',
                 }}
               >
-                <ServiceDetail />
+               
               </div>
             </div>
             <div style={{ display: 'flex', flex: 1 }}>
@@ -224,7 +226,7 @@ const CustomerService: React.FC = () => {
                   borderRight: '1px solid #D5D5D5',
                 }}
               >
-                <ServiceDetail />
+                
               </div>
               <div
                 style={{
@@ -234,7 +236,7 @@ const CustomerService: React.FC = () => {
                   borderRight: '1px solid #D5D5D5',
                 }}
               >
-                <ServiceDetail />
+                
               </div>
               <div
                 style={{
@@ -244,7 +246,7 @@ const CustomerService: React.FC = () => {
                   borderRight: '1px solid #D5D5D5',
                 }}
               >
-                <ServiceDetail />
+                
               </div>
             </div>
             <div

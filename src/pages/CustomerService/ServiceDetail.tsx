@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button , Image} from 'antd';
 import React from 'react';
 
 const ServiceDetail: React.FC = () => {
@@ -14,8 +14,8 @@ const ServiceDetail: React.FC = () => {
         marginBottom: '20px'
       }}
     >
-      <div>订单号： xxxxxxx</div>
-      <div style={{ color: '#ABA8C0' }}>下单时间： xxxx-xx-xx xx:xx:xx</div>
+      <div>订单号： 37</div>
+      <div style={{ color: '#ABA8C0' }}>下单时间： 2021-7-23 10:47:56</div>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <div
           style={{
@@ -24,7 +24,9 @@ const ServiceDetail: React.FC = () => {
             height: '100px',
             marginRight: '20px',
           }}
-        ></div>
+        >
+          <Image src="https://img.alicdn.com/imgextra/i3/24386130/O1CN01nHyquc1v9aZRNeTn9_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"/>
+        </div>
         <div style={{ flex: 1 }}>
           <Button
             danger

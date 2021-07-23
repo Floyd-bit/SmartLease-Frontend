@@ -1,4 +1,4 @@
-import { Button, Pagination, TableColumnGroupType, Tabs } from 'antd';
+import { Button, Pagination, TableColumnGroupType, Tabs , Image } from 'antd';
 import React from 'react';
 
 interface TableColumnProps {
@@ -32,7 +32,7 @@ const TableColumn: React.FC<TableColumnProps> = props => {
           borderRight: '2px solid #D5D5D5',
         }}
       >
-        <div style={{ width: '80px', height: '80px', backgroundColor: 'gray' }}></div>
+        <div style={{ width: '80px', height: '80px', backgroundColor: 'gray' }}><Image src="https://img.alicdn.com/imgextra/i3/24386130/O1CN01nHyquc1v9aZRNeTn9_!!0-saturn_solar.jpg_468x468q75.jpg_.webp"/></div>
         <Button
           danger
           style={{
@@ -99,12 +99,7 @@ const ServiceApply: React.FC = () => {
           下单时间
         </div>
       </div>
-      <TableColumn orderTime="2021/7/16" orderId="xxxxxx" />
-      <TableColumn orderTime="2021/7/16" orderId="xxxxxx" />
-      <TableColumn orderTime="2021/7/16" orderId="xxxxxx" />
-      <TableColumn orderTime="2021/7/16" orderId="xxxxxx" />
-      <TableColumn orderTime="2021/7/16" orderId="xxxxxx" />
-      <TableColumn orderTime="2021/7/16" orderId="xxxxxx" />
+      <TableColumn orderTime="2021/7/16" orderId="37" />
       <Pagination defaultCurrent={1} total={50} style={{ float: 'right', marginTop: '20px' }} />
     </div>
   );
