@@ -4,7 +4,7 @@
  * @Author: 王宇阳
  * @Date: 2021-07-13 08:46:08
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-13 20:03:54
+ * @LastEditTime: 2021-07-23 11:03:31
  */
 import GetUserId from '@/utils/GetUserId';
 import request from 'umi-request';
@@ -60,10 +60,22 @@ export async function getRecommendProduct() {
 
 export async function getOrderOnlyTwo() {
   return request(
-    `api2/customer/order/getByUserId?pageNum=1&pageSize=2&userId=${GetUserId()}
+    `api2/customer/order/getByUserId?pageNum=1&pageSize=1&userId=${GetUserId()}
     `,
     {
       method: 'GET',
     },
   );
+}
+
+export async function getOrderItemById(id: number) {
+  return request(`/api2/customer/orderItem/selectById?id=${id}`, {
+    method: 'GET',
+  });
+}
+
+export async function getProductById(id: string) {
+  return request(`/api2/customer/commodityList/selectById?id=${id}`, {
+    method: 'GET',
+  });
 }

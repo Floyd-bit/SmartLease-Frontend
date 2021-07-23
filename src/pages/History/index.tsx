@@ -4,20 +4,20 @@
  * @Author: 王宇阳
  * @Date: 2021-07-14 10:22:13
  * @LastEditors: 王宇阳
- * @LastEditTime: 2021-07-22 19:52:05
+ * @LastEditTime: 2021-07-23 10:12:18
  */
 import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message, Pagination, Skeleton, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import { deleteHistory, getDetail, getHistoryList } from "./service";
-import loading from '../../assets/loading.png';
+import loadingimg from '../../assets/loading.png';
 
 function HistoryItem(props: { commodityId: number, onClick: any, id:number }){
   const [loading,setLoading]=useState(false);
   const [price,setPrice]=useState();
   const [guaranteePrice,setGuaranteePrice]=useState();
   const [name,setName]=useState('');
-  const [image,setImage]=useState(loading);
+  const [image,setImage]=useState(loadingimg);
   useEffect(() => {
     setLoading(true);
     getDetail({id:props.commodityId}).then((res)=>{if(res.data.value){setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice);setName(res.data.value.commodityName);setImage(res.data.value.subImages)}else{setName('商品已失效')}setLoading(false)})

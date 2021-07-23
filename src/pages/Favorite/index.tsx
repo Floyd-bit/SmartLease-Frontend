@@ -10,14 +10,14 @@ import SiderMenu from "@/components/SiderMenu";
 import { Row, Col, Button, Divider, message, Skeleton, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import { deleteFavorite, getDetail, getFavoriteList } from "./service";
-import loading from '../../assets/loading.png';
+import loadingimg from '../../assets/loading.png';
 
 function FavoriteItem(props: { commodityName: string, commodityId: number, onClick: any, id:number,subImages:string }){
   const [loading,setLoading]=useState(false);
   const [price,setPrice]=useState();
   const [guaranteePrice,setGuaranteePrice]=useState();
   const [name,setName]=useState('');
-  const [image,setImage]=useState(loading);
+  const [image,setImage]=useState(loadingimg);
   useEffect(() => {
     setLoading(true);
     getDetail({id:props.commodityId}).then((res)=>{if(res.data.value){setPrice(res.data.value.rentPrice);setGuaranteePrice(res.data.value.guaranteePrice);setName(res.data.value.commodityName);setImage(res.data.value.subImages)}else{setName('商品已失效')}setLoading(false)})
